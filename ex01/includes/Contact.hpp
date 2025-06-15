@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:18:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 19:24:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/06/15 20:43:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class	Contact
 	public:
 		Contact ();
 		Contact (string firstName, string lastName, string nickName, string phoneNumber, string darkestSecret);
+		string	formatString(string str);
+		void	displayField(string field);
 		void	displayColumn(int id);
 		void	displayContact(void);
 };
