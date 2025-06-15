@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:23:13 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 18:43:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/06/15 20:49:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@
 // TODO: Debug
 # include <cstdio>
 
-# define MAX 2
-
+# define MAX 8
 #endif
