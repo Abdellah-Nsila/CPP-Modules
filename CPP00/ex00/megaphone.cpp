@@ -1,7 +1,7 @@
 # include <iostream>
 # include <string>
 
-
+using namespace std;
 
 char	upperCase(char c)
 {
@@ -35,8 +35,9 @@ int	main(int argc, char* argv[])
 	while (i < argc)
 	{
 		strToUpper(&argv[i]);
-		cout << argv[i];
+		cout << argv[i] << " ";
 		i++;
 	}
+	cout << endl;
 	return (0);
 }
