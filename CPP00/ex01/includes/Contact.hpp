@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:18:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 20:43:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 18:03:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define CONTACT_H
 
 # include "includes.hpp"
-
-using namespace std;
 
 class	Contact
 {

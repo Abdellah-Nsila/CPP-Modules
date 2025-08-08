@@ -6,13 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:52:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 19:22:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 18:27:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.hpp"
-
-using namespace std;
 
 PhoneBook::PhoneBook(void)
 {
@@ -67,6 +65,8 @@ void	PhoneBook::getContactById(void)
 
 	while (true)
 	{
+		// 4294967295 overflow to -1
+		// 4294967296 overflow to 0
 		id = this->input("Enter the Contact id: ");
 		if (id.empty())
 		{

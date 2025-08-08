@@ -6,13 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:26:41 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 19:22:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 18:03:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.hpp"
-
-using namespace std;
 
 int	ft_isdigit(int n)
 {

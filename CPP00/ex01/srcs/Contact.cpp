@@ -6,13 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:08:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 20:45:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 18:03:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.hpp"
-
-using namespace std;
 
 Contact::Contact(void) {}
 

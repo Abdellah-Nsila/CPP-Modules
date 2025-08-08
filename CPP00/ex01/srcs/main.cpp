@@ -6,25 +6,25 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:28:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/06/15 20:40:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/08 18:36:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "main.hpp"
-
-using namespace std;
 
 int	main()
 {
 	PhoneBook	phoneBook;
 	string		command;
 
-	while (!cin.eof())
+	while (true)
 	{
 		command = phoneBook.input("Enter a command [ADD] [SEARCH] [EXIT]: ");
+		if (cin.eof())
+			break;
+
 		if (command == "ADD")
 		{
-			// TODO: This check is optional
 			if (!phoneBook.add())
 				cout << "\nError in adding Contact!" << endl;
 		}
@@ -33,9 +33,11 @@ int	main()
 			phoneBook.search();
 		}
 		else if (command == "EXIT")
-			break ;
-		else if(!command.empty())
-			cout << "Invalid command!\n";
+			break;
+		else if (!command.empty())
+			cout << "Invalid command!" << endl;
 	}
+	cout << endl;
+	cin.clear();
 	return (0);
 }
