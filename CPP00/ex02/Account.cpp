@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 19:00:31 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 11:43:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/09 12:54:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	Account::_totalNbWithdrawals = 0;
 Account::Account( int initial_deposit )
 {
 	// Account instance index
-	this->_accountIndex = _nbAccounts;
+	this->_accountIndex = getNbAccounts();
 	// Incerement nuber of account by 1
 	_nbAccounts++;
 	// Init depo fot this account instance
@@ -37,7 +37,6 @@ Account::Account( int initial_deposit )
 	_totalNbDeposits = 0;
 	// Timestamp and info log for this account instance
 	_displayTimestamp();
-	// Info log
 	std::cout << "index:" << this->_accountIndex << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "created" << std::endl;
@@ -48,11 +47,9 @@ Account::~Account()
 {
 	// Timestamp and info log for this account instance
 	_displayTimestamp();
-	// Info log
 	std::cout << "index:" << this->_accountIndex << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "closed" << std::endl;
-	std::cout << "Destructor called: Memory deallocated." << std::endl;
 }
 
 // ------------------------------------ First Methods -------------------------------
@@ -78,29 +75,76 @@ int Account::getNbWithdrawals()
 
 void Account::displayAccountsInfos()
 {
-	
+	// Timestamp and info log for this account instance
+	_displayTimestamp();
+	std::cout << "accounts:" << getNbAccounts() << ";"
+			<< "total:" << getTotalAmount() << ";"
+			<< "deposits:" << getNbDeposits() << ";"
+			<< "withdrawals:" << getNbWithdrawals()
+			<< std::endl;
 }
 
 // ------------------------------------ Second Methods -------------------------------
-// void	Account::makeDeposit( int deposit )
-// {
+void	Account::makeDeposit( int deposit )
+{
+	this->_amount += deposit;
+	this->_nbDeposits++;
+	_totalAmount += deposit;
+	_totalNbDeposits++;
 	
-// }
+	// Timestamp and info log for this account instance
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+			<< "p_amount:" << (this->_amount - deposit) << ";"
+			<< "deposit:" << deposit << ";"
+			<< "amount:" << this->_amount << ";"
+			<< "nb_deposits:" << this->_nbDeposits
+			<< std::endl;
+}
 
-// bool	Account::makeWithdrawal( int withdrawal )
-// {
-	
-// }
+bool	Account::makeWithdrawal( int withdrawal )
+{
+	if (checkAmount() - withdrawal < 0)
+	{
+		// Timestamp and info log for this account instance
+		_displayTimestamp();
+		std::cout << "index:" << this->_accountIndex << ";"
+			<< "p_amount:" << this->_amount << ";"
+			<< "withdrawal:" << "refused"
+			<< std::endl;
+		return (false);
+	}
+	this->_amount -= withdrawal;
+	this->_nbWithdrawals++;
+	_totalAmount -= withdrawal;
+	_totalNbWithdrawals++;
 
-// int	Account::checkAmount() const
-// {
-	
-// }
+	// Timestamp and info log for this account instance
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+			<< "p_amount:" << (this->_amount + withdrawal) << ";"
+			<< "withdrawal:" << withdrawal << ";"
+			<< "amount:" << this->_amount << ";"
+			<< "nb_withdrawals:" << this->_nbWithdrawals
+			<< std::endl;
+	return (true);
+}
 
-// void	Account::displayStatus() const
-// {
-	
-// }
+int	Account::checkAmount() const
+{
+	return (this->_amount);
+}
+
+void	Account::displayStatus() const
+{
+	// Timestamp and info log for this account instance
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";"
+		<< "amount:" << this->_amount << ";"
+		<< "deposits:" << this->_nbDeposits << ";"
+		<< "withdrawals:" << this->_nbWithdrawals
+		<< std::endl;
+}
 
 void	Account::_displayTimestamp( void )
 {
@@ -117,9 +161,4 @@ void	Account::_displayTimestamp( void )
 			<< std::setfill('0') << std::setw(2) << current_time->tm_sec
 			<< "]"
 			<< " ";
-}
-
-int	main()
-{
-	Account	a(100);
 }
