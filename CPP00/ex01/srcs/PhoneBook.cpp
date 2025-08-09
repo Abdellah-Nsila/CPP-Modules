@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:52:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/08 18:27:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/09 10:47:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	PhoneBook::getContactById(void)
 	{
 		// 4294967295 overflow to -1
 		// 4294967296 overflow to 0
+		//TODO: Validate Integer Input: https://www.w3schools.com/cpp/cpp_input_validation.asp
 		id = this->input("Enter the Contact id: ");
 		if (id.empty())
 		{
