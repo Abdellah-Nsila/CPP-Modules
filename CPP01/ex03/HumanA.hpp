@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 13:05:08 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 18:00:58 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/09 17:55:32 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/09 18:04:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __ZOMBIE_H__
-#define __ZOMBIE_H__
+#ifndef __HUMAIN_A_H__
+#define __HUMAIN_A_H__
 
 # include <iostream>
+# include "Weapon.hpp"
 
-class Zombie
+class HumainA
 {
 	public:
-		Zombie( void );
-		Zombie( std::string	name );
-		~Zombie( void );
-		void	announce( void );
-		void	setName( std::string name );
+	
+		HumainA( void );
+		HumainA( std::string type, Weapon weapon );
+		~HumainA( void );
+		void	attack( void );
 			
 	private:
 		
 		std::string	_name;
+		Weapon		weapon;
+		
 };
-
-Zombie*	newZombie( std::string name );
-void	randomChump( std::string name );
-Zombie*	zombieHorde( int N, std::string name );
 
 #endif

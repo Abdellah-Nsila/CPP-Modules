@@ -1,37 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 13:05:08 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 18:00:58 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/09 17:54:59 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/09 17:55:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef __ZOMBIE_H__
-#define __ZOMBIE_H__
-
-# include <iostream>
-
-class Zombie
-{
-	public:
-		Zombie( void );
-		Zombie( std::string	name );
-		~Zombie( void );
-		void	announce( void );
-		void	setName( std::string name );
-			
-	private:
-		
-		std::string	_name;
-};
-
-Zombie*	newZombie( std::string name );
-void	randomChump( std::string name );
-Zombie*	zombieHorde( int N, std::string name );
-
-#endif
