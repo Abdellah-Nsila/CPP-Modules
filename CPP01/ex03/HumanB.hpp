@@ -6,30 +6,33 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 17:55:52 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 18:04:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/11 11:49:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __HUMAIN_B_H__
-#define __HUMAIN_B_H__
+#ifndef __Human_B_H__
+#define __Human_B_H__
 
 # include <iostream>
 # include "Weapon.hpp"
+# include "optional"
 
-class HumainB
+class	HumanB
 {
 	public:
 	
-		HumainB( void );
-		HumainB( std::string type, Weapon weapon );
-		~HumainB( void );
-		void	attack( void );
+		HumanB( std::string name );
+		~HumanB( void );
+		void				attack( void );
+		const std::string&	getName( void );
+		const Weapon*		getWeapon( void );
+		void				setWeapon(Weapon& weapon);
 			
 	private:
 		
 		std::string	_name;
-		Weapon		weapon;
+		Weapon*		_weapon;
 		
 };
 
