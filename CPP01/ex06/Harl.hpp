@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:14:43 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/12 11:26:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/12 11:26:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,18 @@
 # define BOLDYELLOW  "\033[1m\033[33m"
 # define BOLDBLUE    "\033[1m\033[34m"
 # define BOLDMAGENTA "\033[1m\033[35m"
+# define BOLDWHITE   "\033[1m\033[37m"
+
+enum	e_level
+{
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR,
+};
 
 class	Harl
-{
+{		
 	public:
 		Harl();
 		~Harl();
@@ -32,7 +41,9 @@ class	Harl
 		void	info( void );
 		void	warning( void );
 		void	error( void );
+		void	other( void );
 		void	complain( std::string level );
+		int		getEnumLevel(std::string level);
 };
 
 #endif
