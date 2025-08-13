@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/13 15:26:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/13 18:12:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,16 @@ int		Fixed::toInt( void ) const
 	return (this->_fullRawIntegerValue >> this->_numberOfFractionalBits);
 }
 
-ostream& operator<<(ostream& os, const Fixed& other)
+ostream&	operator<<(ostream& os, const Fixed& other)
 {
 	os << other.toFloat();
 	return (os);
 }
+
+Fixed&	Fixed::operator=(const Fixed& other)
+	{
+		std::cout << "Copy assignment operator called" << std::endl;
+		if (this != &other)
+			this->_fullRawIntegerValue = other._fullRawIntegerValue; 
+		return (*this);
+	}
