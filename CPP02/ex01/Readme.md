@@ -1,6 +1,6 @@
 ```plantext
 in this line we convert the integer to fixed point value (rawBits):
-this->_fullRawIntegerValue = integer << this->_numberOfFractionalBits;
+this->_fixedPoint = intValue << this->_fractionalBits;
 so the size of int is 4 bytes, (8bits * 4):
 for example:
 if integer = 5
@@ -15,7 +15,7 @@ it become as origin placement before the left shift
 
 
 in other hand if i have 
-floatPointNumber = 5.5
+floatValue = 5.5
 in base 2 = 00000101.10000000
 multiply by 256 give me :
 rawBits = 1408
@@ -40,9 +40,9 @@ This document explains the concept of fixed-point numbers, how they are stored, 
 
 To convert an integer to a fixed-point raw value:
 
-_rawBits = integer << _numberOfFractionalBits;
+_rawBits = integer << _fractionalBits;
 
-    _numberOfFractionalBits = 8 → we shift 8 bits to the left.
+    _fractionalBits = 8 → we shift 8 bits to the left.
 
     Example: integer = 5
 
@@ -64,7 +64,7 @@ originalInt = _rawBits >> 8;  // 1280 >> 8 = 5
 
 To convert a floating-point number to fixed-point:
 
-_rawBits = roundf(floatNumber * (1 << _numberOfFractionalBits));
+_rawBits = roundf(floatNumber * (1 << _fractionalBits));
 
     Example: floatNumber = 5.5
 
@@ -79,13 +79,13 @@ _rawBits = roundf(floatNumber * (1 << _numberOfFractionalBits));
 ✅ Note: Rounding is needed because the multiplication may produce a non-integer value in binary.
 3️⃣ Converting Fixed-Point Back to Integer
 
-intNumber = _rawBits >> _numberOfFractionalBits;
+intNumber = _rawBits >> _fractionalBits;
 
     Example: _rawBits = 1280 → shift right 8 bits → 5
 
 4️⃣ Converting Fixed-Point Back to Float
 
-floatNumber = (float)_rawBits / (1 << _numberOfFractionalBits);
+floatNumber = (float)_rawBits / (1 << _fractionalBits);
 
     Example: _rawBits = 1408 → divide by 256 → 5.5
 
@@ -96,9 +96,9 @@ floatNumber = (float)_rawBits / (1 << _numberOfFractionalBits);
 
         _rawBits stores the number as an integer.
 
-        _numberOfFractionalBits determines the position of the binary "decimal point".
+        _fractionalBits determines the position of the binary "decimal point".
 
-    Shifting left/right or multiplying/dividing by 2^_numberOfFractionalBits effectively moves this "decimal point".
+    Shifting left/right or multiplying/dividing by 2^_fractionalBits effectively moves this "decimal point".
 
     This method works for both integers and floats.
 

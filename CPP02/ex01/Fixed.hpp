@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/13 18:12:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/14 13:29:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 class	Fixed
 {
 	private:
-		int					_fullRawIntegerValue;
-		static int const	_numberOfFractionalBits = 8;
+		int					_fixedPoint;
+		static int const	_fractionalBits = 8;
 	public:
 		Fixed();
-		Fixed( const int integer );
-		Fixed( const float floatPointNumber );
+		Fixed( const int intValue );
+		Fixed( const float floatValue );
 		Fixed( const Fixed& other );
-		Fixed&	operator=(const Fixed& other);
-		friend std::ostream& operator<<(std::ostream& os, const Fixed& other);
 		~Fixed();
+		
+		Fixed&	operator=(const Fixed& copy);
+		friend std::ostream& operator<<(std::ostream& cout, const Fixed& other);
 
 		int		getRawBits( void );
 		void	setRawBits( int const raw );
