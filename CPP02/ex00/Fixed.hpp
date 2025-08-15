@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/14 13:29:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/14 18:26:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class	Fixed
 		static int const	_fractionalBits = 8;
 	public:
 		Fixed();
-		Fixed( const Fixed& other );
+		Fixed( const Fixed& copy );
 		~Fixed();
 		
 		Fixed&	operator=(const Fixed& copy);

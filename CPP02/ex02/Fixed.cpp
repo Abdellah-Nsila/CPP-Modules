@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/14 16:06:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/14 18:26:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ Fixed::Fixed( const float floatValue )
 	// this->_fixedPoint = roundf(floatValue * 256); 2^8 (in base 2) is like 10^8 (in base 10)
 }
 
-Fixed::Fixed( const Fixed& other)
+Fixed::Fixed( const Fixed& copy)
 {
 	// cout << "Copy constructor called" << endl;
-	*this = other;
+	*this = copy;
 }
 
 Fixed::~Fixed()

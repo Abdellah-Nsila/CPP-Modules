@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:18:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/15 15:58:45 by abnsila          ###   ########.fr       */
+/*   Created: 2025/08/14 18:12:31 by abnsila           #+#    #+#             */
+/*   Updated: 2025/08/15 15:30:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+# include "Point.hpp"
 
-using namespace std;
+Point::Point() : _x(0), _y(0) {}
 
-string	boolToString(bool flag)
+Point::Point(const float x, const float y) : _x(x), _y(y) {}
+
+Point::Point( const Point& copy ) : _x(copy._x), _y(copy._y) {}
+
+Point&	Point::operator=( const Point& copy )
 {
-	if (flag)
-		return ("True");
-	return ("False");
+	(void)copy;
+	return (*this);
 }
 
-int main( void )
+Point::~Point() {}
+
+const Fixed&	Point::getX() const
 {
-	Point a(0.0f, 0.0f);
-	Point b(1.0f, 7.0f);
-	Point c(10.0f, 1.0f);
-
-	Point point(2.75f, 5.5f);
-	
-	bool isInside = bsp(a, b, c, point);
-
-	cout << boolToString(isInside) << endl;
-
-	return 0;
+	return (this->_x);
 }
+
+const Fixed&	Point::getY() const
+{
+	return (this->_y);
+}
+

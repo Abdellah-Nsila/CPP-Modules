@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/14 16:05:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/14 18:26:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class	Fixed
 		Fixed();
 		Fixed( const int intValue );
 		Fixed( const float floatValue );
-		Fixed( const Fixed& other );
+		Fixed( const Fixed& copy );
 		~Fixed();
 		
 		// An overload of the insertion («) operator
