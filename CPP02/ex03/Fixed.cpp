@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/14 18:26:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/16 09:28:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ Fixed::Fixed( const float floatValue )
 Fixed::Fixed( const Fixed& copy)
 {
 	// cout << "Copy constructor called" << endl;
-	*this = copy;
+	if (this != &copy)
+		this->_fixedPoint = copy._fixedPoint;
 }
 
 Fixed::~Fixed()

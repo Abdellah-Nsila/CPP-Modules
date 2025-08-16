@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:12:31 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/15 15:30:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/16 09:31:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Point::Point( const Point& copy ) : _x(copy._x), _y(copy._y) {}
 
 Point&	Point::operator=( const Point& copy )
 {
+	std::cout << "You can't copy constant attributes!!" << std::endl;
 	(void)copy;
 	return (*this);
 }
@@ -35,4 +36,3 @@ const Fixed&	Point::getY() const
 {
 	return (this->_y);
 }
-

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/13 18:27:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/16 09:27:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ Fixed::Fixed()
 	this->_fixedPoint = 0;
 }
 
-Fixed::Fixed( const Fixed& other)
+Fixed::Fixed( const Fixed& copy)
 {
 	cout << "Copy constructor called" << endl;
-	*this = other;
+	if (this != &copy)
+		this->_fixedPoint = copy._fixedPoint;
 }
 
 Fixed::~Fixed()
