@@ -6,25 +6,26 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:37:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/17 11:19:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/17 14:34:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 using namespace std;
 
 int main()
 {
-    ScavTrap scav("Guardian");
+	FragTrap A("Alpha");
 
-    scav.attack("intruder");
-    scav.takeDamage(30);
-    scav.beRepaired(20);
-    scav.guardGate();
+	A.attack("Enemy1");
 
-    cout << "----- Copy & assignment tests -----" << endl;
-    ScavTrap scav2(scav); // copy constructor
-    ScavTrap scav3("temp");
-    scav3 = scav; // copy assignment
+	A.highFivesGuys();
+
+	FragTrap B(A);
+
+	FragTrap C("Charlie");
+	C = A;
+
+	return 0;
 }

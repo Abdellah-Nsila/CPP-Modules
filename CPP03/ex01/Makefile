@@ -1,10 +1,10 @@
-NAME = main
+NAME = a.out
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp ClapTrap.cpp
+SRCS =	main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp	ClapTrap.hpp
+%.o: %.cpp	ClapTrap.hpp ScavTrap.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:

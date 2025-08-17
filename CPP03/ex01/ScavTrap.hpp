@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 09:44:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/16 09:54:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/08/17 10:44:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@
 
 class ScavTrap: public ClapTrap
 {
-	private:
+	protected:
+	
+		ScavTrap();
 		
 	public:
 	
-		ScavTrap();
+		ScavTrap(std::string _name);
+		ScavTrap(const ScavTrap& copy);
 		~ScavTrap();
+
+		ScavTrap&	operator=(const ScavTrap& copy);
+
+		void	attack(const std::string& target);
+		void	guardGate(void);
 };
 
 #endif
