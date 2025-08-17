@@ -44,6 +44,7 @@ So your intuition was correct ✅
 
 Think of a derived class like a struct that starts with its base part:
 ScavTrap object in memory:
+```plantext
 +-----------------------------+
 | ClapTrap::_name             |
 | ClapTrap::_hitPoints        |
@@ -52,7 +53,7 @@ ScavTrap object in memory:
 +-----------------------------+
 | ScavTrap::_guardMode        |   <-- extra member from ScavTrap
 +-----------------------------+
-
+```
     The base class subobject (ClapTrap) is literally embedded at the start of ScavTrap.
 
     Then the derived class adds its own members afterwards.
@@ -61,11 +62,11 @@ So sizeof(ScavTrap) >= sizeof(ClapTrap) always.
 🔹 Relationship in a graph view
 
 Inheritance looks like this:
-
+```plantext
        ClapTrap
           ↑
        ScavTrap
-
+```
     Arrows point from derived → base (meaning "is-a").
 
     In construction: graph traversal goes up first (base), then down to derived.
