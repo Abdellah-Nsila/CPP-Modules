@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 19:00:31 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 12:54:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/14 10:58:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,33 @@
 # include <iomanip>
 # include <ctime>
 
-// Init shared members
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-// Constuctor
 Account::Account( int initial_deposit )
 {
-	// Account instance index
 	this->_accountIndex = getNbAccounts();
-	// Incerement nuber of account by 1
 	_nbAccounts++;
-	// Init depo fot this account instance
 	this->_amount = initial_deposit;
-	// Accumulate total amount by each amount instance
 	_totalAmount += initial_deposit;
-	// Init local and shared deposits members
 	this->_nbDeposits = 0;
-	_totalNbDeposits = 0;
-	// Timestamp and info log for this account instance
+	this->_nbWithdrawals = 0;
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "created" << std::endl;
 }
 
-// Destructor
 Account::~Account()
 {
-	// Timestamp and info log for this account instance
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "closed" << std::endl;
 }
 
-// ------------------------------------ First Methods -------------------------------
 int Account::getNbAccounts()
 {
 	return (Account::_nbAccounts);
@@ -75,7 +64,6 @@ int Account::getNbWithdrawals()
 
 void Account::displayAccountsInfos()
 {
-	// Timestamp and info log for this account instance
 	_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts() << ";"
 			<< "total:" << getTotalAmount() << ";"
@@ -84,18 +72,17 @@ void Account::displayAccountsInfos()
 			<< std::endl;
 }
 
-// ------------------------------------ Second Methods -------------------------------
 void	Account::makeDeposit( int deposit )
 {
+	int	prev_amount = this->_amount;
 	this->_amount += deposit;
 	this->_nbDeposits++;
 	_totalAmount += deposit;
 	_totalNbDeposits++;
 	
-	// Timestamp and info log for this account instance
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
-			<< "p_amount:" << (this->_amount - deposit) << ";"
+			<< "p_amount:" << prev_amount << ";"
 			<< "deposit:" << deposit << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "nb_deposits:" << this->_nbDeposits
@@ -106,7 +93,6 @@ bool	Account::makeWithdrawal( int withdrawal )
 {
 	if (checkAmount() - withdrawal < 0)
 	{
-		// Timestamp and info log for this account instance
 		_displayTimestamp();
 		std::cout << "index:" << this->_accountIndex << ";"
 			<< "p_amount:" << this->_amount << ";"
@@ -114,15 +100,15 @@ bool	Account::makeWithdrawal( int withdrawal )
 			<< std::endl;
 		return (false);
 	}
+	int	prev_amount = this->_amount;
 	this->_amount -= withdrawal;
 	this->_nbWithdrawals++;
 	_totalAmount -= withdrawal;
 	_totalNbWithdrawals++;
 
-	// Timestamp and info log for this account instance
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
-			<< "p_amount:" << (this->_amount + withdrawal) << ";"
+			<< "p_amount:" << prev_amount << ";"
 			<< "withdrawal:" << withdrawal << ";"
 			<< "amount:" << this->_amount << ";"
 			<< "nb_withdrawals:" << this->_nbWithdrawals
@@ -137,7 +123,6 @@ int	Account::checkAmount() const
 
 void	Account::displayStatus() const
 {
-	// Timestamp and info log for this account instance
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";"
 		<< "amount:" << this->_amount << ";"
