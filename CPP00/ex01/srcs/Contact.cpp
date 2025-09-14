@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:08:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/08 19:20:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/14 10:09:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 Contact::Contact(void) {}
 
-Contact::Contact(string firstName, string lastName, string nickName, string phoneNumber, string darkestSecret)
+Contact::Contact(std::string firstName, std::string lastName
+		, std::string nickName, std::string phoneNumber, std::string darkestSecret)
 {
 	this->firstName = firstName;
 	this->lastName = lastName;
@@ -23,36 +24,36 @@ Contact::Contact(string firstName, string lastName, string nickName, string phon
 	this->darkestSecret = darkestSecret;
 }
 
-string	Contact::formatString(string str)
+std::string	Contact::formatString(std::string str)
 {
 	size_t	len;
 
 	len = str.length();
-	if (len <= 10)
-		return (str);
-	return (str.replace(9, str.length(), "."));
+	if (len >= 10)
+    	return str.substr(0, 9) + ".";
+	return (str);
 }
 
-void	Contact::displayField(string field)
+void	Contact::displayField(std::string field)
 {
-	cout << '|';
-	cout << setfill(' ') << setw(10) << formatString(field);
+	std::cout << '|';
+	std::cout << std::setfill(' ') << std::setw(10) << formatString(field);
 }
 
 void Contact::displayColumn(int id)
 {
-	cout << setfill(' ') << setw(10) << id;
+	std::cout << std::setfill(' ') << std::setw(10) << id;
 	displayField(firstName);
 	displayField(lastName);
 	displayField(nickName);
-	cout << endl;
+	std::cout << std::endl;
 }
 
 void Contact::displayContact(void)
 {
-	cout << "First name     : " << firstName << endl;
-	cout << "Last name      : " << lastName << endl;
-	cout << "Nickname       : " << nickName << endl;
-	cout << "Phone number   : " << phoneNumber << endl;
-	cout << "Darkest secret : " << darkestSecret << endl;
+	std::cout << "First name     : " << firstName << std::endl;
+	std::cout << "Last name      : " << lastName << std::endl;
+	std::cout << "Nickname       : " << nickName << std::endl;
+	std::cout << "Phone number   : " << phoneNumber << std::endl;
+	std::cout << "Darkest secret : " << darkestSecret << std::endl;
 }

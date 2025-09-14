@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:52:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 10:47:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/14 10:22:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.hpp"
+#include "main.hpp"
 
 PhoneBook::PhoneBook(void)
 {
@@ -18,20 +18,17 @@ PhoneBook::PhoneBook(void)
 	this->total = 0;
 }
 
-string	PhoneBook::input(string msg)
+std::string	PhoneBook::input(std::string msg)
 {
-	// TODO: No empty fields
-	string	var;
+	std::string	var;
 
 	while (true)
 	{	
-		cout << msg;
-		if (!getline(cin, var))
+		std::cout << msg;
+		if (!getline(std::cin, var))
 		{
-			if (cin.eof())
-				return ("");
-			cin.clear();
-			return ("");
+			if (std::cin.eof())
+				exit(EXIT_FAILURE);
 		}
 		if (var.empty())
 			continue ;
@@ -41,15 +38,15 @@ string	PhoneBook::input(string msg)
 
 bool	PhoneBook::add(void)
 {
-	string firstName = this->input("Type your Fist Name: ");
+	std::string firstName = this->input("Type your Fist Name: ");
 	if (firstName.empty()) return (false);
-	string lastName = this->input("Type your Last Name: ");
+	std::string lastName = this->input("Type your Last Name: ");
 	if (lastName.empty()) return (false);
-	string nickName = this->input("Type your Nick Name: ");
+	std::string nickName = this->input("Type your Nick Name: ");
 	if (nickName.empty()) return (false);
-	string phoneName = this->input("Type your Phone Name: ");
+	std::string phoneName = this->input("Type your Phone Name: ");
 	if (phoneName.empty()) return (false);
-	string darkestSecret = this->input("Type your Darkest Secret: ");
+	std::string darkestSecret = this->input("Type your Darkest Secret: ");
 	if (darkestSecret.empty()) return (false);
 	Contact	newContact(firstName, lastName, nickName, phoneName, darkestSecret);
 	arr[index] = newContact;
@@ -61,32 +58,30 @@ bool	PhoneBook::add(void)
 
 void	PhoneBook::getContactById(void)
 {
-	string id;
+	std::string	input;
+	int			id;
 
+	std::cout << "Enter the Contact id: ";
 	while (true)
 	{
-		// 4294967295 overflow to -1
-		// 4294967296 overflow to 0
-		//TODO: Validate Integer Input: https://www.w3schools.com/cpp/cpp_input_validation.asp
-		id = this->input("Enter the Contact id: ");
-		if (id.empty())
+		if (!getline(std::cin, input))
+			exit(EXIT_FAILURE);
+		if ((input.length() == 1) && std::isdigit(input[0]))
 		{
-			cout << endl;
+			id = input[0] - '0';
+			if (id < 0 || id > this->total - 1)
+			{
+				std::cout << "Contact id: " << id << " not found!\n";
+				break ;
+			}
+			this->arr[id].displayContact();
 			break ;
 		}
-		if (!isNumber(id))
+		else
 		{
-			cout << "Input error: " << id << ": type a valid number!\n";
+			std::cout << "Input error: Enter only digits: ";
 			continue ;
 		}
-		int idx = ft_atoi(id);
-		if (idx < 0 || idx > this->total - 1)
-		{
-			cout << "Contact id: " << idx << " not found!\n";
-			break ;
-		}
-		this->arr[idx].displayContact();
-		break ;
 	}
 }
 
@@ -94,12 +89,10 @@ void	PhoneBook::search(void)
 {
 	if (this->total == 0)
 	{
-		cout << "PhoneBook is empty\n";
+		std::cout << "PhoneBook is empty\n";
 		return ;
 	}
 	for (int i = 0; i < this->total; i++)
-	{	
 		this->arr[i].displayColumn(i);
-	}
 	this->getContactById();
 }

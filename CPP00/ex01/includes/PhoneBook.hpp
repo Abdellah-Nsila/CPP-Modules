@@ -6,12 +6,12 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 18:21:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/08 18:03:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/14 10:19:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONE_BOOK_H
-# define PHONE_BOOK_H
+#ifndef PHONE_BOOK_HPP
+# define PHONE_BOOK_HPP
 
 # include "includes.hpp"
 # include "Contact.hpp"
@@ -24,11 +24,10 @@ class	PhoneBook
 		int		total;
 	public:
 		PhoneBook();
-		string	input(string msg);
-		bool	add();
-		void	getContactById();
-		void	search();
-
+		std::string	input(std::string msg);
+		bool		add();
+		void		getContactById();
+		void		search();
 };
 
 #endif

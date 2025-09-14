@@ -1,25 +1,12 @@
-# include <iostream>
-# include <string>
+#include <iostream>
 
-using namespace std;
-
-char	upperCase(char c)
-{
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	return (c);
-}
-
-void	strToUpper(char** s)
+void	strToUpper(char* s)
 {
 	int	i;
 
 	i = 0;
-	while ((*s)[i])
-	{
-		(*s)[i] = upperCase((*s)[i]);
-		i++;
-	}
+	for (int i = 0; s[i]; i++)
+		s[i] = std::toupper(s[i]);
 }
 
 int	main(int argc, char* argv[])
@@ -29,15 +16,15 @@ int	main(int argc, char* argv[])
 	i = 1;
 	if (argc == 1)
 	{
-		cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (-1);
 	}
 	while (i < argc)
 	{
-		strToUpper(&argv[i]);
-		cout << argv[i] << " ";
+		strToUpper(argv[i]);
+		std::cout << argv[i];
 		i++;
 	}
-	cout << endl;
+	std::cout << std::endl;
 	return (0);
 }
