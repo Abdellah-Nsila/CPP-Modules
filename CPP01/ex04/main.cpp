@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:18:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:10:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 12:01:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	setup_files(std::string& infile_path, std::string& outfile_path
 {
 	std::string		buff_line;
 
-	std::ifstream	infile(infile_path);
+	std::ifstream	infile(infile_path.c_str());
 	if (!infile.is_open())
 	{
 		std::cerr << "Can't open " << infile_path << std::endl;
 		return (1);
 	}
-	std::ofstream	outfile(outfile_path);
+	std::ofstream	outfile(outfile_path.c_str());
 	if (!outfile.is_open())
 	{
 		std::cerr << "Can't open " << outfile_path << std::endl;

@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:25:30 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/17 14:41:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "FragTrap.hpp"
 
-using namespace std;
+
 
 FragTrap::FragTrap(string name) : ClapTrap(name)
 {

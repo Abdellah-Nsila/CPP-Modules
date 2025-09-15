@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 09:44:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/17 12:14:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-using namespace std;
+
 
 ScavTrap::ScavTrap(string name) : ClapTrap(name)
 {

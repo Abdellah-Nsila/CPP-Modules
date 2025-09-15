@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/16 09:28:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-using namespace std;
+
 
 Fixed::Fixed()
 {
