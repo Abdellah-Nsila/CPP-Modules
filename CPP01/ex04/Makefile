@@ -1,6 +1,6 @@
 NAME = program
 CPP = c++
-_HPPCPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
