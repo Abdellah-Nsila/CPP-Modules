@@ -1,10 +1,10 @@
 NAME = zombie
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+_HPPCPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp zombieHorde.cpp
+SRCS =	main.cpp Zombie.cpp zombieHorde.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

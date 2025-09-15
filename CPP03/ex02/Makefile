@@ -1,6 +1,6 @@
 NAME = a.out
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+_HPPCPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
