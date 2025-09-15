@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 18:52:53 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/14 10:22:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 09:46:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ std::string	PhoneBook::input(std::string msg)
 
 bool	PhoneBook::add(void)
 {
-	std::string firstName = this->input("Type your Fist Name: ");
+	std::string firstName = this->input("Type your First Name: ");
 	if (firstName.empty()) return (false);
 	std::string lastName = this->input("Type your Last Name: ");
 	if (lastName.empty()) return (false);

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 11:01:31 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/14 11:01:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 09:15:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	strToUpper(char* s)
 {
-	int	i;
-
-	i = 0;
 	for (int i = 0; s[i]; i++)
 		s[i] = std::toupper(s[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 13:05:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/09 14:43:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 09:13:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,3 @@ void	randomChump( std::string name )
 	Zombie z(name);
 	z.announce();
 }
-

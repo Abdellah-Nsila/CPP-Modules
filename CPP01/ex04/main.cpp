@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:18:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/11 17:14:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 11:10:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
-
-void	process_line(string& line, string s1, string s2)
+void	process_line(std::string& line, std::string& s1, std::string& s2)
 {
 	size_t	i = 0;
 	size_t	s1_len = s1.length();
 	size_t	s2_len = s2.length();
 
+	if (s1.empty())
+		return ;
 	while (i < line.length())
 	{
 		if (line.compare(i, s1_len, s1) == 0)
@@ -34,28 +34,49 @@ void	process_line(string& line, string s1, string s2)
 	}
 }
 
+int	setup_files(std::string& infile_path, std::string& outfile_path
+	, std::string& s1, std::string& s2)
+{
+	std::string		buff_line;
+
+	std::ifstream	infile(infile_path);
+	if (!infile.is_open())
+	{
+		std::cerr << "Can't open " << infile_path << std::endl;
+		return (1);
+	}
+	std::ofstream	outfile(outfile_path);
+	if (!outfile.is_open())
+	{
+		std::cerr << "Can't open " << outfile_path << std::endl;
+		return (1);
+	}
+	while (getline(infile, buff_line))
+	{
+		process_line(buff_line, s1, s2);
+		outfile << buff_line << std::endl; 
+	}
+	infile.close();
+	outfile.close();
+	return (0);
+}
+
 int main (int argc, char **argv)
 {
-	ifstream	file;
-	ofstream	file_replace;
-	string		file_name;
-	string		line;
-	
+	std::string	infile_path;
+	std::string	outfile_path;
+	std::string	s1;
+	std::string	s2;
+
 	if (argc != 4)
-		return (1);
-	
-	file_name = argv[1];
-	file_name.append(".replcae");
-	file.open(argv[1]);
-	file_replace.open(file_name.c_str());
-
-	while (getline(file, line))
 	{
-		process_line(line, argv[2], argv[3]);
-		file_replace << line << endl; 
+		std::cout << "./program <infile_file_path> s1 s2" << std::endl;	
+		return (1);
 	}
-
-	file.close();
-	file_replace.close();
-	return (0);
+	
+	infile_path = argv[1];
+	outfile_path = std::string(argv[1]).append(".replace");
+	s1 = argv[2];
+	s2 = argv[3];
+	return (setup_files(infile_path, outfile_path, s1, s2));
 }
