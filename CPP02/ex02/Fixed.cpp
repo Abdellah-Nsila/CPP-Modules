@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:16 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 16:06:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,46 @@
 
 Fixed::Fixed()
 {
-	// cout << "Default constructor called" << endl;
+	// std::cout << "Default constructor called" << std::endl;
 	this->_fixedPoint = 0;
 }
 
 Fixed::Fixed( const int intValue )
 {
-	// cout << "Int constructor called" << endl;
+	// std::cout << "Int constructor called" << std::endl;
 	this->_fixedPoint = intValue << this->_fractionalBits;
 }
 
 Fixed::Fixed( const float floatValue )
 {
-	// cout << "Float constructor called" << endl;
+	// std::cout << "Float constructor called" << std::endl;
 	this->_fixedPoint = roundf(floatValue * (1 << this->_fractionalBits));
 	// this->_fixedPoint = roundf(floatValue * 256); 2^8 (in base 2) is like 10^8 (in base 10)
 }
 
 Fixed::Fixed( const Fixed& copy)
 {
-	// cout << "Copy constructor called" << endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	if (this != &copy)
 		this->_fixedPoint = copy._fixedPoint; 
 }
 
 Fixed::~Fixed()
 {
-	// cout << "Destructor called" <<  endl;
+	// std::cout << "Destructor called" <<  std::endl;
 }
 
 // An overload of the insertion («) operator
-ostream&	operator<<(ostream& cout, const Fixed& other)
+ostream&	operator<<(ostream& std::cout, const Fixed& other)
 {
-	cout << other.toFloat();
-	return (cout);
+	std::cout << other.toFloat();
+	return (std::cout);
 }
 
 // Copy assignment operator overload.
 Fixed&	Fixed::operator=(const Fixed& copy)
 {
-	// cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &copy)
 		this->_fixedPoint = copy._fixedPoint; 
 	return (*this);
@@ -189,15 +189,15 @@ const Fixed&		Fixed::max(const Fixed& f1, const Fixed& f2)
 	return (f2);
 }
 
-int	Fixed::getRawBits( void )
+int	Fixed::getRawBits( void ) const
 {
-	// cout << "getRawBits member function called" << endl;
+	// std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixedPoint);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	// cout << "setRawBits member function called" << endl;
+	// std::cout << "setRawBits member function called" << std::endl;
 	this->_fixedPoint = raw;
 }
 

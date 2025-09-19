@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:18:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 16:05:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int main( void )
 	Point point2(10.0f, 2.5f);
 	
 	isInside = bsp(a, b, c, point1);
-	cout << boolToString(isInside) << endl;
+	std::cout << boolToString(isInside) << std::endl;
 
 	isInside = bsp(a, b, c, point2);
-	cout << boolToString(isInside) << endl;
+	std::cout << boolToString(isInside) << std::endl;
 
 	return 0;
 }

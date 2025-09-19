@@ -6,12 +6,12 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 17:14:43 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:23:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:31:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef HARL_H_
-# define HARL_H_
+# ifndef HARL_HPP
+# define HARL_HPP
 
 # include "string"
 # include "iostream"

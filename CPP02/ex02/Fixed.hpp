@@ -6,13 +6,12 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 10:09:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/14 18:26:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:33:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once 
-# ifndef FIXED_H_
-# define FIXED_H_
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 #include <cmath>
@@ -60,7 +59,7 @@ class	Fixed
 		static	const	Fixed&		max(const Fixed& f1, const Fixed& f2);
 
 		// Member functions
-		int		getRawBits( void );
+		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 		float	toFloat( void ) const;
 		int		toInt( void ) const;

@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 09:44:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/17 12:21:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:31:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SCAV_TRAP_H_
-#define SCAV_TRAP_H_
+#ifndef SCAV_TRAP_HPP
+#define SCAV_TRAP_HPP
 
 # include "ClapTrap.hpp"
 

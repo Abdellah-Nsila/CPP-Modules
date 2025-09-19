@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:18:29 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/15 16:05:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 // 	Fixed a;
 // 	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-// 	cout << a << endl;
-// 	cout << ++a << endl;
-// 	cout << a << endl;
-// 	cout << a++ << endl;
-// 	cout << a << endl;
-// 	cout << b << endl;
-// 	cout << Fixed::max( a, b ) << endl;
+// 	std::cout << a << std::endl;
+// 	std::cout << ++a << std::endl;
+// 	std::cout << a << std::endl;
+// 	std::cout << a++ << std::endl;
+// 	std::cout << a << std::endl;
+// 	std::cout << b << std::endl;
+// 	std::cout << Fixed::max( a, b ) << std::endl;
 // 	return 0;
 // }
 
@@ -45,35 +45,35 @@ int	main( void )
 	const Fixed	d(Fixed(2004) - b);
 
 	// << Operator and show init value
-	cout << a << endl;
-	cout << b << endl;
-	cout << c << endl;
-	cout << d << endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+	std::cout << d << std::endl;
 	
 	// ==, -, Comparison opearators 
 	a = c - b;
-	cout << a << endl;
-	cout << boolToString(a < b) << endl;
-	cout << boolToString(b > c) << endl;
-	cout << boolToString(a <= c) << endl;
-	cout << boolToString(d <= b) << endl;
-	cout << boolToString(a == a) << endl;
-	cout << boolToString(c != d) << endl;
+	std::cout << a << std::endl;
+	std::cout << boolToString(a < b) << std::endl;
+	std::cout << boolToString(b > c) << std::endl;
+	std::cout << boolToString(a <= c) << std::endl;
+	std::cout << boolToString(d <= b) << std::endl;
+	std::cout << boolToString(a == a) << std::endl;
+	std::cout << boolToString(c != d) << std::endl;
 
 	// Arithmetic operators
-	cout << b - a << endl;
-	cout << b / 2 << endl;
-	cout << c * 2  << endl;
-	cout << d + d << endl;
+	std::cout << b - a << std::endl;
+	std::cout << b / 2 << std::endl;
+	std::cout << c * 2  << std::endl;
+	std::cout << d + d << std::endl;
 
 	// Increment/decrement
-	cout << b << endl;
-	cout << b-- << endl;
-	cout << --b << endl;
+	std::cout << b << std::endl;
+	std::cout << b-- << std::endl;
+	std::cout << --b << std::endl;
 	
 	// Max, Min
-	cout << Fixed::min(a, b) << endl;
-	cout << Fixed::min(c, d) << endl;
-	cout << Fixed::max(a, b) << endl;
-	cout << Fixed::max(c, d) << endl;
+	std::cout << Fixed::min(a, b) << std::endl;
+	std::cout << Fixed::min(c, d) << std::endl;
+	std::cout << Fixed::max(a, b) << std::endl;
+	std::cout << Fixed::max(c, d) << std::endl;
 }
