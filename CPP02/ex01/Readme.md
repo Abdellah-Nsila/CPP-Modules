@@ -29,7 +29,7 @@ and how to get a fixedPointNumber for both integers and float number using (* 25
 or using << directly
 
 also how to go from fixedpointnumber or rawBits to both int or float, by / 256
-also not forgoting to cast the rawBits to float so the result keep the fraction part afetr divition, fron fixed o Float , this is right hhhh, too much explanation and details?
+also not forgoting to cast the rawBits to float so the result keep the fraction part afetr divition, from fixed o Float , this is right hhhh, too much explanation and details?
 ```
 
 
