@@ -6,24 +6,19 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 12:20:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 15:31:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 12:43:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef FRAG_TRAP_HPP
+#define FRAG_TRAP_HPP
 
 # include "ClapTrap.hpp"
 
 class FragTrap: public ClapTrap
-{
-	protected:
-	
-		FragTrap();
-		
+{	
 	public:
-	
+		FragTrap();
 		FragTrap(std::string _name);
 		FragTrap(const FragTrap& copy);
 		~FragTrap();

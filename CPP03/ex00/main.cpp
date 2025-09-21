@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:37:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/16 09:41:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 12:40:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,10 @@ int main()
 
     bot1.attack("Bravo");
     bot3.takeDamage(5);
-
     bot3.beRepaired(3);
     bot3.attack("Alpha");
-
-    // Burn through energy
     for (int i = 0; i < 10; i++)
         bot1.attack("Bravo");
-
-    // Try to attack without energy
     bot1.attack("Bravo");
-
-    // Try to repair without energy
     bot1.beRepaired(5);
-
-    return 0;
 }
-

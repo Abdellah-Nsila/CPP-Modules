@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:37:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/17 10:28:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 10:00:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-# ifndef CLAP_TRAP_
-# define CLAP_TRAP_
+# ifndef CLAP_TRAP_HPP
+# define CLAP_TRAP_HPP
 
 #include <iostream>
 #include <string>

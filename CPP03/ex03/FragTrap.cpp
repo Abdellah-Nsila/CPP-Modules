@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:25:30 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/20 09:38:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 
 
-FragTrap::FragTrap(string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	cout << "FragTrap: " << name << " Custom constructor called" << endl;
+	std::cout << "FragTrap: " << name << " Custom constructor called" << std::endl;
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
@@ -24,38 +24,38 @@ FragTrap::FragTrap(string name) : ClapTrap(name)
 
 FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy)
 {
-	cout << "FragTrap: " << copy._name << " Copy constructor called" << endl;
+	std::cout << "FragTrap: " << copy._name << " Copy constructor called" << std::endl;
 }
 
 FragTrap&	FragTrap::operator=(const FragTrap& copy)
 {
-	cout << "FragTrap: " << copy._name << " Copy assignment operator called" << endl;
+	std::cout << "FragTrap: " << copy._name << " Copy assignment operator called" << std::endl;
 	ClapTrap::operator=(copy);
 	return (*this);
 }
 
 FragTrap::~FragTrap()
 {
-	cout << "FragTrap: " << this->_name << " Destructor called" <<  endl;
+	std::cout << "FragTrap: " << this->_name << " Destructor called" <<  std::endl;
 }
 
-void	FragTrap::attack(const string& target)
+void	FragTrap::attack(const std::string& target)
 {
 	if (this->_energyPoints == 0)
 	{
-		cout << "FragTrap: " << this->_name << " has no energy and can't attack!" << endl;
+		std::cout << "FragTrap: " << this->_name << " has no energy and can't attack!" << std::endl;
 		return ;
 	}
 	if (this->_hitPoints <= 0)
 	{
-		cout << "FragTrap: " << this->_name << " is destroyed and can't attack!" << endl;
+		std::cout << "FragTrap: " << this->_name << " is destroyed and can't attack!" << std::endl;
 		return ;
 	}
-	cout << "FragTrap: " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << endl;
+	std::cout << "FragTrap: " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 	this->_energyPoints--;
 }
 
 void	FragTrap::highFivesGuys(void)
 {
-	cout << "FragTrap: " << this->_name << ", Hight fives guys" << endl;
+	std::cout << "FragTrap: " << this->_name << ", Hight fives guys" << std::endl;
 }
