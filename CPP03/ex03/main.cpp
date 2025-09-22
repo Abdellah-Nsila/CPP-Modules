@@ -6,26 +6,24 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 16:37:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/15 11:21:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/22 10:56:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
-
-
-int main()
+int main(void)
 {
-	FragTrap A("Alpha");
+	DiamondTrap A;
+	DiamondTrap B("B");
+	DiamondTrap C = B;
+	A = C;
 
-	A.attack("Enemy1");
+	C.highFivesGuys();
 
-	A.highFivesGuys();
+	C.attack("A");
 
-	FragTrap B(A);
+	A.whoAmI();
 
-	FragTrap C("Charlie");
-	C = A;
-
-	return 0;
+	return (0);
 }
