@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 14:47:44 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 14:47:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/28 16:23:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
 	this->type = "WrongCat";
 	std::cout << "WrongCat: Default constructor called" << std::endl;
@@ -23,7 +23,7 @@ WrongCat::~WrongCat()
 	std::cout << "WrongCat: Destructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& copy)
+WrongCat::WrongCat(const WrongCat& copy) : WrongAnimal()
 {
 	*this = copy;
 	std::cout << "WrongCat: Copy constructor called" << std::endl;
@@ -32,7 +32,10 @@ WrongCat::WrongCat(const WrongCat& copy)
 WrongCat&	WrongCat::operator=(const WrongCat& copy)
 {
 	if (this != &copy)
+	{
+		WrongAnimal::operator=(copy);	
 		this->type = copy.type;
+	}
 	std::cout << "WrongCat: Copy assignment operator called" << std::endl;
 	return (*this);
 }
