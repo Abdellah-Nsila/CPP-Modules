@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 15:10:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 16:13:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/28 16:50:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ Brain&	Brain::operator=(const Brain& copy)
 {
 	//TODO: Correct the array copy
 	if (this != &copy)
-		this->ideas = copy.ideas;
+	{
+		for (int i = 0; i < 100; i++)
+			this->ideas[i] = copy.ideas[i];
+	}
 	std::cout << "Brain: Copy assignment operator called" << std::endl;
 	return (*this);
 }
