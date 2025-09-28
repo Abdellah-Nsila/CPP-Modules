@@ -1,6 +1,6 @@
-NAME = trap
+NAME = animal
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = #-Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INC_DIR = ./includes
 SRC_DIR = ./src

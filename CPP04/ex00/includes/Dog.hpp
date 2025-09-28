@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/22 16:39:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 18:01:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 
 class Dog: public Animal
 {
-	protected:
-		std::string type;
-	
 	public:
 		Dog();
 		Dog(const Dog& copy);
 		~Dog();
 		Dog&	operator=(const Dog& copy);
-		void	makeSound();
+		const std::string	getType() const;
+		void	makeSound() const;
 };

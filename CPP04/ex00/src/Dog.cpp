@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:47:39 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/22 16:47:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 18:00:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ Dog&	Dog::operator=(const Dog& copy)
 		this->type = copy.type;
 	std::cout << "Dog: Copy assignment operator called" << std::endl;
 	return (*this);
+}
+
+const std::string	Dog::getType() const
+{
+	return (this->type);
+}
+
+void	Dog::makeSound() const
+{
+	std::cout << "Woof woof!" << std::endl;
 }

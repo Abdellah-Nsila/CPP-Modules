@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:47:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/22 16:47:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/27 18:16:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,14 @@ Cat&	Cat::operator=(const Cat& copy)
 		this->type = copy.type;
 	std::cout << "Cat: Copy assignment operator called" << std::endl;
 	return (*this);
+}
+
+const std::string	Cat::getType() const
+{
+	return (this->type);
+}
+
+void	Cat::makeSound() const
+{
+	std::cout << "Meoooooow!" << std::endl;
 }
