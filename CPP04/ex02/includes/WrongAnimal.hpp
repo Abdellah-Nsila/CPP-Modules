@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 18:18:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/28 14:48:09 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/28 14:48:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#pragma once
 
-int main()
+#include "iostream"
+#include "string"
+
+class WrongAnimal
 {
-	Animal	*animals[100];
+	protected:
+		std::string type;
 
-	for (int i = 0; i < 100; i++)
-	{
-		if (i < 50)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
-	
-	for (int i = 0; i < 100; i++)
-	{
-		animals[i]->getType();
-		animals[i]->makeSound();
-	}
-
-	for (int i = 0; i < 100; i++)
-	{
-		delete	animals[i];
-	}
-	return 0;
-}
+	public:
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& copy);
+		~WrongAnimal();
+		WrongAnimal&	operator=(const WrongAnimal& copy);
+		const std::string	getType() const;
+		void		makeSound() const;
+};

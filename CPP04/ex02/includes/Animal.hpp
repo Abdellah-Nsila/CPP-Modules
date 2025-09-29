@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 18:18:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/27 18:26:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#pragma once
 
-int main()
+#include "iostream"
+#include "string"
+
+class Animal
 {
-	Animal	*animals[100];
+	protected:
+		std::string type;
 
-	for (int i = 0; i < 100; i++)
-	{
-		if (i < 50)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
-	
-	for (int i = 0; i < 100; i++)
-	{
-		animals[i]->getType();
-		animals[i]->makeSound();
-	}
-
-	for (int i = 0; i < 100; i++)
-	{
-		delete	animals[i];
-	}
-	return 0;
-}
+	public:
+		Animal();
+		Animal(const Animal& copy);
+		virtual ~Animal();
+		Animal&	operator=(const Animal& copy);
+		const std::string	getType() const;
+		virtual void		makeSound() const;
+};

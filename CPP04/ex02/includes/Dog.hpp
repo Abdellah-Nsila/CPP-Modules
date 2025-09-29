@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 18:18:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/28 16:42:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#pragma once
 
-int main()
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Dog: public Animal
 {
-	Animal	*animals[100];
+	private:
+		Brain	*brain;
 
-	for (int i = 0; i < 100; i++)
-	{
-		if (i < 50)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
-	
-	for (int i = 0; i < 100; i++)
-	{
-		animals[i]->getType();
-		animals[i]->makeSound();
-	}
-
-	for (int i = 0; i < 100; i++)
-	{
-		delete	animals[i];
-	}
-	return 0;
-}
+	public:
+		Dog();
+		Dog(const Dog& copy);
+		~Dog();
+		Dog&	operator=(const Dog& copy);
+		void	makeSound() const;
+};

@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 18:18:22 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/28 14:48:02 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/29 15:53:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#pragma once
 
-int main()
+#include "WrongAnimal.hpp"
+
+class WrongCat: public WrongAnimal
 {
-	Animal	*animals[100];
-
-	for (int i = 0; i < 100; i++)
-	{
-		if (i < 50)
-			animals[i] = new Dog();
-		else
-			animals[i] = new Cat();
-	}
-	
-	for (int i = 0; i < 100; i++)
-	{
-		animals[i]->getType();
-		animals[i]->makeSound();
-	}
-
-	for (int i = 0; i < 100; i++)
-	{
-		delete	animals[i];
-	}
-	return 0;
-}
+	public:
+		WrongCat();
+		WrongCat(const WrongCat& copy);
+		~WrongCat();
+		WrongCat&	operator=(const WrongCat& copy);
+		void	makeSound() const;
+};
