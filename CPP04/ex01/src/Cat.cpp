@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:47:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 16:45:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 16:29:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ Cat::~Cat()
 
 Cat::Cat(const Cat& copy) : Animal()
 {
-	*this = copy;
+	this->brain = new Brain(*(copy.brain));
+	delete this->brain;
+	this->type = copy.type;
 	std::cout << "Cat: Copy constructor called" << std::endl;
 }
 

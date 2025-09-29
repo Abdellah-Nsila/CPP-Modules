@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 14:47:44 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 16:23:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 16:30:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ WrongCat::~WrongCat()
 
 WrongCat::WrongCat(const WrongCat& copy) : WrongAnimal()
 {
-	*this = copy;
+	this->type = copy.type;
 	std::cout << "WrongCat: Copy constructor called" << std::endl;
 }
 
@@ -38,11 +38,6 @@ WrongCat&	WrongCat::operator=(const WrongCat& copy)
 	}
 	std::cout << "WrongCat: Copy assignment operator called" << std::endl;
 	return (*this);
-}
-
-const std::string	WrongCat::getType() const
-{
-	return (this->type);
 }
 
 void	WrongCat::makeSound() const

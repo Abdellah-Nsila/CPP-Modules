@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 15:10:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 16:50:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 16:21:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Brain::Brain(const Brain& copy)
 
 Brain&	Brain::operator=(const Brain& copy)
 {
-	//TODO: Correct the array copy
 	if (this != &copy)
 	{
 		for (int i = 0; i < 100; i++)

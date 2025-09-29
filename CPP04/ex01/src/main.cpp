@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 14:55:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 16:23:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,25 @@
 int main()
 {
 	// =================== Correct Test ===================
-	const Animal* animal = new Animal();
-	const Animal* cat = new Cat();
-	const Animal* dog = new Dog();
+	Animal	*animals[100];
 
-	std::cout << cat->getType() << " " << std::endl;
-	std::cout << dog->getType() << " " << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		if (i < 50)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+	
+	for (int i = 0; i < 100; i++)
+	{
+		animals[i]->getType();
+		animals[i]->makeSound();
+	}
 
-	cat->makeSound();
-	dog->makeSound();
-	animal->makeSound();
-
-	delete animal;
-	delete cat;
-	delete dog;
-
-	// =================== Wrong Test ===================
-	const WrongAnimal* base = new WrongAnimal();
-	const WrongAnimal* derived = new WrongCat();
-
-	derived->makeSound();
-
-	delete base;
-	delete derived;
-
+	for (int i = 0; i < 100; i++)
+	{
+		delete	animals[i];
+	}
 	return 0;
 }
