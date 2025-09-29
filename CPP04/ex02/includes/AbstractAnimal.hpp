@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AbstarctAnimal.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/27 18:26:53 by abnsila          ###   ########.fr       */
+/*   Created: 2025/09/29 19:13:49 by abnsila           #+#    #+#             */
+/*   Updated: 2025/09/29 19:19:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 #include "iostream"
 #include "string"
 
-class Animal
+class AbstractAnimal
 {
 	protected:
 		std::string type;
 
 	public:
-		Animal();
-		Animal(const Animal& copy);
-		virtual ~Animal();
-		Animal&	operator=(const Animal& copy);
+		AbstractAnimal();
+		AbstractAnimal(const AbstractAnimal& copy);
+		virtual ~AbstractAnimal();
+		AbstractAnimal&	operator=(const AbstractAnimal& copy);
 		const std::string	getType() const;
-		virtual void		makeSound() const;
+		virtual void		makeSound() const = 0;
 };

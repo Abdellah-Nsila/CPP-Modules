@@ -6,16 +6,16 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/28 16:42:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 19:19:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Animal.hpp"
+#include "AbstractAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog: public Animal
+class Dog: public AbstractAnimal
 {
 	private:
 		Brain	*brain;

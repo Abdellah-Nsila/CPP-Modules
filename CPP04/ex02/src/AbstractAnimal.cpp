@@ -1,48 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AbstractAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:17:57 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 16:02:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 19:09:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AbstractAnimal.hpp"
 
-Animal::Animal()
+AbstractAnimal::AbstractAnimal()
 {
 	this->type = "unknown";
-	std::cout << "Animal: Default constructor called" << std::endl;
+	std::cout << "AbstractAnimal: Default constructor called" << std::endl;
 }
 
-Animal::~Animal()
+AbstractAnimal::~AbstractAnimal()
 {
-	std::cout << "Animal: Destructor called" << std::endl;
+	std::cout << "AbstractAnimal: Destructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& copy)
+AbstractAnimal::AbstractAnimal(const AbstractAnimal& copy)
 {
 	*this = copy;
-	std::cout << "Animal: Copy constructor called" << std::endl;
+	std::cout << "AbstractAnimal: Copy constructor called" << std::endl;
 }
 
-Animal&	Animal::operator=(const Animal& copy)
+AbstractAnimal&	AbstractAnimal::operator=(const AbstractAnimal& copy)
 {
 	if (this != &copy)
 		this->type = copy.type;
-	std::cout << "Animal: Copy assignment operator called" << std::endl;
+	std::cout << "AbstractAnimal: Copy assignment operator called" << std::endl;
 	return (*this);
 }
 
-const std::string	Animal::getType() const
+const std::string	AbstractAnimal::getType() const
 {
 	return (this->type);
-}
-
-void	Animal::makeSound() const
-{
-	std::cout << "Nothing!" << std::endl;
 }

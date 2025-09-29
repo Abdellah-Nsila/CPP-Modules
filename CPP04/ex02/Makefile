@@ -6,7 +6,7 @@ INC_DIR = ./includes
 SRC_DIR = ./src
 INCLUDES = -I$(INC_DIR)
 
-SRCS =	$(SRC_DIR)/main.cpp $(SRC_DIR)/Animal.cpp $(SRC_DIR)/Brain.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp \
+SRCS =	$(SRC_DIR)/main.cpp $(SRC_DIR)/AbstractAnimal.cpp $(SRC_DIR)/Brain.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp \
 		$(SRC_DIR)/WrongAnimal.cpp $(SRC_DIR)/WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp	$(INC_DIR)/Animal.hpp $(INC_DIR)/Brain.hpp $(INC_DIR)/Dog.hpp $(INC_DIR)/Cat.hpp \
+%.o: %.cpp	$(INC_DIR)/AbstractAnimal.hpp $(INC_DIR)/Brain.hpp $(INC_DIR)/Dog.hpp $(INC_DIR)/Cat.hpp \
 			$(INC_DIR)/WrongAnimal.hpp $(INC_DIR)/WrongCat.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@ $(INCLUDES)
 
