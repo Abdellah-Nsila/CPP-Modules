@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:48:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 19:24:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 19:26:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int main()
 {
-	AbstractAnimal	*animals[100];
+	AAnimal	*animals[100];
 
 	for (int i = 0; i < 100; i++)
 	{

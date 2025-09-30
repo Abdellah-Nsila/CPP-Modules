@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:47:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 19:19:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/29 19:26:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : AbstractAnimal()
+Cat::Cat() : AAnimal()
 {
 	this->type = "Cat";
 	this->brain = new Brain();
@@ -25,7 +25,7 @@ Cat::~Cat()
 	std::cout << "Cat: Destructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& copy) : AbstractAnimal()
+Cat::Cat(const Cat& copy) : AAnimal()
 {
 	this->brain = new Brain(*(copy.brain));
 	this->type = copy.type;
@@ -36,7 +36,7 @@ Cat&	Cat::operator=(const Cat& copy)
 {
 	if (this != &copy)
 	{
-		AbstractAnimal::operator=(copy);
+		AAnimal::operator=(copy);
 		delete	this->brain;
 		this->type = copy.type;
 		this->brain = new Brain(*(copy.brain));

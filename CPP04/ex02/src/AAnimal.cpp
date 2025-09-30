@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AbstractAnimal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AbstractAnimal.hpp"
+#include "AAnimal.hpp"
 
-AbstractAnimal::AbstractAnimal()
+AAnimal::AAnimal()
 {
 	this->type = "unknown";
-	std::cout << "AbstractAnimal: Default constructor called" << std::endl;
+	std::cout << "AAnimal: Default constructor called" << std::endl;
 }
 
-AbstractAnimal::~AbstractAnimal()
+AAnimal::~AAnimal()
 {
-	std::cout << "AbstractAnimal: Destructor called" << std::endl;
+	std::cout << "AAnimal: Destructor called" << std::endl;
 }
 
-AbstractAnimal::AbstractAnimal(const AbstractAnimal& copy)
+AAnimal::AAnimal(const AAnimal& copy)
 {
 	*this = copy;
-	std::cout << "AbstractAnimal: Copy constructor called" << std::endl;
+	std::cout << "AAnimal: Copy constructor called" << std::endl;
 }
 
-AbstractAnimal&	AbstractAnimal::operator=(const AbstractAnimal& copy)
+AAnimal&	AAnimal::operator=(const AAnimal& copy)
 {
 	if (this != &copy)
 		this->type = copy.type;
-	std::cout << "AbstractAnimal: Copy assignment operator called" << std::endl;
+	std::cout << "AAnimal: Copy assignment operator called" << std::endl;
 	return (*this);
 }
 
-const std::string	AbstractAnimal::getType() const
+const std::string	AAnimal::getType() const
 {
 	return (this->type);
 }
