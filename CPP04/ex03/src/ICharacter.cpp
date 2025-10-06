@@ -5,11 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:14:48 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/04 16:15:12 by abnsila          ###   ########.fr       */
+/*   Created: 2025/10/06 12:32:42 by abnsila           #+#    #+#             */
+/*   Updated: 2025/10/06 14:59:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
-
-
+#include "Ice.hpp"
+#include "Cure.hpp"

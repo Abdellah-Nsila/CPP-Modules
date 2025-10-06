@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 15:55:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/04 16:17:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/06 12:02:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ class Ice : public AMateria
 		
 	public:
 		Ice();
+		Ice(const Ice& copy);
 		~Ice();
-		void	use(ICharacter& target);
+		Ice&		operator=(const Ice& copy);
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };

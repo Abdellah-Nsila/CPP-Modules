@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:05:54 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/04 16:17:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/06 11:47:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ class Cure : public AMateria
 		
 	public:
 		Cure();
+		Cure(const Cure& copy);
 		~Cure();
-		void	use(ICharacter& target);
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };

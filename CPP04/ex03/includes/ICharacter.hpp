@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 15:18:55 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/04 18:22:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/06 15:17:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 class ICharacter
 {
-	protected:
-		std::string	name;
-		AMateria	*materias[4];
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;
