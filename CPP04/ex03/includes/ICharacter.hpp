@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 15:18:55 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 15:17:59 by abnsila          ###   ########.fr       */
+/*   Created: 2025/10/06 16:36:31 by abnsila           #+#    #+#             */
+/*   Updated: 2025/10/06 17:33:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #include "iostream"
 #include "string"
-#include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

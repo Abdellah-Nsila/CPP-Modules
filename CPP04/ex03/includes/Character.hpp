@@ -5,24 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 18:25:15 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 15:33:55 by abnsila          ###   ########.fr       */
+/*   Created: 2025/10/06 16:36:11 by abnsila           #+#    #+#             */
+/*   Updated: 2025/10/06 18:43:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ICharacter.hpp"
 #include "AMateria.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
 
-class Character : ICharacter
+class Character : public ICharacter
 {
 	private:
 		std::string	_name;
-		AMateria	*_materias[4];
-		AMateria	*_dropped_materias[4];
+		AMateria	*_materias[MATERIAS_SLOTS];
 	public:
 		Character();
 		Character(std::string name);

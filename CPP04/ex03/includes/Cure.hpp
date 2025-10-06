@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:05:54 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 11:47:53 by abnsila          ###   ########.fr       */
+/*   Created: 2025/10/06 16:36:20 by abnsila           #+#    #+#             */
+/*   Updated: 2025/10/06 17:36:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Cure : public AMateria
 		Cure();
 		Cure(const Cure& copy);
 		~Cure();
+		Cure&		operator=(const Cure& copy);
 		AMateria*	clone() const;
 		void		use(ICharacter& target);
 };
