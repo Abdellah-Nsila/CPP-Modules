@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:14:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 19:26:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/08 18:19:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Cat: public AAnimal
 {
 	private:
-		Brain	*brain;
+		Brain	*_brain;
 
 	public:
 		Cat();
@@ -26,4 +26,6 @@ class Cat: public AAnimal
 		~Cat();
 		Cat&	operator=(const Cat& copy);
 		void	makeSound() const;
+		const std::string	getIdea(int idx) const;
+		void				setIdea(int idx, std::string& idea);
 };

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 15:10:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/29 16:21:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/08 17:35:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,23 @@ Brain&	Brain::operator=(const Brain& copy)
 	}
 	std::cout << "Brain: Copy assignment operator called" << std::endl;
 	return (*this);
+}
+
+const std::string	Brain::getIdea(int idx) const
+{
+	if (idx >= 0 && idx < 100)
+		return (this->ideas[idx]);
+	else
+	{	
+		std::cout << "Index: " << idx << " out of range" << std::endl;
+		return ("");
+	}
+}
+
+void	Brain::setIdea(int idx, std::string& idea)
+{
+	if (idx >= 0 && idx < 100)
+		this->ideas[idx] = idea;
+	else
+		std::cout << "Index: " << idx << " out of range" << std::endl;
 }
