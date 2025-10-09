@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:36:48 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 18:43:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 16:23:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ Character::Character(std::string name) : _name(name)
 
 Character::Character(const Character &copy)
 {
-	*this = copy;
+	this->_name = copy.getName();
+	for (int i = 0; i < MATERIAS_SLOTS; i++)
+	{
+		if (copy._materias[i])
+			this->_materias[i] = copy._materias[i]->clone();
+		else
+			this->_materias[i] = NULL;
+	}
 }
 
 Character::~Character() 
@@ -34,7 +41,10 @@ Character::~Character()
 	for (int i = 0; i < MATERIAS_SLOTS; i++)
 	{
 		if (this->_materias[i] != NULL)
-			delete this->_materias[i];
+		{
+			MateriaTracker::deleteMateria(this->_materias[i]);
+			this->_materias[i] = NULL;
+		}
 	}
 }
 
@@ -45,6 +55,8 @@ Character&	Character::operator=(const Character& copy)
 		this->_name = copy.getName();
 		for (int i = 0; i < MATERIAS_SLOTS; i++)
 		{
+			if (this->_materias[i])
+					delete this->_materias[i];
 			if (copy._materias[i])
 				this->_materias[i] = copy._materias[i]->clone();
 			else

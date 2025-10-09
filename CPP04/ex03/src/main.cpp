@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:37:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 18:43:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 17:18:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ int	main()
 	me->use(3, *bob);
 	me->unequip(3);
 
-	delete m1;
-	delete m2;
-	delete m3;
-	delete m4;
-	delete m5;
+	AMateria *m6 = src->createMateria("cure");
+	me->equip(m6);
+	AMateria *m7 = src->createMateria("cure");
+	me->equip(m7);
+	
+	MateriaTracker::clean();
 	
 	delete bob;
 	delete me;

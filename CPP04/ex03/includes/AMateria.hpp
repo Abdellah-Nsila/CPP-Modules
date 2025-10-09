@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:55:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 17:35:07 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 16:03:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "iostream"
 #include "string.h"
 #include "ICharacter.hpp"
+#include "MateriaTracker.hpp"
 
 # define MATERIAS_SLOTS 4
 

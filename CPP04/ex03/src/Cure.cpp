@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:36:57 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 16:37:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/08 19:14:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ Cure&	Cure::operator=(const Cure& copy)
 
 AMateria*	Cure::clone() const
 {
-	AMateria	*clonedCure;
-
-	clonedCure = new Cure();
-	return (clonedCure);
+	return new Cure(*this);
 }
 
 void	Cure::use(ICharacter& target)

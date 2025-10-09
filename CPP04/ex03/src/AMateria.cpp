@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:56:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 15:27:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/08 19:09:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ AMateria::~AMateria() {}
 
 AMateria&	AMateria::operator=(const AMateria& copy)
 {
-	if (this != &copy)
-		this->type = copy.type;
+	(void)copy;
 	return (*this);
 }
 

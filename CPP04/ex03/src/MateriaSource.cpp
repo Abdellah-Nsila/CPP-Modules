@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:11:50 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 17:41:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 16:15:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,23 @@ void	MateriaSource::learnMateria(AMateria *m)
 		{
 			this->_materias[i] = m;
 			std::cout << this->_materias[i]->getType() << std::endl;
-			break ;
+			return ;
 		}
 	}
+	delete	m;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const& type)
 {
+	AMateria	*clone;
+
 	for (int i = 0; i < MATERIAS_SLOTS; i++)
 	{
 		if (this->_materias[i] && this->_materias[i]->getType() == type)
-			return (this->_materias[i]->clone());
+		{
+			clone = this->_materias[i]->clone();
+			MateriaTracker::trackMateria(clone);
+		}
 	}
 	return (0);
 }
