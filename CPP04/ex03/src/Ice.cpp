@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:37:06 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/08 19:14:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 18:31:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice() : AMateria("ice") {std::cout << "Default C" << std::endl;}
+Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(const Ice& copy) : AMateria(copy) {}
 

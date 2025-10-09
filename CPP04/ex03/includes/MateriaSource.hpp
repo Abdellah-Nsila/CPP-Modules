@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:36:41 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/06 17:17:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 18:00:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class MateriaSource : public IMateriaSource
 	public:
 		MateriaSource();
 		~MateriaSource();
-		void		learnMateria(AMateria*);
-		AMateria*	createMateria(std::string const& type);
+		MateriaSource(const MateriaSource& copy);
+		MateriaSource&	operator=(const MateriaSource& copy);
+		void			learnMateria(AMateria*);
+		AMateria*		createMateria(std::string const& type);
 };

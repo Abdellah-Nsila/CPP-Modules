@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:11:50 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/09 16:15:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/10/09 18:09:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,37 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < MATERIAS_SLOTS; i++)
 	{
-		if (this->_materias[i] != NULL)
+		if (this->_materias[i])
 			delete this->_materias[i];
 	}
+}
+
+MateriaSource::MateriaSource(const MateriaSource& copy)
+{
+	for (int i = 0; i < MATERIAS_SLOTS; i++)
+	{
+		if (copy._materias[i])
+			this->_materias[i] = copy._materias[i]->clone();
+		else
+			this->_materias[i] = NULL;
+	}
+}
+
+MateriaSource&	MateriaSource::operator=(const MateriaSource& copy)
+{
+	if (this != &copy)
+	{
+		for (int i = 0; i < MATERIAS_SLOTS; i++)
+		{
+			if (this->_materias[i])
+				delete this->_materias[i];
+			if (copy._materias[i])
+				this->_materias[i] = copy._materias[i]->clone();
+			else
+				this->_materias[i] = NULL;
+		}
+	}
+	return (*this);
 }
 
 void	MateriaSource::learnMateria(AMateria *m)
@@ -34,7 +62,6 @@ void	MateriaSource::learnMateria(AMateria *m)
 		if (this->_materias[i] == NULL)
 		{
 			this->_materias[i] = m;
-			std::cout << this->_materias[i]->getType() << std::endl;
 			return ;
 		}
 	}
@@ -51,6 +78,7 @@ AMateria*	MateriaSource::createMateria(std::string const& type)
 		{
 			clone = this->_materias[i]->clone();
 			MateriaTracker::trackMateria(clone);
+			return (clone);
 		}
 	}
 	return (0);
