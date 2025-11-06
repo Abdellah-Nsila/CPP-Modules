@@ -1,0 +1,91 @@
+#include "Form.hpp"
+#include "Bureaucrat.hpp"
+
+Form::Form() : _name("Unknown"), _isSigned(false), _signGrade(150), _executeGrade(150) {}
+
+Form::Form(const Form& copy) : _name(copy.getName()), _isSigned(copy.isSigned()), _signGrade(copy.getSignGrade()), _executeGrade(copy.getExecuteGrade()) {}
+
+Form::Form(std::string name, int signGrade, int executeGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _executeGrade(executeGrade)
+{
+	this->checkGrade(this->_signGrade);
+	this->checkGrade(this->_executeGrade);
+}
+
+Form&	Form::operator=(const Form& copy)
+{
+	if (this != &copy)
+	{
+		this->_isSigned = copy.isSigned();
+	}
+	return (*this);
+}
+
+Form::~Form() {}
+
+const std::string&	Form::getName() const
+{
+	return (this->_name);
+}
+
+bool	Form::isSigned() const
+{
+	return (this->_isSigned);
+}
+
+int	Form::getSignGrade() const
+{
+	return (this->_signGrade);
+}
+
+int	Form::getExecuteGrade() const
+{
+	return (this->_executeGrade);
+}
+
+void	Form::setSigned(bool status)
+{
+	this->_isSigned = status;
+}
+
+void	Form::checkGrade(int grade) const
+{
+	if (grade < 1)
+	{
+		throw Form::GradeTooHighException();
+	}
+	else if (grade > 150)
+	{
+		throw Form::GradeTooLowException();
+	}
+}
+
+void	Form::checkRequiredGrade(int grade, int requiredGrade) const
+{
+	if (grade > requiredGrade)
+		throw Form::GradeTooLowException();
+}
+
+void	Form::beSigned(const Bureaucrat& obj)
+{
+	this->checkRequiredGrade(obj.getGrade(), this->_signGrade);
+	this->_isSigned = true;
+}
+
+const char*	Form::GradeTooHighException::what() const throw()
+{
+	return "Bureaucrat Grade is Too High";
+}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return "Bureaucrat Grade is Too Low";
+}
+
+std::ostream&	operator<<(std::ostream& cout, const Form& obj)
+{
+	cout << obj.getName()
+		<< ", form status: " << (obj.isSigned() ? "Signed" : "Not Signed")
+		<< ", form sign grade: " << obj.getSignGrade()
+		<< ", form execute grade: " << obj.getExecuteGrade() << ".";
+	return cout;
+}
