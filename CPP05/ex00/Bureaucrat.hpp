@@ -1,13 +1,13 @@
 #pragma once
 
-#include "iostream"
-#include "string"
+#include <iostream>
+#include <string>
 
 class Bureaucrat
 {
 	private:
-		std::string	_name;
-		int			_grade;
+		const std::string	_name;
+		int					_grade;
 	public:
 		Bureaucrat();
 		Bureaucrat(const Bureaucrat& copy);
@@ -16,11 +16,24 @@ class Bureaucrat
 		~Bureaucrat();
 
 		const std::string&	getName() const;
-		const int			getGrade() const;
+		int					getGrade() const;
 
-		bool	checkGrade(int grade) const;
 		void	increGrade();
 		void	decreGrade();
+
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
+		private:
+			void	checkGrade(int grade) const;
 };
 
 std::ostream&	operator<<(std::ostream& cout, const Bureaucrat& obj);
