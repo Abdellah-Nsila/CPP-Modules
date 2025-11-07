@@ -75,8 +75,7 @@ void	AForm::execute(Bureaucrat const & executor) const
 {
 	if (!this->_isSigned)
 	{
-		std::cerr << this->_name << " is not signed yet!" << std::endl;
-		throw AForm::GradeTooLowException();
+		throw AForm::FormNotSignedException();
 	}
 	checkRequiredGrade(executor.getGrade(), this->getExecuteGrade());
 	this->executeAction();
@@ -90,6 +89,11 @@ const char*	AForm::GradeTooHighException::what() const throw()
 const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return "Bureaucrat Grade is Too Low";
+}
+
+const char*	AForm::FormNotSignedException::what() const throw()
+{
+	return "Form is not signed yet";
 }
 
 std::ostream&	operator<<(std::ostream& cout, const AForm& obj)

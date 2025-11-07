@@ -37,6 +37,11 @@ class AForm
 		{
 			const char*	what() const throw();
 		};
+
+		class FormNotSignedException : public std::exception
+		{
+			const char*	what() const throw();
+		};
 	private:
 		void	checkGrade(int grade) const;
 		void	checkRequiredGrade(int grade, int requiredGrade) const;

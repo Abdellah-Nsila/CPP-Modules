@@ -36,7 +36,7 @@ void	ShrubberyCreationForm::executeAction() const
 		std::cerr << "Can't open " << outFile_path << std::endl;
 		return ;
 	}
-
+	std::cout << "Shrubbery has been created at " << outFile_path << std::endl;
 	outFile << "=================== ASCII trees ==================\n"
 	<< "                        # #### ####" << '\n'
     << "                  ### \\/#|### |/####" << '\n'
