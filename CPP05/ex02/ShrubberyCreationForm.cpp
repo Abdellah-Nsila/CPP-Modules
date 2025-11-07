@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Unknown ShrubberyCreationForm", 145, 137), _target("Unknown target")
 {
@@ -6,12 +7,10 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Unknown ShrubberyCreatio
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : AForm(copy), _target(copy._target)
 {
-	this->createFile();
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
-	this->createFile();
 }
 
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy)
@@ -20,7 +19,6 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	{
 		this->_target = copy._target;
 		AForm::operator=(copy);
-		this->createFile();
 	}
 	return (*this);
 }
@@ -29,7 +27,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-void	ShrubberyCreationForm::createFile() const
+void	ShrubberyCreationForm::executeAction() const
 {
 	std::string		outFile_path = (this->_target + "_shrubbery");
 	std::ofstream	outFile(outFile_path.c_str());
@@ -40,18 +38,18 @@ void	ShrubberyCreationForm::createFile() const
 	}
 
 	outFile << "=================== ASCII trees ==================\n"
-	<< "                                  # #### ####" << '\n'
-    << "                            ### \\/#|### |/####" << '\n'
-    << "                           ##\\/#/ \\||/##/_/##/_#" << '\n'
-    << "                         ###  \\/###|/ \\/ # ###" << '\n'
-    << "                       ##_\\_#\\_\\## | #/###_/_####" << '\n'
-    << "                      ## #### # \\ #| /  #### ##/##" << '\n'
-    << "                       __#_--###`  |{,###---###-~" << '\n'
-    << "                                 \\ }{" << '\n'
-    << "                                  }}{" << '\n'
-    << "                                  }}{" << '\n'
-    << "                                  {{}" << '\n'
-    << "                            , -=-~{ .-^- _"
+	<< "                        # #### ####" << '\n'
+    << "                  ### \\/#|### |/####" << '\n'
+    << "                 ##\\/#/ \\||/##/_/##/_#" << '\n'
+    << "               ###  \\/###|/ \\/ # ###" << '\n'
+    << "             ##_\\_#\\_\\## | #/###_/_####" << '\n'
+    << "            ## #### # \\ #| /  #### ##/##" << '\n'
+    << "             __#_--###`  |{,###---###-~" << '\n'
+    << "                       \\ }{" << '\n'
+    << "                        }}{" << '\n'
+    << "                        }}{" << '\n'
+    << "                        {{}" << '\n'
+    << "                  , -=-~{ .-^- _"
 	<< std::endl;
 	outFile.close();
 }

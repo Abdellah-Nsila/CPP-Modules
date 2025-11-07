@@ -1,19 +1,20 @@
 #pragma once
 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "AForm.hpp"
-#include "iostream"
-#include "fstream"
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string	_target;
 	public:
-		ShrubberyCreationForm();
-		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
-		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& copy);
-		~ShrubberyCreationForm();
-	private:
-		void	createFile() const;
+		RobotomyRequestForm();
+		RobotomyRequestForm(const RobotomyRequestForm& copy);
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm&	operator=(const RobotomyRequestForm& copy);
+		~RobotomyRequestForm();
+
+		void	executeAction() const;
 };

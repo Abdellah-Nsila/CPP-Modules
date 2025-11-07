@@ -1,10 +1,10 @@
-NAME = Bureaucrat
+NAME = Forms
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRCS =	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+%.o: %.cpp Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:

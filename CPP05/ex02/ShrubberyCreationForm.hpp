@@ -14,6 +14,6 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& copy);
 		~ShrubberyCreationForm();
-	private:
-		void	createFile() const;
+
+		void	executeAction() const;
 };
