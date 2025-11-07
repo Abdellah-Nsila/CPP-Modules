@@ -9,7 +9,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) 
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string& target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 }
 
@@ -52,4 +52,9 @@ void	ShrubberyCreationForm::executeAction() const
     << "                  , -=-~{ .-^- _"
 	<< std::endl;
 	outFile.close();
+}
+
+AForm*	ShrubberyCreationForm::create(std::string& target)
+{
+	return (new ShrubberyCreationForm(target));
 }

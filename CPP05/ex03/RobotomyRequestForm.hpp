@@ -12,9 +12,10 @@ class RobotomyRequestForm : public AForm
 	public:
 		RobotomyRequestForm();
 		RobotomyRequestForm(const RobotomyRequestForm& copy);
-		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(std::string& target);
 		RobotomyRequestForm&	operator=(const RobotomyRequestForm& copy);
 		~RobotomyRequestForm();
 
 		void	executeAction() const;
+		static AForm*	create(std::string& target);
 };

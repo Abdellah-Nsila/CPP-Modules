@@ -9,7 +9,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string& target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 }
 
@@ -30,4 +30,9 @@ PresidentialPardonForm::~PresidentialPardonForm()
 void	PresidentialPardonForm::executeAction() const
 {
 	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+}
+
+AForm*	PresidentialPardonForm::create(std::string& target)
+{
+	return (new PresidentialPardonForm(target));
 }

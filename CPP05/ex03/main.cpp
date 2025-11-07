@@ -3,35 +3,32 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
-	// Init Forms
-	ShrubberyCreationForm	s1 = ShrubberyCreationForm("Home");
-	std::cout << s1 << std::endl;
-
-	RobotomyRequestForm	r1 = RobotomyRequestForm("Bird");
-	std::cout << r1 << std::endl;
-
-	PresidentialPardonForm	p1 = PresidentialPardonForm("Jorshwa");
-	std::cout << p1 << std::endl;
-	
-	// Execution
 	try
 	{	
-		Bureaucrat	b1 = Bureaucrat("B1", 60);
-		std::cout << b1 << std::endl;
+		Intern	i1 = Intern();
+		
+		AForm*	f1;
+		AForm*	f2;
+		AForm*	f3;
+		//TODO: There is leaks if you throw after a succeded form creation
+		f1 = i1.makeForm("shrubbery creation", "Home");
+		f2 = i1.makeForm("robotomy request", "Bender");
+		f3 = i1.makeForm("presidential pardon", "Jorshwa");
+		
+		std::cout << *f1 << std::endl;
+		std::cout << *f2 << std::endl;
+		std::cout << *f3 << std::endl;
 
-		b1.signForm(s1);
-		b1.signForm(r1);
-		b1.signForm(p1);
-
-		b1.executeForm(s1);
-		b1.executeForm(r1);
-		b1.executeForm(p1);
+		delete f1;
+		delete f2;
+		delete f3;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
 }

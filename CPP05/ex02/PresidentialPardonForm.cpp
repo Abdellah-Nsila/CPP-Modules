@@ -9,7 +9,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string& target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 }
 

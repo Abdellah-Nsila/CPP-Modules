@@ -9,7 +9,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : AFor
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 42), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string& target) : AForm("RobotomyRequestForm", 72, 42), _target(target)
 {
 }
 
@@ -34,4 +34,9 @@ void	RobotomyRequestForm::executeAction() const
 		std::cout << "BZZZZZZZZZZZ... " << this->_target << " has been robotomized successfully!" << std::endl;
 	else
 		std::cout << "BZZZZZZZZZZZ... " << "Robotomy failed on " << this->_target << std::endl;
+}
+
+AForm*	RobotomyRequestForm::create(std::string& target)
+{
+	return (new RobotomyRequestForm(target));
 }
