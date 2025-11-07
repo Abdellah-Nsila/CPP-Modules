@@ -1,7 +1,7 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : _name("Unknown"), _isSigned(false), _signGrade(150), _executeGrade(150) {}
+Form::Form() : _name("Unknown Form"), _isSigned(false), _signGrade(150), _executeGrade(150) {}
 
 Form::Form(const Form& copy) : _name(copy.getName()), _isSigned(copy.isSigned()), _signGrade(copy.getSignGrade()), _executeGrade(copy.getExecuteGrade()) {}
 

@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(150) {}
+Bureaucrat::Bureaucrat() : _name("Unknown Bureaucrat"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy.getName()), _grade(copy.getGrade()) {}
 
