@@ -33,5 +33,5 @@ AForm*	Intern::makeForm(std::string name, std::string target)
 		if (types[i] == name)
 			return (creators[i](target));
 	}
-	throw std::invalid_argument("Invalid Form name");
+	throw std::invalid_argument("Invalid Form name!");
 }
