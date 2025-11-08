@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:50:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:12:30 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:49:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	Form::beSigned(const Bureaucrat& obj)
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return "Bureaucrat Grade is Too High";
+	return "Grade is Too High";
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return "Bureaucrat Grade is Too Low";
+	return "Grade is Too Low";
 }
 
 std::ostream&	operator<<(std::ostream& cout, const Form& obj)

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:04:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:04:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:56:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		void	executeAction() const;
-		static AForm*	create(std::string& target);
 };

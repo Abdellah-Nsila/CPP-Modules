@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:55 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:03:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:56:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();
 
 		void	executeAction() const;
-		static AForm*	create(std::string& target);
 };

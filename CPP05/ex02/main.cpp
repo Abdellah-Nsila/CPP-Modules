@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:50:28 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:32:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 11:18:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main()
 
 	PresidentialPardonForm	p1 = PresidentialPardonForm("Jorshwa");
 	std::cout << p1 << std::endl;
-	
+
 	// Execution
 	try
 	{	

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:52:31 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:49:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:50:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void	AForm::execute(Bureaucrat const & executor) const
 
 const char*	AForm::GradeTooHighException::what() const throw()
 {
-	return "Bureaucrat Grade is Too High";
+	return "Grade is Too High";
 }
 
 const char*	AForm::GradeTooLowException::what() const throw()
 {
-	return "Bureaucrat Grade is Too Low";
+	return "Grade is Too Low";
 }
 
 const char*	AForm::FormNotSignedException::what() const throw()

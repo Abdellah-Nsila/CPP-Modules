@@ -6,11 +6,26 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:57:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:47:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 11:06:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+
+static AForm*	createSCF(std::string& target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+static AForm*	createRRF(std::string& target)
+{
+	return (new RobotomyRequestForm(target));
+}
+
+static AForm*	createPPF(std::string& target)
+{
+	return (new PresidentialPardonForm(target));
+}
 
 Intern::Intern()
 {
@@ -31,14 +46,19 @@ Intern::~Intern()
 {
 }
 
+const char*	Intern::FormDosentExistExeption::what() const throw()
+{
+	return "Form Dosent Exist";
+}
+
 AForm*	Intern::makeForm(std::string name, std::string target)
 {
 	AForm*	form;
 	std::string	types[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	AForm* (*creators[3])(std::string&) = {
-		&ShrubberyCreationForm::create,
-		&RobotomyRequestForm::create,
-		&PresidentialPardonForm::create,
+		&createSCF,
+		&createRRF,
+		&createPPF,
 	};
 	int	formsNum = sizeof(types) / sizeof(types[0]);
 	for (int i = 0; i < formsNum; i++)
@@ -50,6 +70,6 @@ AForm*	Intern::makeForm(std::string name, std::string target)
 			return (form);
 		}
 	}
-	std::cout << "Intern couldn't create: " << name << ", because it doesn't exist" << std::endl;
+	throw FormDosentExistExeption();
 	return (NULL);
 }

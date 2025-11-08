@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:34 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 10:05:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 11:36:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,44 +19,55 @@
 
 int	main()
 {
+	AForm* scf = NULL;
+	AForm* rrf = NULL;
+	AForm* ppf = NULL;
+
 	try
 	{	
-		Intern	i1 = Intern();
+		Intern	someRandomInter = Intern();
 
-		AForm*	f0;
-		f0 = i1.makeForm("shrubbery creation", "Home");
-		if (f0)
-		{
-			std::cout << *f0 << std::endl;
-			delete f0;
-		}
+		scf = someRandomInter.makeForm("shrubbery creation", "Home");
+		std::cout << *scf << std::endl;
 
-		AForm*	f1;
-		f1 = i1.makeForm("bad form", "Target");
-		if (f1)
-		{
-			std::cout << *f1 << std::endl;
-			delete f1;
-		}
-		
-		AForm*	f2;
-		f2 = i1.makeForm("robotomy request", "Bender");
-		if (f2)
-		{
-			std::cout << *f2 << std::endl;
-			delete f2;
-		}
-		
-		AForm*	f3;
-		f3 = i1.makeForm("presidential pardon", "Jorshwa");
-		if (f3)
-		{
-			std::cout << *f3 << std::endl;
-			delete f3;
-		}
+		rrf = someRandomInter.makeForm("robotomy request", "Bender");
+		std::cout << *rrf << std::endl;
+
+		ppf = someRandomInter.makeForm("presidential pardon", "Jorshwa");
+		std::cout << *ppf << std::endl;
+
+		Bureaucrat	admin = Bureaucrat("Admin", 1);
+		std::cout << admin << std::endl;
+
+		admin.signForm(*scf);
+		admin.signForm(*rrf);
+		admin.signForm(*ppf);
+
+		admin.executeForm(*scf);
+		admin.executeForm(*rrf);
+		admin.executeForm(*ppf);
+
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
+
+	try
+	{	
+		Intern	someRandomInter = Intern();
+
+		AForm*	unkownForm;
+		unkownForm = someRandomInter.makeForm("Unknown Form", "Unknown Target");
+		std::cout << *unkownForm << std::endl;
+		delete unkownForm;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	delete scf;
+	delete rrf;
+	delete ppf;
 }

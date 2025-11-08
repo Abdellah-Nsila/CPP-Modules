@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:52 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:03:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:57:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,4 @@ void	RobotomyRequestForm::executeAction() const
 		std::cout << "BZZZZZZZZZZZ... " << this->_target << " has been robotomized successfully!" << std::endl;
 	else
 		std::cout << "BZZZZZZZZZZZ... " << "Robotomy failed on " << this->_target << std::endl;
-}
-
-AForm*	RobotomyRequestForm::create(std::string& target)
-{
-	return (new RobotomyRequestForm(target));
 }

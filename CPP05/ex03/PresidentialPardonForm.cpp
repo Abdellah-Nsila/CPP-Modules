@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:39 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:03:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:58:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,4 @@ PresidentialPardonForm::~PresidentialPardonForm()
 void	PresidentialPardonForm::executeAction() const
 {
 	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-}
-
-AForm*	PresidentialPardonForm::create(std::string& target)
-{
-	return (new PresidentialPardonForm(target));
 }

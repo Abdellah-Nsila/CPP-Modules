@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:04:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 09:04:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 10:57:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,4 @@ void	ShrubberyCreationForm::executeAction() const
     << "                  , -=-~{ .-^- _"
 	<< std::endl;
 	outFile.close();
-}
-
-AForm*	ShrubberyCreationForm::create(std::string& target)
-{
-	return (new ShrubberyCreationForm(target));
 }
