@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:34 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 11:36:11 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:11:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int	main()
 {
+	srand(time(0));
 	AForm* scf = NULL;
 	AForm* rrf = NULL;
 	AForm* ppf = NULL;

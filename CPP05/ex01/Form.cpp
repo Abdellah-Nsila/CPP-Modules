@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 08:50:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 10:49:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:10:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Form::Form() : _name("Unknown Form"), _isSigned(false), _signGrade(150), _executeGrade(150) {}
 
-Form::Form(const Form& copy) : _name(copy.getName()), _isSigned(copy.isSigned()), _signGrade(copy.getSignGrade()), _executeGrade(copy.getExecuteGrade()) {}
+Form::Form(const Form& copy) : _name(copy.getName()), _isSigned(false), _signGrade(copy.getSignGrade()), _executeGrade(copy.getExecuteGrade()) {}
 
 Form::Form(std::string name, int signGrade, int executeGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _executeGrade(executeGrade)
 {
@@ -27,7 +27,7 @@ Form&	Form::operator=(const Form& copy)
 {
 	if (this != &copy)
 	{
-		this->_isSigned = copy.isSigned();
+		this->_isSigned = false;
 	}
 	return (*this);
 }

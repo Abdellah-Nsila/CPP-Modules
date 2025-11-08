@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 09:03:52 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/08 10:57:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/08 17:10:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::executeAction() const
 {
-	srand(time(0));
 	if (rand() % 2)
 		std::cout << "BZZZZZZZZZZZ... " << this->_target << " has been robotomized successfully!" << std::endl;
 	else
