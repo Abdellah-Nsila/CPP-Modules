@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/08 08:50:02 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/08 09:12:30 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
@@ -83,9 +95,10 @@ const char*	Form::GradeTooLowException::what() const throw()
 
 std::ostream&	operator<<(std::ostream& cout, const Form& obj)
 {
-	cout << "Form name" << obj.getName()
+	cout << "Form name: " << obj.getName()
 		<< ", Form status: " << (obj.isSigned() ? "Signed" : "Not Signed")
 		<< ", Form sign grade: " << obj.getSignGrade()
+		
 		<< ", Form execute grade: " << obj.getExecuteGrade();
 	return cout;
 }

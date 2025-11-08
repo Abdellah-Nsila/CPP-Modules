@@ -1,4 +1,4 @@
-NAME = Bureaucrat
+NAME = Form
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/08 08:49:29 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/08 08:49:30 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 int	main()
@@ -7,7 +19,7 @@ int	main()
 	{
 		Bureaucrat	b1 = Bureaucrat("Good", 42);
 		Bureaucrat	b2;
-		// Bureaucrat	b2 = b1; This is copy constructor not assignement constructor
+		// Bureaucrat	b2 = b1; // This is copy constructor not assignement constructor
 		b2 = b1; // This is assignement constructor
 		std::cout << b1 << std::endl;
 		std::cout << b2 << std::endl;

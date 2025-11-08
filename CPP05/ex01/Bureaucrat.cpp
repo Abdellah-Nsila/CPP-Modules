@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/08 08:49:53 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/08 09:10:35 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -65,7 +77,7 @@ void	 Bureaucrat::signForm(Form& obj)
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << this->_name << " couldn't sign: "  << obj.getName() << " because " << e.what() << "." << std::endl;
+		std::cerr << this->_name << " couldn't sign: "  << obj.getName() << " because " << e.what() << std::endl;
 	}
 }
 

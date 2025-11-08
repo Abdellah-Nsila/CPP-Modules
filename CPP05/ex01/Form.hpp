@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/08 08:50:05 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/08 09:08:56 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 #include <iostream>
@@ -35,8 +47,7 @@ class Form
 		class GradeTooLowException : public std::exception
 		{
 			const char*	what() const throw();
-		};
-		
+		};	
 	private:
 		void	checkGrade(int grade) const;
 		void	checkRequiredGrade(int grade, int requiredGrade) const;

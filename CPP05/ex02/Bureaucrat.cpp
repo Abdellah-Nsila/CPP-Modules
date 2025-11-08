@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/08 08:50:24 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/08 09:28:11 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
@@ -65,7 +77,7 @@ void	 Bureaucrat::signForm(AForm& form)
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << this->_name << " couldn't sign: "  << form.getName() << " because " << e.what() << "." << std::endl;
+		std::cerr << this->_name << " couldn't sign: "  << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 
@@ -78,7 +90,7 @@ void	Bureaucrat::executeForm(AForm const & form) const
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << this->_name << " couldn't execute: "  << form.getName() << " because " << e.what() << "." << std::endl;
+		std::cerr << this->_name << " couldn't execute: "  << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 
