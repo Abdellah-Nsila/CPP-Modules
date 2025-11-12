@@ -16,6 +16,15 @@
 #include <iostream>
 #include <string>
 
+enum literalType
+{
+	INVALID,
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE
+};
+
 class ScalarConverter
 {
 	public:
