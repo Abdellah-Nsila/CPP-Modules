@@ -14,20 +14,15 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-
-enum literalType
-{
-	INVALID,
-	CHAR,
-	INT,
-	FLOAT,
-	DOUBLE
-};
+#include <iomanip>
+#include <cstdlib>
+#include "detectType.hpp"
 
 class ScalarConverter
 {
 	public:
+		ScalarConverter(ScalarConverter& copy);
+		ScalarConverter&	operator=(ScalarConverter& copy);
 		~ScalarConverter();
 		static void	convert(std::string& s);
 	private:
