@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:04:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/14 12:01:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/14 15:48:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ bool	isInt(std::string s)
 		return (false);
 	if (ss >> leftOver)
 		return (false);
-	if (value < INT_MIN || value > INT_MAX)
-		return (false);
+	// if (value < INT_MIN || value > INT_MAX)
+	// 	return (false);
 	// std::cout << "int: " << "\"" << value << "\"" << std::endl;
 	return (true);
 }
@@ -39,7 +39,7 @@ bool	isFloat(std::string s)
 	float	value;
 	char	leftOver;
 
-	if (s == "-inff" || s == "+inff" || s == "nanf")
+	if (s == "-inff" || s == "+inff" || s == "inff" || s == "nanf")
 		return (true);
 	if (s[s.length() - 1] != 'f')
 		return (false);
@@ -51,8 +51,8 @@ bool	isFloat(std::string s)
 		return (false);
 	if (s.find('.') == std::string::npos)
 		return (false);
-	if (value < -FLT_MIN || value > FLT_MAX)
-		return (false);
+	// if (value < FLT_MIN || value > FLT_MAX)
+	// 	return (false);
 	// std::cout << std::setprecision(4) << "float: " << "\"" << value << "\"" << std::endl;
 	return (true);
 }
@@ -62,7 +62,7 @@ bool	isDouble(std::string s)
 	double	value;
 	char	leftOver;
 
-	if (s == "-inf" || s == "+inf" || s == "nan")
+	if (s == "-inf" || s == "+inf" || s == "inf" || s == "nan")
 		return (true);
 	std::stringstream	ss(s);
 	ss >> value;
@@ -72,8 +72,8 @@ bool	isDouble(std::string s)
 		return (false);
 	if (s.find('.') == std::string::npos)
 		return (false);
-	if (value < -DBL_MIN || value > DBL_MAX)
-		return (false);
+	// if (value < -DBL_MIN || value > DBL_MAX)
+	// 	return (false);
 	// std::cout << std::setprecision(4) << "double: " << "\"" << value << "\"" << std::endl;
 	return (true);
 }

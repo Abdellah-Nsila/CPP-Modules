@@ -34,8 +34,8 @@ ScalarConverter::~ScalarConverter()
 
 bool	isPseudoLiterals(std::string& s)
 {
-	if (s == "-inf" || s == "+inf" || s == "nan"
-		|| s == "-inff" || s == "+inff" || s == "nanf")
+	if (s == "-inf" || s == "+inf" || s == "inf" || s == "nan"
+		|| s == "-inff" || s == "+inff" || s == "inff" || s == "nanf")
 		return (true);
 	return (false);
 }
@@ -70,7 +70,6 @@ void	cast(std::string s)
 	float	n_float = 0.0f;
 	double	n_double = 0.0;
 
-	std::cout << "\"" << s << "\"" << std::endl;
 	switch (getType(s))
 	{
 		case (CHAR):
@@ -85,24 +84,31 @@ void	cast(std::string s)
 		case  (INT):
 		{
 			std::cout << "isInt: " << s << std::endl;
-			n_int = static_cast<int>(strtol(s.c_str(), NULL, 10));
+			long temp = strtol(s.c_str(), NULL, 10);
+			if (n_int < INT_MIN || n_int > INT_MAX)
+			{
+				return ;
+			}
+			n_int = static_cast<int>(temp);
 			c = static_cast<char>(n_int);
 			n_float = static_cast<float>(n_int);
 			n_double = static_cast<double>(n_int);
-			break ;
+			break;
 		}
-		case  (FLOAT):
+		case (FLOAT):
 		{
 			std::cout << "isFloat: " << s << std::endl;
+
 			n_float = strtof(s.c_str(), NULL);
 			c = static_cast<char>(n_float);
 			n_int = static_cast<int>(n_float);
 			n_double = static_cast<double>(n_float);
-			break ;
+			break;
 		}
 		case  (DOUBLE):
 		{
 			std::cout << "isDouble: " << s << std::endl;
+			errno = 0;
 			n_double = strtod(s.c_str(), NULL);
 			c = static_cast<char>(n_double);
 			n_int = static_cast<int>(n_double);
@@ -110,7 +116,7 @@ void	cast(std::string s)
 			break ;
 		}
 		default:
-			std::cerr << "Invalid Input" << std::endl;
+			std::cerr << "Error: Invalid Input" << std::endl;
 			return ;
 	}
 	display(s, c, n_int, n_float, n_double);

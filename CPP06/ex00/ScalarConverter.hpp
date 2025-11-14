@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 #include <cstdlib>
 #include "detectType.hpp"
 
