@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:50:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/15 18:19:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:23:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Base*	generate(void)
 	Base*	obj = NULL;
 
 	n = rand() % ( 3 - 1 + 1 ) + 1;
-	std::cout << "n: " << n << std::endl;
 	if (n == 1)
 		obj = new A();
 	else if (n == 2)
@@ -57,6 +56,7 @@ void	identify(Base* p)
 		std::cout << "C Class" << std::endl;
 		return ;
 	}
+	std::cout << "Invalid Class Pointer" << std::endl;
 }
 
 void	identify(Base& p)
@@ -90,4 +90,6 @@ void	identify(Base& p)
 	catch (const std::exception& e)
 	{
 	}
+
+	std::cout << "Invalid Class Refrence" << std::endl;
 }
