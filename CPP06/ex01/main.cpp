@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serialize.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 15:54:39 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/15 16:03:49 by abnsila          ###   ########.fr       */
+/*   Created: 2025/11/15 15:28:07 by abnsila           #+#    #+#             */
+/*   Updated: 2025/11/15 16:01:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serialize.hpp"
+#include <iostream>
 
-Serialize::Serialize()
+int	main()
 {
-}
+	Data	*ptr1 = new Data();
+	ptr1->id = 42;
 
-Serialize::Serialize(Serialize& copy)
-{
-	(void)copy;
-}
+	uintptr_t	raw = Serialize::serialize(ptr1);
+	Data*		ptr2 = Serialize::deserialize(raw);
 
-Serialize&	Serialize::operator=(Serialize& copy)
-{
-	(void)copy;
-	return (*this);
-}
+	std::cout << "ptr1: " << ptr1 << std::endl;
+	std::cout << "ptr2: " << ptr2 << std::endl;
 
-Serialize::~Serialize()
-{
-}
+	std::cout << "Is Equals: " << (ptr1 == ptr2 ? "True" : "false") << std::endl;
 
-uintptr_t	Serialize::serialize(Data* ptr)
-{
-	return (reinterpret_cast<uintptr_t>(ptr));
-}
-
-Data*		Serialize::deserialize(uintptr_t raw)
-{
-	return (reinterpret_cast<Data*>(raw));
+	delete ptr1;
 }
