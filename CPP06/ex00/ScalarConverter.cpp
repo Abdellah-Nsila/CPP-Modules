@@ -17,12 +17,12 @@ ScalarConverter::ScalarConverter()
 {
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter& copy)
+ScalarConverter::ScalarConverter(const ScalarConverter& copy)
 {
 	(void)copy;
 }
 
-ScalarConverter&	ScalarConverter::operator=(ScalarConverter& copy)
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& copy)
 {
 	(void)copy;
 	return (*this);
@@ -48,7 +48,7 @@ void	display(std::string s, char c, long n_int, float n_float, double n_double)
 	else if (c < 32 || c > 126)
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << c << std::endl;
+		std::cout << "char: " << "'" << c << "'" << std::endl;
 
 	// Int
 	if (isPseudoLiterals(s))
@@ -56,11 +56,12 @@ void	display(std::string s, char c, long n_int, float n_float, double n_double)
 	else
 		std::cout << "int: " << n_int << std::endl;
 
+	std::cout << std::fixed << std::setprecision(1);
 	// Float
-	std::cout << "float: " << std::setprecision(1) << n_float << "f" << std::endl;
+	std::cout << "float: "  << n_float << "f" << std::endl;
 
 	// Double
-	std::cout << "double: " << std::setprecision(1) << n_double << std::endl;
+	std::cout << "double: " << n_double << std::endl;
 }
 
 void	cast(std::string s)
@@ -74,7 +75,6 @@ void	cast(std::string s)
 	{
 		case (CHAR):
 		{
-			std::cout << "isChar: " << s << std::endl;
 			c = s[0];
 			n_int = static_cast<int>(c);
 			n_float = static_cast<float>(c);
@@ -83,13 +83,7 @@ void	cast(std::string s)
 		}
 		case  (INT):
 		{
-			std::cout << "isInt: " << s << std::endl;
-			long temp = strtol(s.c_str(), NULL, 10);
-			if (n_int < INT_MIN || n_int > INT_MAX)
-			{
-				return ;
-			}
-			n_int = static_cast<int>(temp);
+			n_int = atoi(s.c_str());
 			c = static_cast<char>(n_int);
 			n_float = static_cast<float>(n_int);
 			n_double = static_cast<double>(n_int);
@@ -97,8 +91,6 @@ void	cast(std::string s)
 		}
 		case (FLOAT):
 		{
-			std::cout << "isFloat: " << s << std::endl;
-
 			n_float = strtof(s.c_str(), NULL);
 			c = static_cast<char>(n_float);
 			n_int = static_cast<int>(n_float);
@@ -107,8 +99,6 @@ void	cast(std::string s)
 		}
 		case  (DOUBLE):
 		{
-			std::cout << "isDouble: " << s << std::endl;
-			errno = 0;
 			n_double = strtod(s.c_str(), NULL);
 			c = static_cast<char>(n_double);
 			n_int = static_cast<int>(n_double);
@@ -124,7 +114,8 @@ void	cast(std::string s)
 
 void	ScalarConverter::convert(std::string& s)
 {
-	std::cout << std::fixed;
 	if (!s.empty())
 		cast(s);
+	else
+		std::cerr << "Empty argument!" << std::endl;
 }

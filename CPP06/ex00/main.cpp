@@ -20,7 +20,6 @@ int	main(int argc, char** argv)
 		std::cerr << "Syntax: ./convert <literal string>" << std::endl;
 		return (1);
 	}
-	// std::cout << static_cast<int>(argv[1][0]) << std::endl;
 	std::string s = std::string(argv[1]);
 	ScalarConverter::convert(s);
 }

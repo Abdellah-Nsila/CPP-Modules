@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:50:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/15 18:23:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/18 10:59:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	identify(Base& p)
 	{
 		(void)dynamic_cast<A&>(p);
 		std::cout << "A Class" << std::endl;
+		return ;
 	}
 	catch (const std::exception& e)
 	{
@@ -76,6 +77,7 @@ void	identify(Base& p)
 	{
 		(void)dynamic_cast<B&>(p);
 		std::cout << "B Class" << std::endl;
+		return ;
 	}
 	catch (const std::exception& e)
 	{
@@ -86,6 +88,7 @@ void	identify(Base& p)
 	{
 		(void)dynamic_cast<C&>(p);
 		std::cout << "C Class" << std::endl;
+		return ;
 	}
 	catch (const std::exception& e)
 	{

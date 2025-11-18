@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:54:39 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/15 16:03:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/18 11:00:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ Serialize::Serialize()
 {
 }
 
-Serialize::Serialize(Serialize& copy)
+Serialize::Serialize(const Serialize& copy)
 {
 	(void)copy;
 }
 
-Serialize&	Serialize::operator=(Serialize& copy)
+Serialize&	Serialize::operator=(const Serialize& copy)
 {
 	(void)copy;
 	return (*this);
