@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:52:06 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/19 16:07:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/11/19 16:51:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ int	main()
 	std::cout << "=========================== Min ===========================" << std::endl;
 	std::cout << "Min: " << min(i1, i2) << std::endl;
 	std::cout << "Min: " << min(d1, d2) << std::endl;
-	std::cout << "Min: " << min(s1, s2) << std::endl;
+	std::cout << "Min: " << ::min(s1, s2) << std::endl;
 	
 	std::cout << "=========================== Max ===========================" << std::endl;
 	std::cout << "Max: " << max(i1, i2) << std::endl;
 	std::cout << "Max: " << max(d1, d2) << std::endl;
-	// std::cout << "Max: " << max(s1, s2) << std::endl;
-	
-
+	std::cout << "Max: " << ::max(s1, s2) << std::endl;
 }
