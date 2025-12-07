@@ -6,11 +6,23 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 16:58:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/19 16:58:11 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/12/07 15:59:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main()
+#include "iter.hpp"
+
+template <typename T>
+void	print(T item)
 {
+	std::cout << item << std::endl;
+}
+
+int main()
+{
+	int						arr1[2] = {3, 10};
+	const std::string		arr2[] = {"Hello", "World"};
 	
+	iter(arr1, 2, &print<int>);
+	iter(arr2, 2, &print<std::string>);
 }
