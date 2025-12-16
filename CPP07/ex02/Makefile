@@ -1,10 +1,10 @@
-NAME = Serialize
+NAME = Array
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp Serialize.cpp
+SRCS =	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp Serialize.hpp DataStructure.hpp
+%.o: %.cpp Array.hpp Array.tpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
