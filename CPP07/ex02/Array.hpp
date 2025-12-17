@@ -7,8 +7,8 @@ template <typename T>
 class Array
 {
 	private:
-		unsigned int	_n;
-		T*				_arr;
+		unsigned int	_size;
+		T*				_array;
 	public:
 		Array();
 		Array(unsigned int n);
@@ -20,9 +20,11 @@ class Array
 
 		~Array();
 
+		unsigned int	size();
+
 		class OutOfBoundsException : public std::exception
 		{
 			public:
 				const char*	what() const throw();
-		};		
+		};
 };

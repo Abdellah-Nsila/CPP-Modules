@@ -1,6 +1,6 @@
 NAME = Array
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=undefined
 RM = rm -f
 INCLUDES = -I./
 

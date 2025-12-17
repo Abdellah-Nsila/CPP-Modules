@@ -1,34 +1,55 @@
 #include "Array.hpp"
 
 template <typename T>
-Array<T>::Array() : _n(0), _arr(NULL) {}
+Array<T>::Array() : _size(0), _array(NULL) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _n(n), _arr(new T[n]) {}
-
-template <typename T>
-Array<T>::Array(const Array& copy)
+Array<T>::Array(unsigned int n) : _size(n)
 {
-	*this = copy;
+	if (n > 0)
+	{
+		this->_array = new T[n];
+		for (unsigned int i = 0; i < n; i++)
+		{
+			this->_array[i] = T();
+		}
+	}
+	else
+		this->_array = NULL;
 }
 
-//TODO: Issue in Syntax
+template <typename T>
+Array<T>::Array(const Array& copy) : _size(copy._size)
+{
+	if (copy._size > 0)
+	{
+		this->_array = new T[copy._size];
+		for (unsigned int i = 0; i < copy._size; i++)
+		{
+			this->_array[i] = copy._array[i];
+		}
+	}
+	else
+		this->_array = NULL;
+}
+
 template <typename T>
 Array<T>&	Array<T>::operator=(const Array& copy)
 {
 	if (this != &copy)
 	{
-		if (!copy._arr)
-			return (*this);
-
-		delete[]	this->_arr;
-		this->_n = copy._n;
-		this->_arr = new T[copy._n];
-
-		for (unsigned int i = 0; i < copy._n; i++)
+		delete[]	this->_array;
+		this->_size = copy._size;
+		if (copy._size > 0)
 		{
-			this->_arr[i] = copy._arr[i];
+			this->_array = new T[copy._size];
+			for (unsigned int i = 0; i < copy._size; i++)
+			{
+				this->_array[i] = copy._array[i];
+			}
 		}
+		else
+			this->_array = NULL;
 	}
 	return (*this);
 }
@@ -36,17 +57,23 @@ Array<T>&	Array<T>::operator=(const Array& copy)
 template <typename T>
 Array<T>::~Array()
 {
-	delete[]	this->_arr;
+	delete[]	this->_array;
 }
 
 template <typename T>
 T&		Array<T>::operator[](unsigned int index)
 {
-	if (this->_n == 0 || index < 0 || index >= this->_n)
+	if (this->_size == 0 || index >= this->_size)
 	{
 		throw OutOfBoundsException();
 	}
-	return this->_arr[index];
+	return this->_array[index];
+}
+
+template <typename T>
+unsigned int	Array<T>::size()
+{
+	return (this->_size);
 }
 
 template <typename T>
