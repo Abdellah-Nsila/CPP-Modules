@@ -20,7 +20,7 @@ class Array
 
 		~Array();
 
-		unsigned int	size();
+		unsigned int	size() const;
 
 		class OutOfBoundsException : public std::exception
 		{
@@ -28,3 +28,5 @@ class Array
 				const char*	what() const throw();
 		};
 };
+
+#include "Array.tpp"

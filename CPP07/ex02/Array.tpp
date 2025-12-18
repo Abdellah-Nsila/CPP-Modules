@@ -1,5 +1,3 @@
-#include "Array.hpp"
-
 template <typename T>
 Array<T>::Array() : _size(0), _array(NULL) {}
 
@@ -81,7 +79,7 @@ const T&		Array<T>::operator[](unsigned int index) const
 }
 
 template <typename T>
-unsigned int	Array<T>::size()
+unsigned int	Array<T>::size() const
 {
 	return (this->_size);
 }
