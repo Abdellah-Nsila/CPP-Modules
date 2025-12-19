@@ -4,7 +4,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp easyfind.cpp
+SRCS =	main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
