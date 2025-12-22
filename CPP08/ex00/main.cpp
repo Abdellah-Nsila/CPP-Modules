@@ -15,13 +15,9 @@ int	main()
 	container.push_back(2);
 	container.push_back(3);
 
-
-	it = std::find(container.begin(), container.end(), 2);
-	if (it != container.end())
+	if (easyfind(container, 2) != container.end())
 		std::cout << "Found" << std::endl;
 	else
 		std::cout << "Not Found" << std::endl;
-
-	easyfind(container, 2);
 	return 0;
 }

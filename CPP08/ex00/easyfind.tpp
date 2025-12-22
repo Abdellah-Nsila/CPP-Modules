@@ -2,13 +2,16 @@
 #include <algorithm>
 
 template <typename T>
-void	easyfind(T& container, int toFind)
+typename T::iterator	easyfind(T& container, int toFind)
 {
-	(void)toFind;
-	for(typename T::iterator it = container.begin(); it != container.end(); it++)
+	typedef typename T::iterator	ContainerIterator;
+	ContainerIterator	itFinded;
+
+	for(ContainerIterator it = container.begin(); it != container.end(); it++)
 	{
-		// if (*it == toFind)
-		// 	return ()		
-		std::cout << *it << std::endl;
+		itFinded = std::find(container.begin(), container.end(), toFind);
+		if (itFinded != container.end())
+			return (itFinded);
 	}
+	return (itFinded);
 }
