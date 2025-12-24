@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:56:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/10/08 19:09:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/12/24 18:11:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ AMateria::AMateria() : type("undefined") {}
 
 AMateria::AMateria(std::string const &type) : type(type) {}
 
-AMateria::AMateria(const AMateria &copy)
-{
-	*this = copy;
-}
+AMateria::AMateria(const AMateria &copy) : type(copy.type) {}
 
 AMateria::~AMateria() {}
 
