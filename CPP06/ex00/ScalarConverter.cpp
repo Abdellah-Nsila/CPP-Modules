@@ -1,5 +1,4 @@
 /* ************************************************************************** */
-
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
@@ -64,7 +63,7 @@ void	display(std::string s, char c, long n_int, float n_float, double n_double)
 	std::cout << "double: " << n_double << std::endl;
 }
 
-void	cast(std::string s)
+void	castToTypes(std::string s)
 {
 	char	c = '\0';
 	int		n_int = 0;
@@ -115,7 +114,7 @@ void	cast(std::string s)
 void	ScalarConverter::convert(std::string& s)
 {
 	if (!s.empty())
-		cast(s);
+		castToTypes(s);
 	else
 		std::cerr << "Empty argument!" << std::endl;
 }
