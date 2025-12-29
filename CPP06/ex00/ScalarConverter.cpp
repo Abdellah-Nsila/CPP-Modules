@@ -39,86 +39,84 @@ bool	isPseudoLiterals(std::string& s)
 	return (false);
 }
 
-void	display(std::string s, int c, long n_int, float n_float, double n_double)
+template <typename T_Value, typename T_Cast>
+bool	isOutOfRange(T_Value value)
 {
-	// Char
-	if (isPseudoLiterals(s) || (n_int < 0 || n_int > 255))
-		std::cout << "char: impossible" << std::endl;
-	else if ((c < 32 || c > 126))
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: " << "'" << static_cast<char>(c) << "'" << std::endl;
+	if (!std::numeric_limits<T_Cast>::is_integer)
+		return (std::isinf(value) || std::isnan((value)));
+	T_Cast	minBound = std::numeric_limits<T_Cast>::min();
+	T_Cast	maxBound = std::numeric_limits<T_Cast>::max();
+	return (value < minBound || value > maxBound);
+}
 
-	// Int
-	if (isPseudoLiterals(s) || (n_int < INT_MIN || n_int > INT_MAX))
-		std::cout << "int: impossible" << std::endl;
+template <typename T>
+void	display(T value)
+{
+	std::cout << "char: ";
+	if (isOutOfRange<T, char>(value))
+		std::cout << "impossible" << std::endl;
+	else if (!std::isprint(static_cast<char>(value)))
+		std::cout << "Non displayable" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n_int) << std::endl;
+		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
+
+	std::cout << "int: ";
+	if (isOutOfRange<T, int>(value))
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(value) << std::endl;
 
 	std::cout << std::fixed << std::setprecision(1);
-	// Float
-	if (isPseudoLiterals(s))
-		std::cout << "float: "  << n_float << "f" << std::endl;
-	else if (std::isinf(n_float))
-		std::cout << "float: impossible" << std::endl;
-	else
-		std::cout << "float: "  << n_float << "f" << std::endl;
 
-	// Double
-	if (isPseudoLiterals(s))
-		std::cout << "double: "  << n_double << std::endl;
-	else if (std::isinf(n_double))
-		std::cout << "double: impossible" << std::endl;
+	std::cout << "float: ";
+	if (isOutOfRange<T, float>(value))
+		std::cout << "impossible" << std::endl;
 	else
-		std::cout << "double: " << n_double << std::endl;
+		std::cout << static_cast<float>(value) << "f" << std::endl;
+	std::cout << "double: ";
+	if (isOutOfRange<T, double>(value))
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<double>(value) << std::endl;
 }
 
 void	castToTypes(std::string s)
 {
-	int		c = 0;
-	long	n_int = 0;
-	float	n_float = 0.0f;
-	double	n_double = 0.0;
+	if (isPseudoLiterals(s))
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << strtof(s.c_str(), NULL) << "f" << std::endl;
+		std::cout << "double: " << strtod(s.c_str(), NULL) << std::endl;
+		return ;
+	}
 
 	switch (getType(s))
 	{
 		case (CHAR):
 		{
-			c = s[0];
-			n_int = static_cast<long>(c);
-			n_float = static_cast<float>(c);
-			n_double = static_cast<double>(c);
+			display<char>(s[0]);
 			break ;
 		}
-		case  (INT):
+		case (INT):
 		{
-			n_int = atol(s.c_str());
-			c = static_cast<char>(n_int);
-			n_float = static_cast<float>(n_int);
-			n_double = static_cast<double>(n_int);
+			display<long>(atol(s.c_str()));
 			break;
 		}
 		case (FLOAT):
 		{
-			n_float = strtof(s.c_str(), NULL);
-			c = static_cast<char>(n_float);
-			n_int = static_cast<long>(n_float);
-			n_double = static_cast<double>(n_float);
+			display<float>(strtof(s.c_str(), NULL));
 			break;
 		}
-		case  (DOUBLE):
+		case (DOUBLE):
 		{
-			n_double = strtod(s.c_str(), NULL);
-			c = static_cast<char>(n_double);
-			n_int = static_cast<long>(n_double);
-			n_float = static_cast<float>(n_double);
+			display<double>(strtod(s.c_str(), NULL));
 			break ;
 		}
 		default:
 			std::cerr << "Error: Impossible" << std::endl;
 			return ;
 	}
-	display(s, c, n_int, n_float, n_double);
 }
 
 void	ScalarConverter::convert(std::string& s)

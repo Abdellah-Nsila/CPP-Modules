@@ -16,6 +16,8 @@
 #include <iomanip>
 #include <math.h>
 #include <limits>
+// #include <type_traits>
+#include <cmath>
 #include <cstdlib>
 #include "detectType.hpp"
 
@@ -29,3 +31,5 @@ class ScalarConverter
 		ScalarConverter(const ScalarConverter& copy);
 		ScalarConverter&	operator=(const ScalarConverter& copy);
 };
+
+
