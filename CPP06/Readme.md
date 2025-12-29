@@ -5,6 +5,28 @@ CPP06 focuses on **type conversion**, **safe casting**, **runtime type identific
 
 ---
 
+## Limits:
+
+* `char`				:	0 -> 255
+* `int`					:	-2147483648 -> 2147483647
+* `float`  (positive)	:	1.17549e-38f -> 3.40282347E+38f
+* `double` (positive)	:	2.22507e-308 -> 1.79769e+308
+
+## Check Error Flow:
+* if char is not valid:
+	char: Non displayable / impossible
+* if int is not valid:
+	char: impossible
+	int: impossible
+	- In one case, Typically all other's is impossible if they didnt contain '.'
+* if float is not valid:
+	char: impossible
+	int: impossible
+	float: impossible
+	- In one case, Typically all other's is impossible if they didnt contain 'f'
+* if double is not valid:
+	all cases : Impossible
+
 ## 1. Why CPP06 Exists
 
 CPP06 teaches you **how C++ treats memory and types**.
@@ -148,7 +170,7 @@ Reference version:
 
 ```cpp
 try {
-    dynamic_cast<A&>(p);
+	dynamic_cast<A&>(p);
 } catch (...) {}
 ```
 

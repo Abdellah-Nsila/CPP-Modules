@@ -20,15 +20,13 @@ bool	isChar(std::string s)
 bool	isInt(std::string s)
 {
 	std::stringstream	ss(s);
-	long				value;
-	char				leftOver;
+	int		value;
+	char	leftOver;
 
 	ss >> value;
 	if (ss.fail())
 		return (false);
 	if (ss >> leftOver)
-		return (false);
-	if (value < INT_MIN || value > INT_MAX)
 		return (false);
 	return (true);
 }
@@ -57,7 +55,6 @@ bool	isDouble(std::string s)
 {
 	double	value;
 	char	leftOver;
-
 	if (s == "-inf" || s == "+inf" || s == "inf" || s == "nan")
 		return (true);
 	std::stringstream	ss(s);
