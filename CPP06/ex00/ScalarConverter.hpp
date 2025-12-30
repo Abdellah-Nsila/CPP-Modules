@@ -16,9 +16,6 @@
 #include <iomanip>
 #include <math.h>
 #include <limits>
-// #include <type_traits>
-#include <cmath>
-#include <cstdlib>
 #include "detectType.hpp"
 
 class ScalarConverter
