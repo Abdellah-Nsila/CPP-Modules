@@ -86,7 +86,7 @@ void	displayInt(double value)
 		std::cout << static_cast<int>(value) << std::endl;
 }
 
-void	displayFloat(double value)
+void	displayFloat(float value)
 {
 	std::cout << "float: ";
 	if (std::isinf(value) || std::isnan(value))

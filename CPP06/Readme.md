@@ -7,7 +7,7 @@ CPP06 focuses on **type conversion**, **safe casting**, **runtime type identific
 
 ## Limits:
 
-* `char`				:	0 -> 255
+* `char`				:	-128 -> 127
 * `int`					:	-2147483648 -> 2147483647
 * `float`  (positive)	:	1.17549e-38f -> 3.40282347E+38f
 * `double` (positive)	:	2.22507e-308 -> 1.79769e+308
