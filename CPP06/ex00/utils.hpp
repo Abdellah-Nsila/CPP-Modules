@@ -5,7 +5,9 @@
 #include <sstream>
 #include <climits>
 #include <cfloat>
-#include <cerrno>
+#include <iomanip>
+#include <math.h>
+#include <limits>
 
 enum literalType
 {
@@ -17,3 +19,4 @@ enum literalType
 };
 
 literalType	getType(std::string s);
+void		castToTypes(std::string s);

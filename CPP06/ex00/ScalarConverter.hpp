@@ -6,17 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 14:38:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/11/09 22:18:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/01/01 16:22:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <iomanip>
-#include <math.h>
-#include <limits>
-#include "detectType.hpp"
+#include <string>
+#include "utils.hpp"
 
 class ScalarConverter
 {
@@ -28,5 +25,3 @@ class ScalarConverter
 		ScalarConverter(const ScalarConverter& copy);
 		ScalarConverter&	operator=(const ScalarConverter& copy);
 };
-
-

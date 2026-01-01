@@ -4,7 +4,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 INCLUDES = -I./
 
-SRCS =	main.cpp ScalarConverter.cpp detectType.cpp
+SRCS =	main.cpp ScalarConverter.cpp utils.cpp converter.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp ScalarConverter.hpp detectType.hpp
+%.o: %.cpp ScalarConverter.hpp utils.hpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
