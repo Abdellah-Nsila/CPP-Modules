@@ -6,11 +6,7 @@ Array<T>::Array(unsigned int n) : _size(n)
 {
 	if (n > 0)
 	{
-		this->_array = new T[n];
-		for (unsigned int i = 0; i < n; i++)
-		{
-			this->_array[i] = T();
-		}
+		this->_array = new T[n]();
 	}
 	else
 		this->_array = NULL;
@@ -36,18 +32,23 @@ Array<T>&	Array<T>::operator=(const Array& copy)
 {
 	if (this != &copy)
 	{
-		delete[]	this->_array;
+		T*	new_array = NULL;
 		this->_size = copy._size;
 		if (copy._size > 0)
 		{
-			this->_array = new T[copy._size];
+			new_array = new T[copy._size];
 			for (unsigned int i = 0; i < copy._size; i++)
 			{
-				this->_array[i] = copy._array[i];
+				new_array[i] = copy._array[i];
 			}
+			delete[]	this->_array;
+			this->_array = new_array;
 		}
 		else
+		{
+			delete[]	this->_array;
 			this->_array = NULL;
+		}
 	}
 	return (*this);
 }
