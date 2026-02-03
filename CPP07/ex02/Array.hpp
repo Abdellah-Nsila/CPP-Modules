@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <exception>
+#include <stdlib.h>
+#include <time.h>
 
 template <typename T>
 class Array

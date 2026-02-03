@@ -3,11 +3,11 @@
 #include <iostream>
 #include <vector>
 
-// template <int N>
 class Span
 {
 	private:
-		std::vector<int>	container;
+		std::vector<int>	_container;
+	 	unsigned int		_maxSize;
 	public:
 		Span();
 		Span(unsigned int N);
@@ -16,4 +16,5 @@ class Span
 		~Span();
 
 		void	addNumber(int number);
-};
+		void	display();
+	};

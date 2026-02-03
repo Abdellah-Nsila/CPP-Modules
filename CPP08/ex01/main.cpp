@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 15:51:58 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/03 16:03:02 by abnsila          ###   ########.fr       */
+/*   Created: 2026/01/29 09:31:27 by abnsila           #+#    #+#             */
+/*   Updated: 2026/02/03 15:47:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Span.hpp"
+#define MAX_SIZE 5
 
-template <typename T>
-void	swap(T& a, T& b)
+int	main()
 {
-	T	temp;
-	temp = a;
-	a = b;
-	b = temp;
-}
+	Span	s(MAX_SIZE);
+	
+	s.addNumber(1);
+	s.addNumber(5);
+	s.addNumber(7);
+	s.addNumber(6);
+	s.addNumber(60);
+	s.addNumber(99);
+	
+	Span	s1(s);
+	
+	Span	s2;
+	s2 = s;
 
-template <typename T>
-T		min(const T& a, const T& b)
-{
-	return (a < b ? a : b);
-}
-
-template <typename T>
-T		max(const T& a, const T& b)
-{
-	return (a > b ? a : b);
+	s.display();	
+	s1.display();	
+	s2.display();	
 }
