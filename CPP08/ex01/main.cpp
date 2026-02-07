@@ -6,16 +6,28 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 09:31:27 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/06 19:09:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 10:50:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#define MAX_SIZE 5
+
+// int main()
+// {
+// 	Span sp = Span(5);
+// 	sp.addNumber(6);
+// 	sp.addNumber(3);
+// 	sp.addNumber(17);
+// 	sp.addNumber(9);
+// 	sp.addNumber(11);
+// 	std::cout << sp.shortestSpan() << std::endl;
+// 	std::cout << sp.longestSpan() << std::endl;
+// 	return 0;
+// }
 
 int main()
 {
-	srand(time(0));
+	// Test addNumber manualy + addnumber from an array
 	try
 	{
 		Span sp = Span(10);
@@ -27,38 +39,61 @@ int main()
 		
 		int arr[] = {2, 42, 5, 6, 99};
 		sp.addNumber(arr, arr + 5);
-		sp.display();
-		// std::cout << sp.shortestSpan() << std::endl;
-		// std::cout << sp.longestSpan() << std::endl;
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	// Test addNumber from a vector
+	try
+	{		
+		Span sp(1000);
+
+		std::vector<int> vec;
+		for (size_t i = 0; i < 1000;i++)
+			vec.push_back(i);
+		sp.addNumber(vec.begin(), vec.end());
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	// Test Span Full
+	try
+	{		
+		Span sp(10);
+
+		std::vector<int> vec;
+		for (size_t i = 0; i < 11;i++)
+			vec.push_back(i);
+		sp.addNumber(vec.begin(), vec.end());
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	// Not enougth number
+	try
+	{
+		Span sp = Span(2);
+		
+		sp.addNumber(42);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
 	return 0;
 }
-
-// int	main()
-// {
-// 	Span	s(MAX_SIZE);
-	
-// 	s.addNumber(6);
-// 	s.addNumber(60);
-// 	s.addNumber(5);
-// 	s.addNumber(7);
-// 	s.addNumber(1);
-// 	s.addNumber(99);
-	
-// 	Span	s1(s);
-	
-// 	Span	s2;
-// 	s2 = s;
-
-// 	s.display();	
-// 	// s1.display();	
-// 	// s2.display();
-	
-	
-// 	std::cout << s.shortestSpan() << std::endl;
-// 	std::cout << s.longestSpan() << std::endl;
-// }

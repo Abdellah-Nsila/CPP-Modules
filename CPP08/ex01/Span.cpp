@@ -6,34 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:39:08 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/06 19:07:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 10:36:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-
-// Helpers Delete this ?????????????????????????????????
-void	displayVector(std::vector<int>	v)
-{
-	for (unsigned int i = 0; i < v.size(); i++)
-	{
-		std::cout << v[i] << std::endl;
-	}	
-}
-
-void	Span::display()
-{
-
-	std::cout << "Size: " << this->_container.size() << std::endl;
-	std::cout << "Capacity: " << this->_container.capacity() << std::endl;
-
-	for (unsigned int i = 0; i < this->_container.size(); i++)
-	{
-		std::cout << this->_container[i] << std::endl;
-	}	
-}
-
-// ======================================================
 
 Span::Span() : _capacity(0)
 {
@@ -76,7 +53,7 @@ const char*	Span::SpanIsFull::what() const throw()
 	return "Span is full.";
 }
 
-const char*	Span::NoSpanCanBeFound::what() const throw()
+const char*	Span::UnderTwoNumbers::what() const throw()
 {
 	return "Container must have at least two elements to find a span.";
 }
@@ -87,13 +64,11 @@ int		Span::shortestSpan()
 	int	currentSpan;
 
 	if (this->_container.size() < 2)
-		throw NoSpanCanBeFound();
+		throw UnderTwoNumbers();
 	
 	std::vector<int>	sortedContainer(this->_container);
 	std::sort(sortedContainer.begin(), sortedContainer.end());
 	minSpan = sortedContainer[this->_container.size() - 1];
-	std::cout << "=============== shortestSpan ===============" << std::endl;
-	displayVector(sortedContainer);
 
 	for (unsigned int i = 0; i < this->_container.size() - 1; i++)
 	{
@@ -101,30 +76,19 @@ int		Span::shortestSpan()
 		if (currentSpan < minSpan)
 		minSpan = currentSpan;
 	}
-	std::cout << "=============== ============ ===============" << std::endl;
 	return (minSpan);
 }
 
 int		Span::longestSpan()
 {
-	int	maxSpan = 0;
-	int	currentSpan;
-
 	if (this->_container.size() < 2)
-		throw NoSpanCanBeFound();
+		throw UnderTwoNumbers();
 	
 	std::vector<int>	sortedContainer(this->_container);
 	std::sort(sortedContainer.begin(), sortedContainer.end());
-	maxSpan = sortedContainer[this->_container.size()- 1] - sortedContainer[0];
-	std::cout << "=============== longestSpan ===============" << std::endl;
-	displayVector(sortedContainer);
 
-	for (unsigned int i = 0; i < this->_container.size()- 1; i++)
-	{
-		currentSpan = sortedContainer[i + 1] - sortedContainer[i];
-		if (currentSpan > maxSpan)
-			maxSpan = currentSpan;
-	}
-	std::cout << "=============== ============ ===============" << std::endl;
-	return (maxSpan);
+	std::vector<int>::iterator	min_it = std::min_element(this->_container.begin(), this->_container.end());
+	std::vector<int>::iterator	max_it = std::max_element(this->_container.begin(), this->_container.end());
+
+	return (*max_it - *min_it);
 }

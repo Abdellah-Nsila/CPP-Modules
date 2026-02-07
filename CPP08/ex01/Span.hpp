@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:49:26 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/06 18:47:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 10:31:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ class Span
 			public :
 				const char*	what() const throw();
 		};
-		
-		class NoSpanCanBeFound : public std::exception
+
+		class UnderTwoNumbers : public std::exception
 		{
 			public :
 				const char*	what() const throw();
