@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 09:31:27 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/07 10:50:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 10:58:39 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int main()
 	// Test addNumber from a vector
 	try
 	{		
-		Span sp(1000);
+		Span sp(100000);
 
 		std::vector<int> vec;
-		for (size_t i = 0; i < 1000;i++)
+		for (size_t i = 0; i < 100000;i++)
 			vec.push_back(i);
 		sp.addNumber(vec.begin(), vec.end());
 		std::cout << sp.shortestSpan() << std::endl;

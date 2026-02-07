@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:49:26 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/07 10:31:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 11:21:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <limits>
+#include <iterator>
 
 class Span
 {
@@ -29,19 +29,21 @@ class Span
 		Span&	operator=(const Span& copy);
 		~Span();
 
-		void	addNumber(int number);
-		int		shortestSpan();
-		int		longestSpan();
+		void				addNumber(int number);
+		unsigned int		shortestSpan();
+		unsigned int		longestSpan();
+		
+
+		
 		template <typename It>
 		void	addNumber(It begin, It end)
 		{
-			unsigned int	distance = std::distance(begin, end);
+			std::size_t	distance = std::distance(begin, end);
 			if (this->_container.size() + distance > this->_capacity)
 				throw SpanIsFull();
 			this->_container.insert(this->_container.end(), begin, end);
 		}
-		void	display();
-
+		
 		class SpanIsFull : public std::exception
 		{
 			public :

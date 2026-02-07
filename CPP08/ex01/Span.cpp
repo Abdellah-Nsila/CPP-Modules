@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:39:08 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/07 10:36:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/07 10:56:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ const char*	Span::UnderTwoNumbers::what() const throw()
 	return "Container must have at least two elements to find a span.";
 }
 
-int		Span::shortestSpan()
+unsigned int		Span::shortestSpan()
 {
-	int	minSpan;
-	int	currentSpan;
+	long	minSpan;
+	long	diff;
 
 	if (this->_container.size() < 2)
 		throw UnderTwoNumbers();
@@ -72,20 +72,18 @@ int		Span::shortestSpan()
 
 	for (unsigned int i = 0; i < this->_container.size() - 1; i++)
 	{
-		currentSpan = sortedContainer[i + 1] - sortedContainer[i];
-		if (currentSpan < minSpan)
-		minSpan = currentSpan;
+		diff = static_cast<long>(sortedContainer[i + 1])
+          - static_cast<long>(sortedContainer[i]);
+		if (diff < minSpan)
+		minSpan = diff;
 	}
 	return (minSpan);
 }
 
-int		Span::longestSpan()
+unsigned int		Span::longestSpan()
 {
 	if (this->_container.size() < 2)
 		throw UnderTwoNumbers();
-	
-	std::vector<int>	sortedContainer(this->_container);
-	std::sort(sortedContainer.begin(), sortedContainer.end());
 
 	std::vector<int>::iterator	min_it = std::min_element(this->_container.begin(), this->_container.end());
 	std::vector<int>::iterator	max_it = std::max_element(this->_container.begin(), this->_container.end());
