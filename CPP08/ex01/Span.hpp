@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:49:26 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/07 11:21:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/12 14:48:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ class Span
 		void				addNumber(int number);
 		unsigned int		shortestSpan();
 		unsigned int		longestSpan();
-		
 
-		
 		template <typename It>
 		void	addNumber(It begin, It end)
 		{
