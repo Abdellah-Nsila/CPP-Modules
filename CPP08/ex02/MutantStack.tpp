@@ -6,18 +6,30 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:23:15 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/12 16:35:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/12 17:39:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename T, typename Container>
-MutantStack<T, Container>::MutantStack()
+MutantStack<T, Container>::MutantStack() : std::stack<T, Container>()
 {
 }
 
 template <typename T, typename Container>
 MutantStack<T, Container>::~MutantStack()
 {
+}
+
+template <typename T, typename Container>
+MutantStack<T, Container>::MutantStack(const MutantStack& copy) : std::stack<T, Container>(copy)
+{
+}
+
+template <typename T, typename Container>
+MutantStack<T, Container>&	MutantStack<T, Container>::operator=(const MutantStack& copy)
+{
+	std::stack<T, Container>::operator=(copy);
+	return *this;
 }
 
 template <typename T, typename Container>

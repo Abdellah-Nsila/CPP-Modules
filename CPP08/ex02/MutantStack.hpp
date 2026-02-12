@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:23:15 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/12 16:35:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/12 17:34:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class MutantStack : public std::stack<T, Container>
 	public:
 		MutantStack();
 		MutantStack(const MutantStack& copy);
-		const MutantStack&	operator=(const MutantStack& copy);
+		MutantStack&	operator=(const MutantStack& copy);
 		~MutantStack();
 
 		iterator			begin();
