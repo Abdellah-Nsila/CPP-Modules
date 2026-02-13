@@ -1,4 +1,4 @@
-NAME = Span
+NAME = ./ex01
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
