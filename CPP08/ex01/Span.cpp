@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:39:08 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/07 10:56:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/13 10:33:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ Span&	Span::operator=(const Span& copy)
 
 Span::~Span()
 {
+}
+
+std::vector<int>::iterator	Span::begin()
+{
+	return (this->_container.begin());
+}
+
+std::vector<int>::iterator	Span::end()
+{
+	return (this->_container.end());
 }
 
 void	Span::addNumber(int number)

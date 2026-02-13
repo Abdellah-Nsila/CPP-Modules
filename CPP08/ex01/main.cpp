@@ -6,11 +6,21 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 09:31:27 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/12 14:49:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/13 10:42:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+
+template <typename IT>
+void	displaySpan(IT begin, IT end)
+{
+	while (begin != end)
+	{
+		std::cout << *begin << std::endl;
+		begin++;
+	}
+}
 
 // int main()
 // {
@@ -39,6 +49,9 @@ int main()
 		
 		int arr[] = {2, 42, 5, 6, 99};
 		sp.addNumber(arr, arr + 5);
+		std::cout << "===================== Span Items =====================" << std::endl;
+		displaySpan(sp.begin(), sp.end());
+		std::cout << "=====================  Shortest/Longest Span =====================" << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -56,6 +69,9 @@ int main()
 		for (size_t i = 0; i < 100000; i++)
 			vec.push_back(i);
 		sp.addNumber(vec.begin(), vec.end());
+		// std::cout << "===================== Span Items =====================" << std::endl;
+		// displaySpan(sp.begin(), sp.end());
+		std::cout << "=====================  Shortest/Longest Span =====================" << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -73,6 +89,9 @@ int main()
 		for (size_t i = 0; i < 11; i++)
 			vec.push_back(i);
 		sp.addNumber(vec.begin(), vec.end());
+		std::cout << "===================== Span Items =====================" << std::endl;
+		displaySpan(sp.begin(), sp.end());
+		std::cout << "=====================  Shortest/Longest Span =====================" << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -87,6 +106,9 @@ int main()
 		Span sp = Span(2);
 		
 		sp.addNumber(42);
+		std::cout << "===================== Span Items =====================" << std::endl;
+		displaySpan(sp.begin(), sp.end());
+		std::cout << "=====================  Shortest/Longest Span =====================" << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
