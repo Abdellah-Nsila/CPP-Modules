@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 09:31:27 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/13 10:42:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/14 08:48:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main()
 		sp.addNumber(12);
 		sp.addNumber(101);
 		
-		int arr[] = {2, 42, 5, 6, 99};
+		int arr[5] = {2, 42, 5, 6, 99};
 		sp.addNumber(arr, arr + 5);
 		std::cout << "===================== Span Items =====================" << std::endl;
 		displaySpan(sp.begin(), sp.end());

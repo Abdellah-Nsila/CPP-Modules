@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 12:49:26 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/13 10:31:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/14 08:41:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,4 @@ class Span
 				const char*	what() const throw();
 		};
 
-		
-		// Add begin/end iterator for while iteration
 };

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:39:08 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/13 10:33:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/14 08:45:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ unsigned int		Span::shortestSpan()
 
 	if (this->_container.size() < 2)
 		throw UnderTwoNumbers();
-	
+
 	std::vector<int>	sortedContainer(this->_container);
 	std::sort(sortedContainer.begin(), sortedContainer.end());
 	minSpan = sortedContainer[this->_container.size() - 1];
@@ -85,7 +85,7 @@ unsigned int		Span::shortestSpan()
 		diff = static_cast<long>(sortedContainer[i + 1])
           - static_cast<long>(sortedContainer[i]);
 		if (diff < minSpan)
-		minSpan = diff;
+			minSpan = diff;
 	}
 	return (minSpan);
 }

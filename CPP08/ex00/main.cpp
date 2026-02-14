@@ -1,10 +1,20 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 08:38:39 by abnsila           #+#    #+#             */
+/*   Updated: 2026/02/14 08:38:40 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "easyfind.hpp"
-#include <algorithm>
 
 int	main()
 {
-	typedef std::vector<int>		IntContainer;
+	typedef  std::vector<int>		IntContainer;
 	typedef IntContainer::iterator	IntIterator;
 
 	IntContainer	container;
