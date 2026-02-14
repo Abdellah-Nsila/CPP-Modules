@@ -6,9 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 11:23:15 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/12 17:34:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/14 09:15:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <iostream>
 #include <stack>
