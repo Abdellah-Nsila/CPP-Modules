@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 18:58:05 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/15 18:00:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/15 22:16:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 	getline(file, line);
 	while (getline(file, line))
 	{
+		if (line.find(',') == std::string::npos)
+			continue ;
 		date = line.substr(0, line.find(','));
 		std::stringstream	ss(line.substr(line.find(',') + 1));
 		ss >> price;
@@ -83,7 +85,7 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 			continue ;
 		database.insert(std::pair<std::string, double>(date, price));
 	}
-	std::cout << "Database size: " << database.size() << std::endl;
+	file.close();
 	return true;
 }
 
@@ -94,14 +96,27 @@ bool	parseBtcInput(const std::string& line, std::string& date, double& quantity)
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return false;
 	}
-	date = line.substr(0, line.find('|') - 1);
-	std::stringstream	ss(line.substr(line.find('|') + 2));
+
+	// TODO trim spaces
+	std::string	left = line.substr(0, line.find('|') - 1);
+	std::string	right = line.substr(line.find('|') + 2);
+
+	left.erase(left.find_last_not_of(" \t") + 1);
+	right.erase(0, right.find_first_not_of(" \t"));
+	
+	date = left;
+	std::stringstream	ss(right);
 	ss >> quantity;
 
 	// Handle Errors and invalide inputs
-	if (!isValidDateFormat(date) || !isValidDateValue(date))
+	if (ss.fail() || !ss.eof())
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+	if (!isValidDateFormat(date) || !isValidDateValue(date))
+	{
+		std::cerr << "Error: The requested date is older than anything in database." << std::endl;
 		return false;
 	}
 	if (quantity < 0)
@@ -149,4 +164,5 @@ void	bitcoinExchange(const std::string& filePath, const std::map<std::string, do
 		factor = it->second;
 		std::cout << date << " => " << quantity << " = " << factor * quantity << std::endl;
 	}
+	file.close();
 }
