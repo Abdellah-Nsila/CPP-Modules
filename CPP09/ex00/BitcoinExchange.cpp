@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 18:58:05 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/15 15:55:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/15 18:00:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	isValidDateValue(const std::string& date)
 	return true;
 }
 
-int	parseBtcData(std::string filePath, std::map<std::string, double> container)
+bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>& database)
 {
 	std::string	date;
 	double		price;
@@ -67,7 +67,7 @@ int	parseBtcData(std::string filePath, std::map<std::string, double> container)
 	if (!file.is_open())
 		throw CannotOpenFile();
 
-	// Collect data
+	// Collect database
 	std::string	line;
 	getline(file, line);
 	while (getline(file, line))
@@ -76,65 +76,77 @@ int	parseBtcData(std::string filePath, std::map<std::string, double> container)
 		std::stringstream	ss(line.substr(line.find(',') + 1));
 		ss >> price;
 
-		// TODO Handle Errors and invalide inputs
-		// std::cout << "date: " << date << "  price: " << price << std::endl;
+		// Handle Errors and invalide inputs
+		if (ss.fail() || !ss.eof())
+			continue ;
 		if (!isValidDateFormat(date) || !isValidDateValue(date))
-			return false;
-		container.insert(std::pair<std::string, double>(date, price));
+			continue ;
+		database.insert(std::pair<std::string, double>(date, price));
 	}
-	return 0;
+	std::cout << "Database size: " << database.size() << std::endl;
+	return true;
 }
 
-int	parseBtcInput(std::string line, std::string& date, double& quantity)
+bool	parseBtcInput(const std::string& line, std::string& date, double& quantity)
 {
 	if (line.find('|') == std::string::npos)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
-		return 1;
+		return false;
 	}
 	date = line.substr(0, line.find('|') - 1);
 	std::stringstream	ss(line.substr(line.find('|') + 2));
 	ss >> quantity;
 
-	// TODO Handle Errors and invalide inputs
-	
+	// Handle Errors and invalide inputs
 	if (!isValidDateFormat(date) || !isValidDateValue(date))
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
-		return 1;
+		return false;
 	}
 	if (quantity < 0)
 	{
 		std::cerr << "Error: not a positive number." << std::endl;
-		return 1;
+		return false;
 	}
-	if (quantity > INT_MAX)
+	if (quantity > 1000)
 	{
 		std::cerr << "Error: too large a number." << std::endl;
-		return 1;		
+		return false;		
 	}
-	return 0;
+	return true;
 }
 
-int	bitcoinExchange(std::string filePath)
+void	bitcoinExchange(const std::string& filePath, const std::map<std::string, double>& database)
 {
 	std::string	date;
 	double		quantity;
+	double		factor;
 
 	// Open file
 	std::ifstream	file(filePath.c_str());
 	if (!file.is_open())
 		throw CannotOpenFile();
 
-	// Collect data
+	// Collect database
 	std::string	line;
 	getline(file, line);
 	while (getline(file, line))
 	{
-		if (parseBtcInput(line, date, quantity) != 0)
+		if (parseBtcInput(line, date, quantity) == false)
 			continue ;
-		std::cout << "2011-01-09 => 1 = 0.32" << std::endl;
+		std::map<std::string, double>::const_iterator	it = database.lower_bound(date);
+		if (it == database.end() || it->first != date)
+		{
+			if (it != database.begin())
+				--it;
+			else
+			{
+				std::cerr << "Error: bad input => " << line << std::endl;
+				continue ;
+			}
+		}
+		factor = it->second;
+		std::cout << date << " => " << quantity << " = " << factor * quantity << std::endl;
 	}
-	return 0;
 }
-
