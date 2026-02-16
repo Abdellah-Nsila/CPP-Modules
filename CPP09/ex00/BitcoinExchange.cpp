@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 18:58:05 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/15 22:16:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/16 09:25:39 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ const char*	NoInputFile::what() const throw()
 const char*	CannotOpenFile::what() const throw()
 {
 	return "Error: could not open file.";
+}
+
+std::string	trim(const std::string& line)
+{
+	size_t l = line.find_first_not_of(" \t\r\n");
+    if (l == std::string::npos) return ""; // empty string
+    size_t r = line.find_last_not_of(" \t\r\n");
+    return line.substr(l, r - l + 1);
 }
 
 bool	isValidDateFormat(const std::string& date)
@@ -61,6 +69,8 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 {
 	std::string	date;
 	double		price;
+	std::string	left;
+	std::string	right;
 
 	// Open file
 	std::ifstream	file(filePath.c_str());
@@ -74,8 +84,16 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 	{
 		if (line.find(',') == std::string::npos)
 			continue ;
-		date = line.substr(0, line.find(','));
-		std::stringstream	ss(line.substr(line.find(',') + 1));
+
+		left = line.substr(0, line.find(','));
+		right = line.substr(line.find(',') + 1);
+
+		left.erase(left.find_last_not_of(" \t") + 1);
+		right.erase(0, right.find_first_not_of(" \t"));
+		
+		date = left;
+		std::stringstream	ss(right);
+		
 		ss >> price;
 
 		// Handle Errors and invalide inputs
@@ -89,46 +107,50 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 	return true;
 }
 
-bool	parseBtcInput(const std::string& line, std::string& date, double& quantity)
+bool	parseBtcInput(std::string& line, std::string& date, double& quantity)
 {
-	if (line.find('|') == std::string::npos)
+	size_t pipePos = line.find('|');
+	
+	if (pipePos == std::string::npos)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return false;
 	}
 
 	// TODO trim spaces
-	std::string	left = line.substr(0, line.find('|') - 1);
-	std::string	right = line.substr(line.find('|') + 2);
+	std::string	left = line.substr(0, pipePos);
+	std::string	right = line.substr(pipePos + 1);
+	left  = trim(left);
+	right = trim(right);
 
-	left.erase(left.find_last_not_of(" \t") + 1);
-	right.erase(0, right.find_first_not_of(" \t"));
-	
+	std::cout << "\"" << left << "\""  << std::endl;
+
 	date = left;
 	std::stringstream	ss(right);
 	ss >> quantity;
+	// std::cout << "\"" << date << "\""  << std::endl;
 
 	// Handle Errors and invalide inputs
-	if (ss.fail() || !ss.eof())
-	{
-		std::cerr << "Error: bad input => " << line << std::endl;
-		return false;
-	}
-	if (!isValidDateFormat(date) || !isValidDateValue(date))
-	{
-		std::cerr << "Error: The requested date is older than anything in database." << std::endl;
-		return false;
-	}
-	if (quantity < 0)
-	{
-		std::cerr << "Error: not a positive number." << std::endl;
-		return false;
-	}
-	if (quantity > 1000)
-	{
-		std::cerr << "Error: too large a number." << std::endl;
-		return false;		
-	}
+	// if (ss.fail() || !ss.eof())
+	// {
+	// 	std::cerr << "Error: bad input => " << line << std::endl;
+	// 	return false;
+	// }
+	// if (!isValidDateFormat(date) || !isValidDateValue(date))
+	// {
+	// 	std::cerr << "Error: The requested date is older than anything in database." << std::endl;
+	// 	return false;
+	// }
+	// if (quantity < 0)
+	// {
+	// 	std::cerr << "Error: not a positive number." << std::endl;
+	// 	return false;
+	// }
+	// if (quantity > 1000)
+	// {
+	// 	std::cerr << "Error: too large a number." << std::endl;
+	// 	return false;		
+	// }
 	return true;
 }
 
@@ -155,14 +177,14 @@ void	bitcoinExchange(const std::string& filePath, const std::map<std::string, do
 		{
 			if (it != database.begin())
 				--it;
-			else
-			{
-				std::cerr << "Error: bad input => " << line << std::endl;
-				continue ;
-			}
+		// 	else
+		// 	{
+		// 		std::cerr << "Error: bad input => " << line << std::endl;
+		// 		continue ;
+		// 	}
 		}
 		factor = it->second;
-		std::cout << date << " => " << quantity << " = " << factor * quantity << std::endl;
+		// std::cout << date << " => " << quantity << " = " << factor * quantity << std::endl;
 	}
 	file.close();
 }
