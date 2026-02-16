@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 18:58:05 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/16 10:00:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/16 11:15:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ const char*	CannotOpenFile::what() const throw()
 	return "Error: could not open file.";
 }
 
-std::string	trim(const std::string& line)
+const char*	NoHeaderFound::what() const throw()
 {
-	size_t l = line.find_first_not_of(" \t\r\n");
-	if (l == std::string::npos) return ""; // empty string
-	size_t r = line.find_last_not_of(" \t\r\n");
-	return line.substr(l, r - l + 1);
+	return "Error: NoHeaderFound";
 }
 
 bool	isValidDateFormat(const std::string& date)
@@ -69,8 +66,6 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 {
 	std::string	date;
 	double		price;
-	std::string	left;
-	std::string	right;
 	size_t		commaPos;
 
 	// Open file
@@ -81,21 +76,16 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 	// Collect database
 	std::string	line;
 	getline(file, line);
+	if (line != "date,exchange_rate")
+		throw NoHeaderFound();
 	while (getline(file, line))
 	{
-		line = trim(line);
-		if (line.empty())
-			continue ;
-
 		commaPos = line.find(',');
 		if (commaPos == std::string::npos)
 			continue ;
-
-		left = trim(line.substr(0, commaPos));
-		right = trim(line.substr(commaPos + 1));
 		
-		date = left;
-		std::stringstream	ss(right);
+		date = line.substr(0, commaPos);
+		std::stringstream	ss(line.substr(commaPos + 1));
 		ss >> price;
 
 		// Handle Errors and invalide inputs
@@ -111,10 +101,6 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 
 bool	parseBtcInput(std::string& line, std::string& date, double& quantity)
 {
-	line = trim(line);
-	if (line.empty())
-		return false;
-
 	size_t pipePos = line.find('|');
 	
 	if (pipePos == std::string::npos)
@@ -123,11 +109,8 @@ bool	parseBtcInput(std::string& line, std::string& date, double& quantity)
 		return false;
 	}
 
-	std::string	left = trim(line.substr(0, pipePos));
-	std::string	right = trim(line.substr(pipePos + 1));
-
-	date = left;
-	std::stringstream	ss(right);
+	date = line.substr(0, pipePos - 1);
+	std::stringstream	ss(line.substr(pipePos + 1));
 	ss >> quantity;
 
 	// Handle Errors and invalide inputs
@@ -168,6 +151,8 @@ void	bitcoinExchange(const std::string& filePath, const std::map<std::string, do
 	// Collect database
 	std::string	line;
 	getline(file, line);
+	if (line != "date | value")
+		throw NoHeaderFound();
 	while (getline(file, line))
 	{
 		if (parseBtcInput(line, date, quantity) == false)

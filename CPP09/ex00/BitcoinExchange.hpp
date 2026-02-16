@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 18:57:57 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/15 17:13:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/16 11:10:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #include <utility>
 #include <algorithm>
 
+#include <iomanip>
+
 class NoInputFile : public std::exception
 {
 	public :
@@ -32,6 +34,12 @@ class NoInputFile : public std::exception
 };
 
 class CannotOpenFile : public std::exception
+{
+	public :
+		const char*	what() const throw();
+};
+
+class NoHeaderFound : public std::exception
 {
 	public :
 		const char*	what() const throw();
