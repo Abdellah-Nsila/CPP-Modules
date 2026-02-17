@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 09:16:17 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/17 10:35:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/17 10:55:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	operation(std::stack<int>& myStack, char op)
 			return a / b;
 		}
 		default:
-			return 0;
-			break;
+			throw SyntaxError();
 	}
 }
 
