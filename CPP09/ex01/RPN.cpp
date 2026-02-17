@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 10:07:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/16 12:35:07 by abnsila          ###   ########.fr       */
+/*   Created: 2026/02/17 09:16:17 by abnsila           #+#    #+#             */
+/*   Updated: 2026/02/17 10:35:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,13 @@ class SyntaxError : public std::exception
 		}
 };
 
-operatorType	getOperatorType(char op)
+int	operation(std::stack<int>& myStack, char op)
 {
-	if (op == '+')
-		return (PLUS);
-	else if (op == '-')
-			return (MINUS);
-	else if (op == '*')
-		return (MULTI);
-	else if (op == '/')
-		return (DIV);
-	else
-		return (INVALID);
-}
+	int	b = myStack.top();
+	myStack.pop();
+	int	a = myStack.top();
+	myStack.pop();
 
-int	operation(int a, int b, char op)
-{
-	// operatorType type = getOperatorType(op);
 	switch (op)
 	{
 		case '+':
@@ -47,46 +37,39 @@ int	operation(int a, int b, char op)
 		case '*':
 			return a * b;
 		case '/':
+		{
+			if (b == 0)
+        		throw SyntaxError();
 			return a / b;
+		}
 		default:
+			return 0;
 			break;
 	}
 }
 
 int	RPN(const std::string& exp)
 {
-	std::stack<int>	container;
-	int	a;
-	int	b;
-	std::string	operators = "+-*/";
+	std::stringstream	ss(exp);
+	std::string			token;
+	std::stack<int>		myStack;
+	std::string			operators = "+-*/";
 
-	for (size_t i = 0; i < exp.length(); i++)
+	while (ss >> token)
 	{
-		if (std::isdigit(exp[i]))
-			container.push(static_cast<int>(exp[i]));
-		else
+		if (token.length() != 1)
 			throw SyntaxError();
 
-		if (container.size() == 0)
+		if (std::isdigit(token[0]))
 		{
-			i++;
-			if (i < exp.length() && std::isdigit(exp[i]))
-				container.push(static_cast<int>(exp[i]));
-			else
-				throw SyntaxError();
+			myStack.push(token[0] - '0');
 		}
-		a = container.top();
-		container.pop();
-		b = container.top();
-		container.pop();
-
-		if (i < exp.length() && operators.find(exp[i]) != std::string::npos)
-			container.push(operation(a, b, exp[i]));
+		else if ((operators.find(token[0]) != std::string::npos) && myStack.size() >= 2)
+			myStack.push(operation(myStack, token[0]));
 		else
-			SyntaxError();
+			throw SyntaxError();
 	}
-	if (container.size() != 1)
-		SyntaxError();
-	return (container.top());
+	if (myStack.size() != 1)
+		throw SyntaxError();
+	return myStack.top();
 }
-
