@@ -6,12 +6,17 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/17 11:19:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/17 15:28:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PmergeMe.hpp"
+
 int	main(int argc, char* argv[])
 {
-	
+	if (argc < 2)
+	{
+		std::cerr << "" << std::endl;
+	}
 	return 0;
 }
