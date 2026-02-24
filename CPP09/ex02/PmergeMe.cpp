@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/23 16:35:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/24 17:22:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,61 @@
 
 // // Finally: Insert the Straggler (if it exists) using Binary Search on the ENTIRE MainChain.
 
-void	pmerge()
+
+typedef std::vector<std::pair<int, int> >	PairContainer;
+
+std::vector<int>	generateMainChaine(PairContainer& sortedPairs, int straggler, bool hasStraggler)
 {
+	
+}
+
+// std::swap_ranges()
+void	recursiveSort(std::vector<int>& numbers, int groupSize)
+{
+	// Step 1: the division into the pairs & sorting
+	if (groupSize > numbers.size())
+		return ;
+	int	pairsNum = (numbers.size() / groupSize) / 2;
+	for (int i = 0; i < pairsNum; i++)
+	{
+		int n1 = (i * groupSize) + (groupSize - 1);
+		int n2 = ((i + 1) * groupSize) + (groupSize - 1);
+		// TODO: You need to know hoe to controle and get groups bounds
+		if (n1 > n2)
+			std::swap_ranges(numbers.begin() + i, numbers.begin() + groupSize, numbers.)
+	}
+	
+	
+}
+
+void	pmergeMe(std::vector<int>& numbers)
+{
+	PairContainer	pairs;
+	int				straggler = 0;
+	bool			hasStraggler = false;
+
+	// Handle the straggler
+	if (numbers.size() % 2)
+	{
+		straggler = numbers.back();
+		hasStraggler = true;
+		numbers.pop_back();
+	}
+
+	// Create Pairs
+	for (size_t i = 0; i < numbers.size() - 1; (i =+ 2))
+	{
+		std::pair<int, int>	pair;
+		
+		pair.first = std::max(numbers[i], numbers[i + 1]);
+		pair.second = std::min(numbers[i], numbers[i + 1]);
+		pairs.push_back(pair);
+	}
+
+	recursiveSortPairs(pairs, 2);
+
+	//? I dont know i have have to do next step inside recursiveSortPairs or here
+	
+
 	
 }
