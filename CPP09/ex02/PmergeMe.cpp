@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/26 09:52:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 10:55:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ std::vector<int>	generateMainChaine(PairContainer& sortedPairs, int straggler, b
 
 void	recursiveSort(std::vector<int>& numbers, int groupSize)
 {
+	//  Step 1: the division into the pairs & sorting
 	// 1. Base Case: Do we have at least one pair of groups?
 	if (groupSize * 2 > numbers.size())
 		return ;
@@ -77,7 +78,7 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	{
 		// Winner indices
 		int winner1_idx = i + groupSize - 1;			// i = 0; groupSize = 4 => 0 + 4 - 1 = 3
-		int winner2_idx = i + (2 * groupSize) - 1;		// i = 0; groupSize = 4 => 0 + (2 * 4) - 1 = 7
+		int winner2_idx = (i + 2) + groupSize - 1;		// i = 0; groupSize = 4 => (0 + 2) + 4 - 1 = 7
 	
 		if (numbers[winner1_idx] > numbers[winner2_idx])
 		{
@@ -86,12 +87,46 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
             // End1:   (i + 1) * groupSize (Exclusive, so it includes winner1)
             // Start2: (i + 1) * groupSize
 			std::swap_ranges(numbers.begin() + (i * groupSize),
-								numbers.begin() + i + groupSize,
-								numbers.begin() + i + groupSize);
+								numbers.begin() + ((i + 1) * groupSize),
+								numbers.begin() + ((i + 1) * groupSize));
 		}
 	}
-	
-	
+
+	// 3. Drill Down
+	recursiveSort(numbers, groupSize * 2);
+
+	// Steps 2 and 3: the initialization and insertion 
+	// 4. THE UNWINDING (Phase 3)
+	std::vector<int>	mainChaine;
+	std::vector<int>	pendChaine;
+
+	// Taking b1, a1 at once
+	std::copy(numbers.begin(), numbers.begin() +  (2 *groupSize), std::back_inserter(mainChaine));
+	for (size_t i = 2; i < groupsNum; i++)
+	{
+		// Copying Winners to main chaine
+		if (i % 2)
+		{
+			std::copy(numbers.begin() + (i * groupSize),
+						numbers.begin() + (i + 1) * groupSize,
+						std::back_inserter(mainChaine));
+		}
+		// Copying Winners to pend chaine
+		else
+		{
+			std::copy(numbers.begin() + (i * groupSize),
+						numbers.begin() + (i + 1) * groupSize,
+						std::back_inserter(pendChaine));				
+		}
+	}
+
+	if (numbers.size() > groupsNum * groupSize)
+	{
+		std::copy(numbers.begin() + (groupsNum * groupSize),
+						numbers.end(),
+						std::back_inserter(pendChaine));
+	}
+		
 }
 
 void	pmergeMe(std::vector<int>& numbers)
