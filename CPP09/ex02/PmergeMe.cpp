@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/26 12:34:07 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 15:59:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,17 +138,22 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	}
 
 	// Generate Jacobsthal Sequence
-	std::vector<int>	jacob = jacobSequence(pendChaine.size() / groupsNum);
-	int	amountOfInsertion = jacob.back() - *(jacob.end() - 2);
+	std::vector<int>	jSeq = jacobSequence(pendChaine.size() / groupsNum);
+	int	lastJacob = 1;
+	int	currentJacob;
 
-	while (!pendChaine.empty())
+	for (size_t k = 3; k < jSeq.size(); k++)
 	{
-		// Ask gemeni about the process of :
-		// how to use jacob
-		// num of insertion 
-		// next jacob + searching range ??
-		// pairing logic b3 => a3 ??
+		currentJacob = jSeq[k]; // 3 2     5 4 
+		for (size_t i = currentJacob; i > lastJacob; i--)
+		{
+			int	loser = pendChaine[i];
+			std::vector<int>::iterator	winner = std::find(mainChaine.begin(), mainChaine.end(), loser);
+			
+		}
+		
 	}
+	
 
 	if (numbers.size() > groupsNum * groupSize)
 	{

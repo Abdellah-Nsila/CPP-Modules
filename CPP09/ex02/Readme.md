@@ -18,4 +18,3 @@
 ## Jacobsthal sequence used to:
 - determine the range of searching (but how ?)
 - numbers of inserted elements (Reason ?)
-
