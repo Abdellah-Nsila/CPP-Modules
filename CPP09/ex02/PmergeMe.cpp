@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/24 17:22:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 09:52:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,30 @@ std::vector<int>	generateMainChaine(PairContainer& sortedPairs, int straggler, b
 	
 }
 
-// std::swap_ranges()
 void	recursiveSort(std::vector<int>& numbers, int groupSize)
 {
-	// Step 1: the division into the pairs & sorting
-	if (groupSize > numbers.size())
+	// 1. Base Case: Do we have at least one pair of groups?
+	if (groupSize * 2 > numbers.size())
 		return ;
-	int	pairsNum = (numbers.size() / groupSize) / 2;
-	for (int i = 0; i < pairsNum; i++)
+
+	// 2. Pairwise Comparison & Block Swapping
+	int	groupsNum = numbers.size() / groupSize;
+	for (int i = 0; i < groupsNum; i += 2)
 	{
-		int n1 = (i * groupSize) + (groupSize - 1);
-		int n2 = ((i + 1) * groupSize) + (groupSize - 1);
-		// TODO: You need to know hoe to controle and get groups bounds
-		if (n1 > n2)
-			std::swap_ranges(numbers.begin() + i, numbers.begin() + groupSize, numbers.)
+		// Winner indices
+		int winner1_idx = i + groupSize - 1;			// i = 0; groupSize = 4 => 0 + 4 - 1 = 3
+		int winner2_idx = i + (2 * groupSize) - 1;		// i = 0; groupSize = 4 => 0 + (2 * 4) - 1 = 7
+	
+		if (numbers[winner1_idx] > numbers[winner2_idx])
+		{
+			// We swap the FULL blocks
+            // Start1: i * groupSize
+            // End1:   (i + 1) * groupSize (Exclusive, so it includes winner1)
+            // Start2: (i + 1) * groupSize
+			std::swap_ranges(numbers.begin() + (i * groupSize),
+								numbers.begin() + i + groupSize,
+								numbers.begin() + i + groupSize);
+		}
 	}
 	
 	
@@ -108,7 +118,7 @@ void	pmergeMe(std::vector<int>& numbers)
 		pairs.push_back(pair);
 	}
 
-	recursiveSortPairs(pairs, 2);
+	recursiveSort(numbers, 2);
 
 	//? I dont know i have have to do next step inside recursiveSortPairs or here
 	
