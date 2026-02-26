@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/26 10:55:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 12:07:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,28 @@
 // // Finally: Insert the Straggler (if it exists) using Binary Search on the ENTIRE MainChain.
 
 
-typedef std::vector<std::pair<int, int> >	PairContainer;
-
-std::vector<int>	generateMainChaine(PairContainer& sortedPairs, int straggler, bool hasStraggler)
+std::vector<int>	jacobSequence(int groupsNum)
 {
+	std::vector<int>	sequence;
+	int	i = 2;
+	int	num = 0;
+
+	sequence.push_back(0);
+	sequence.push_back(1);
+	while (num < groupsNum)
+	{
+		num = sequence[i - 1] + (2 * sequence[i - 2]);
+		sequence.push_back(num);
+		i++;
+	}
+
+	// Debugging
+	// for (size_t i = 0; i < sequence.size(); i++)
+	// {
+	// 	std::cout << sequence[i] << std::endl;
+	// }
 	
+	return (sequence);
 }
 
 void	recursiveSort(std::vector<int>& numbers, int groupSize)
@@ -101,7 +118,7 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	std::vector<int>	pendChaine;
 
 	// Taking b1, a1 at once
-	std::copy(numbers.begin(), numbers.begin() +  (2 *groupSize), std::back_inserter(mainChaine));
+	std::copy(numbers.begin(), numbers.begin() +  (2 * groupSize), std::back_inserter(mainChaine));
 	for (size_t i = 2; i < groupsNum; i++)
 	{
 		// Copying Winners to main chaine
@@ -120,6 +137,9 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		}
 	}
 
+	std::vector<int>	jacob = jacobSequence(pendChaine.size() / groupsNum);
+	int	amountOfInsertion = jacob.back() - *(jacob.end() - 2);
+
 	if (numbers.size() > groupsNum * groupSize)
 	{
 		std::copy(numbers.begin() + (groupsNum * groupSize),
@@ -129,34 +149,36 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		
 }
 
-void	pmergeMe(std::vector<int>& numbers)
-{
-	PairContainer	pairs;
-	int				straggler = 0;
-	bool			hasStraggler = false;
+// void	pmergeMe(std::vector<int>& numbers)
+// {
+// 	PairContainer	pairs;
+// 	int				straggler = 0;
+// 	bool			hasStraggler = false;
 
-	// Handle the straggler
-	if (numbers.size() % 2)
-	{
-		straggler = numbers.back();
-		hasStraggler = true;
-		numbers.pop_back();
-	}
+// 	// Handle the straggler
+// 	if (numbers.size() % 2)
+// 	{
+// 		straggler = numbers.back();
+// 		hasStraggler = true;
+// 		numbers.pop_back();
+// 	}
 
-	// Create Pairs
-	for (size_t i = 0; i < numbers.size() - 1; (i =+ 2))
-	{
-		std::pair<int, int>	pair;
+// 	// Create Pairs
+// 	for (size_t i = 0; i < numbers.size() - 1; (i =+ 2))
+// 	{
+// 		std::pair<int, int>	pair;
 		
-		pair.first = std::max(numbers[i], numbers[i + 1]);
-		pair.second = std::min(numbers[i], numbers[i + 1]);
-		pairs.push_back(pair);
-	}
+// 		pair.first = std::max(numbers[i], numbers[i + 1]);
+// 		pair.second = std::min(numbers[i], numbers[i + 1]);
+// 		pairs.push_back(pair);
+// 	}
 
-	recursiveSort(numbers, 2);
+// 	recursiveSort(numbers, 2);
 
-	//? I dont know i have have to do next step inside recursiveSortPairs or here
+// 	//? I dont know i have have to do next step inside recursiveSortPairs or here
+
+	
 	
 
 	
-}
+// }

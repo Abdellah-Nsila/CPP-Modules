@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/17 15:28:30 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 12:07:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	main(int argc, char* argv[])
 {
 	if (argc < 2)
 	{
-		std::cerr << "" << std::endl;
+		std::cerr << argv[0] << std::endl;
 	}
+	std::vector<int> jacob = jacobSequence(11);
+	std::cout << (jacob.back() - *(jacob.end() - 2)) << std::endl;
 	return 0;
 }
