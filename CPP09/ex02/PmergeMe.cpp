@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/26 12:07:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/26 12:34:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,18 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		}
 	}
 
+	// Generate Jacobsthal Sequence
 	std::vector<int>	jacob = jacobSequence(pendChaine.size() / groupsNum);
 	int	amountOfInsertion = jacob.back() - *(jacob.end() - 2);
+
+	while (!pendChaine.empty())
+	{
+		// Ask gemeni about the process of :
+		// how to use jacob
+		// num of insertion 
+		// next jacob + searching range ??
+		// pairing logic b3 => a3 ??
+	}
 
 	if (numbers.size() > groupsNum * groupSize)
 	{
