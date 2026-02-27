@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/27 09:59:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/27 15:58:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	{
 		// Winner indices
 		int winner1_idx = i + groupSize - 1;			// i = 0; groupSize = 4 => 0 + 4 - 1 = 3
-		int winner2_idx = (i + 2) + groupSize - 1;		// i = 0; groupSize = 4 => (0 + 2) + 4 - 1 = 7
+		int winner2_idx = (i + 2) * groupSize - 1;		// i = 0; groupSize = 4 => (0 + 2) * 4 - 1 = 7
 	
 		if (numbers[winner1_idx] > numbers[winner2_idx])
 		{
@@ -117,9 +117,19 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	std::vector<int>	mainChaine;
 	std::vector<int>	pendChaine;
 	std::vector<int>	winnersCaptains;
+	std::vector<int>	residual;
+	bool				hasResidual = false;
+
+	if (numbers.size() > (groupsNum * groupSize))
+	{
+		hasResidual = true;
+		std::copy(numbers.begin() + (groupsNum * groupSize),
+						numbers.end(),
+						std::back_inserter(residual));
+	}
 
 	// Taking b1, a1 at once
-	std::copy(numbers.begin(), numbers.begin() +  (2 * groupSize), std::back_inserter(mainChaine));
+	std::copy(numbers.begin(), numbers.begin() + (2 * groupSize), std::back_inserter(mainChaine));
 	for (size_t i = 2; i < groupsNum; i++)
 	{
 		// Copying Winners to main chaine
@@ -149,25 +159,45 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		currentJacob = jSeq[k]; // 3 2     5 4 
 		for (size_t i = currentJacob; i > lastJacob; i--)
 		{
-			int	pendIdx = currentJacob - 2;
+			int	pendIdx = i - 2; // Offset: b2 is index 0
+			if (pendIdx >= (pendChaine.size() / groupSize))
+				continue;
 
 			int	partnerWinnerVal = winnersCaptains[pendIdx];
-			std::vector<int>::iterator	endRange = std::find(mainChaine.begin(), mainChaine.end(), partnerWinnerVal);
+			std::vector<int>::iterator	endRange = std::find(mainChaine.begin(),
+																mainChaine.end(),
+																partnerWinnerVal);
 
 			int partnerLoserVal = pendChaine[((pendIdx + 1) * groupSize) - 1];
-			std::vector<int>::iterator	insertPos = std::upper_bound(mainChaine.begin(), endRange, partnerLoserVal);
-			
-			mainChaine.insert(insertPos, partnerLoserVal);
-			
+			std::vector<int>::iterator	insertionPos = std::upper_bound(mainChaine.begin(), 
+																		endRange,
+																		partnerLoserVal);
+
+			mainChaine.insert(insertionPos,
+								pendChaine.begin() + (pendIdx * groupSize),
+								pendChaine.begin() + ((pendIdx + 1) * groupSize));
 		}
+		lastJacob = currentJacob;
 	}
 
-	if (numbers.size() > groupsNum * groupSize)
+	// 5. Insert the Residual
+	if (hasResidual)
 	{
-		std::copy(numbers.begin() + (groupsNum * groupSize),
-						numbers.end(),
-						std::back_inserter(pendChaine));
-	}	
+		// Use the last element of the residual block for comparison
+		int	residualLastVal =  residual.back();
+
+		// Range is the WHOLE mainChaine
+		std::vector<int>::iterator	insertionPos = std::upper_bound(
+			mainChaine.begin(),	mainChaine.end(),residualLastVal);
+
+		mainChaine.insert(insertionPos,
+							residual.begin(),
+							residual.end());
+	}
+
+	// 6. FINISH THE UNWINDING
+	// This is the most important step: move the sorted mainChaine back to numbers!
+	std::copy(mainChaine.begin(), mainChaine.end(), numbers.begin());
 }
 
 // void	pmergeMe(std::vector<int>& numbers)
