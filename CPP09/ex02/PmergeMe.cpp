@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/26 15:59:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/02/27 09:59:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	// 4. THE UNWINDING (Phase 3)
 	std::vector<int>	mainChaine;
 	std::vector<int>	pendChaine;
+	std::vector<int>	winnersCaptains;
 
 	// Taking b1, a1 at once
 	std::copy(numbers.begin(), numbers.begin() +  (2 * groupSize), std::back_inserter(mainChaine));
@@ -127,6 +128,7 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 			std::copy(numbers.begin() + (i * groupSize),
 						numbers.begin() + (i + 1) * groupSize,
 						std::back_inserter(mainChaine));
+			winnersCaptains.push_back(*(numbers.begin() + ((i + 1) * groupSize) - 1));
 		}
 		// Copying Winners to pend chaine
 		else
@@ -147,21 +149,25 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		currentJacob = jSeq[k]; // 3 2     5 4 
 		for (size_t i = currentJacob; i > lastJacob; i--)
 		{
-			int	loser = pendChaine[i];
-			std::vector<int>::iterator	winner = std::find(mainChaine.begin(), mainChaine.end(), loser);
+			int	pendIdx = currentJacob - 2;
+
+			int	partnerWinnerVal = winnersCaptains[pendIdx];
+			std::vector<int>::iterator	endRange = std::find(mainChaine.begin(), mainChaine.end(), partnerWinnerVal);
+
+			int partnerLoserVal = pendChaine[((pendIdx + 1) * groupSize) - 1];
+			std::vector<int>::iterator	insertPos = std::upper_bound(mainChaine.begin(), endRange, partnerLoserVal);
+			
+			mainChaine.insert(insertPos, partnerLoserVal);
 			
 		}
-		
 	}
-	
 
 	if (numbers.size() > groupsNum * groupSize)
 	{
 		std::copy(numbers.begin() + (groupsNum * groupSize),
 						numbers.end(),
 						std::back_inserter(pendChaine));
-	}
-		
+	}	
 }
 
 // void	pmergeMe(std::vector<int>& numbers)
@@ -197,3 +203,4 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 
 	
 // }
+
