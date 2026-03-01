@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/02/27 15:58:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/01 13:50:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ std::vector<int>	jacobSequence(int groupsNum)
 	return (sequence);
 }
 
-void	recursiveSort(std::vector<int>& numbers, int groupSize)
+void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 {
 	//  Step 1: the division into the pairs & sorting
 	// 1. Base Case: Do we have at least one pair of groups?
@@ -90,8 +90,8 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 		return ;
 
 	// 2. Pairwise Comparison & Block Swapping
-	int	groupsNum = numbers.size() / groupSize;
-	for (int i = 0; i < groupsNum; i += 2)
+	size_t	groupsNum = numbers.size() / groupSize;
+	for (size_t i = 0; i < groupsNum; i += 2)
 	{
 		// Winner indices
 		int winner1_idx = i + groupSize - 1;			// i = 0; groupSize = 4 => 0 + 4 - 1 = 3
@@ -151,15 +151,15 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 
 	// Generate Jacobsthal Sequence
 	std::vector<int>	jSeq = jacobSequence(pendChaine.size() / groupsNum);
-	int	lastJacob = 1;
-	int	currentJacob;
+	size_t	lastJacob = 1;
+	size_t	currentJacob;
 
 	for (size_t k = 3; k < jSeq.size(); k++)
 	{
 		currentJacob = jSeq[k]; // 3 2     5 4 
 		for (size_t i = currentJacob; i > lastJacob; i--)
 		{
-			int	pendIdx = i - 2; // Offset: b2 is index 0
+			size_t	pendIdx = i - 2; // Offset: b2 is index 0
 			if (pendIdx >= (pendChaine.size() / groupSize))
 				continue;
 
@@ -200,37 +200,22 @@ void	recursiveSort(std::vector<int>& numbers, int groupSize)
 	std::copy(mainChaine.begin(), mainChaine.end(), numbers.begin());
 }
 
-// void	pmergeMe(std::vector<int>& numbers)
-// {
-// 	PairContainer	pairs;
-// 	int				straggler = 0;
-// 	bool			hasStraggler = false;
+// !!!!!!!!!!!!!!!!!!!!!!!!! Simulate in TLDRAW, TODO Original Straggler !!!!!!!!!!!!!!!!!!!!!!!!!
 
-// 	// Handle the straggler
-// 	if (numbers.size() % 2)
-// 	{
-// 		straggler = numbers.back();
-// 		hasStraggler = true;
-// 		numbers.pop_back();
-// 	}
+void	pmergeMe(std::vector<int>& numbers)
+{
+	int		straggler = 0;
+	bool	hasStraggler = false;
 
-// 	// Create Pairs
-// 	for (size_t i = 0; i < numbers.size() - 1; (i =+ 2))
-// 	{
-// 		std::pair<int, int>	pair;
-		
-// 		pair.first = std::max(numbers[i], numbers[i + 1]);
-// 		pair.second = std::min(numbers[i], numbers[i + 1]);
-// 		pairs.push_back(pair);
-// 	}
+	// Handle the straggler
+	if (numbers.size() % 2)
+	{
+		straggler = numbers.back();
+		hasStraggler = true;
+		numbers.pop_back();
+	}
 
-// 	recursiveSort(numbers, 2);
 
-// 	//? I dont know i have have to do next step inside recursiveSortPairs or here
-
-	
-	
-
-	
-// }
+	recursiveSort(numbers, 2);	
+}
 
