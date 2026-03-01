@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/01 13:50:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/01 16:04:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,8 @@ void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 	// 6. FINISH THE UNWINDING
 	// This is the most important step: move the sorted mainChaine back to numbers!
 	std::copy(mainChaine.begin(), mainChaine.end(), numbers.begin());
+	displayContainer(numbers);
+	std::cout << std::endl;
 }
 
 // !!!!!!!!!!!!!!!!!!!!!!!!! Simulate in TLDRAW, TODO Original Straggler !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -215,7 +217,14 @@ void	pmergeMe(std::vector<int>& numbers)
 		numbers.pop_back();
 	}
 
-
-	recursiveSort(numbers, 2);	
+	recursiveSort(numbers, 2);
+	
+	// Insert Straggler if it exist
+	if (hasStraggler)
+	{	
+		std::vector<int>::iterator	insertionPos = std::upper_bound(numbers.begin(),
+		numbers.end(), straggler);
+		numbers.insert(insertionPos, numbers.begin(), numbers.end());
+	}
 }
 
