@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:38 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/01 13:57:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/03 15:50:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,29 @@ std::vector<int>	jacobSequence(int groupsNum);
 void	pmergeMe(std::vector<int>& numbers);
 
 template <typename T>
-void	displayContainer(T container)
+void	displayContainer(T container, int groupSize, std::string name)
 {
-	for (typename T::iterator it = container.begin(); it < container.end(); it++)
+	int	gs = 1;
+
+	std::cout << "=========================" << name << "=========================" << std::endl;
+	for (size_t i = 0; i < container.size(); i++)
 	{
-		std::cout << *(it);
-		if ((it + 1) != container.end())
-			std::cout << " " << "\n";
+		if (gs == 1)
+		{
+			std::cout << "[" << container[i] << ", ";
+			gs++;
+		}
+		else if (gs != groupSize)
+		{
+			std::cout << container[i] << ", ";
+			gs++;
+		}
+		else if (gs == groupSize)
+		{
+			std::cout << container[i] << "] ";
+			gs = 1;
+		}
 	}
 	std::cout << std::endl;
+	std::cout << "============================================================" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/01 16:04:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/03 16:03:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,52 +66,52 @@ std::vector<int>	jacobSequence(int groupsNum)
 
 	sequence.push_back(0);
 	sequence.push_back(1);
-	while (num < groupsNum)
+	while (num <= groupsNum)
 	{
 		num = sequence[i - 1] + (2 * sequence[i - 2]);
 		sequence.push_back(num);
 		i++;
 	}
-
-	// Debugging
-	// for (size_t i = 0; i < sequence.size(); i++)
-	// {
-	// 	std::cout << sequence[i] << std::endl;
-	// }
-	
 	return (sequence);
 }
 
 void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 {
+	std::cout << "groupSize: " << groupSize << std::endl;
 	//  Step 1: the division into the pairs & sorting
 	// 1. Base Case: Do we have at least one pair of groups?
-	if (groupSize * 2 > numbers.size())
+	if ((groupSize * 2) > numbers.size())
 		return ;
 
+	// displayContainer(numbers, "numbers");
 	// 2. Pairwise Comparison & Block Swapping
 	size_t	groupsNum = numbers.size() / groupSize;
-	for (size_t i = 0; i < groupsNum; i += 2)
+
+	for (size_t i = 0; i + 1 < groupsNum; i += 2)
 	{
 		// Winner indices
-		int winner1_idx = i + groupSize - 1;			// i = 0; groupSize = 4 => 0 + 4 - 1 = 3
-		int winner2_idx = (i + 2) * groupSize - 1;		// i = 0; groupSize = 4 => (0 + 2) * 4 - 1 = 7
-	
+		int winner1_idx = (i + 1) * groupSize - 1;	// index of last element in the first block
+		int winner2_idx = (i + 2) * groupSize - 1;	// index of last element in the second block
+		
 		if (numbers[winner1_idx] > numbers[winner2_idx])
 		{
+			std::cout << "w1: " << numbers[winner1_idx] << "   w2: " << numbers[winner2_idx] << std::endl;
 			// We swap the FULL blocks
-            // Start1: i * groupSize
-            // End1:   (i + 1) * groupSize (Exclusive, so it includes winner1)
-            // Start2: (i + 1) * groupSize
+			// Start1: i * groupSize			Index of group 1 start
+			// End1:   (i + 1) * groupSize		Swaping up to (begin + number) of element
+			// Start2: (i + 1) * groupSize		Index of group 2 start
 			std::swap_ranges(numbers.begin() + (i * groupSize),
-								numbers.begin() + ((i + 1) * groupSize),
-								numbers.begin() + ((i + 1) * groupSize));
+			numbers.begin() + ((i + 1) * groupSize),
+			numbers.begin() + ((i + 1) * groupSize));
 		}
 	}
+	displayContainer(numbers, groupSize, "numbers before");
 
 	// 3. Drill Down
 	recursiveSort(numbers, groupSize * 2);
 
+	displayContainer(numbers, groupSize, "numbers after");
+	
 	// Steps 2 and 3: the initialization and insertion 
 	// 4. THE UNWINDING (Phase 3)
 	std::vector<int>	mainChaine;
@@ -122,6 +122,7 @@ void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 
 	if (numbers.size() > (groupsNum * groupSize))
 	{
+		std::cout << "size: " << numbers.size() << " perfect: " << (groupsNum * groupSize) << std::endl;
 		hasResidual = true;
 		std::copy(numbers.begin() + (groupsNum * groupSize),
 						numbers.end(),
@@ -129,7 +130,9 @@ void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 	}
 
 	// Taking b1, a1 at once
-	std::copy(numbers.begin(), numbers.begin() + (2 * groupSize), std::back_inserter(mainChaine));
+	std::copy(numbers.begin(),
+				numbers.begin() + (2 * groupSize),
+				std::back_inserter(mainChaine));
 	for (size_t i = 2; i < groupsNum; i++)
 	{
 		// Copying Winners to main chaine
@@ -149,13 +152,17 @@ void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 		}
 	}
 
+	displayContainer(mainChaine, groupSize,"mainChaine ");
+	displayContainer(pendChaine, groupSize,"pendChaine ");
+
 	// Generate Jacobsthal Sequence
-	std::vector<int>	jSeq = jacobSequence(pendChaine.size() / groupsNum);
+	std::vector<int>	jSeq = jacobSequence(pendChaine.size() / groupSize);
 	size_t	lastJacob = 1;
 	size_t	currentJacob;
 
 	for (size_t k = 3; k < jSeq.size(); k++)
 	{
+		// TODO check J bound to stop
 		currentJacob = jSeq[k]; // 3 2     5 4 
 		for (size_t i = currentJacob; i > lastJacob; i--)
 		{
@@ -198,8 +205,8 @@ void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
 	// 6. FINISH THE UNWINDING
 	// This is the most important step: move the sorted mainChaine back to numbers!
 	std::copy(mainChaine.begin(), mainChaine.end(), numbers.begin());
-	displayContainer(numbers);
-	std::cout << std::endl;
+	displayContainer(mainChaine, 1, "numbers sorted");
+
 }
 
 // !!!!!!!!!!!!!!!!!!!!!!!!! Simulate in TLDRAW, TODO Original Straggler !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -209,6 +216,9 @@ void	pmergeMe(std::vector<int>& numbers)
 	int		straggler = 0;
 	bool	hasStraggler = false;
 
+	if (numbers.size() < 2)
+		return;
+
 	// Handle the straggler
 	if (numbers.size() % 2)
 	{
@@ -217,14 +227,14 @@ void	pmergeMe(std::vector<int>& numbers)
 		numbers.pop_back();
 	}
 
-	recursiveSort(numbers, 2);
+	recursiveSort(numbers, 1);
 	
 	// Insert Straggler if it exist
 	if (hasStraggler)
 	{	
 		std::vector<int>::iterator	insertionPos = std::upper_bound(numbers.begin(),
 		numbers.end(), straggler);
-		numbers.insert(insertionPos, numbers.begin(), numbers.end());
+		numbers.insert(insertionPos, straggler);
 	}
 }
 
