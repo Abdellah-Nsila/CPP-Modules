@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/03 16:03:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/05 17:24:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 // // Finally: Insert the Straggler (if it exists) using Binary Search on the ENTIRE MainChain.
 
 
-std::vector<int>	jacobSequence(int groupsNum)
+std::vector<int>	jacobSequence(int blocksNum)
 {
 	std::vector<int>	sequence;
 	int	i = 2;
@@ -66,7 +66,7 @@ std::vector<int>	jacobSequence(int groupsNum)
 
 	sequence.push_back(0);
 	sequence.push_back(1);
-	while (num <= groupsNum)
+	while (num < blocksNum)
 	{
 		num = sequence[i - 1] + (2 * sequence[i - 2]);
 		sequence.push_back(num);
@@ -75,141 +75,87 @@ std::vector<int>	jacobSequence(int groupsNum)
 	return (sequence);
 }
 
-void	recursiveSort(std::vector<int>& numbers, size_t groupSize)
+std::vector<int>	recursiveSort(std::vector<int>& numbers)
 {
-	std::cout << "groupSize: " << groupSize << std::endl;
-	//  Step 1: the division into the pairs & sorting
-	// 1. Base Case: Do we have at least one pair of groups?
-	if ((groupSize * 2) > numbers.size())
-		return ;
+	// 1 . Base Case: No Pair can be made
+	if (numbers.size() < 2)
+		return numbers;
 
-	// displayContainer(numbers, "numbers");
-	// 2. Pairwise Comparison & Block Swapping
-	size_t	groupsNum = numbers.size() / groupSize;
+	// 2 . Pairs container
+	std::vector<Pair>	pairs;
+	pairs.reserve(numbers.size() / 2);
 
-	for (size_t i = 0; i + 1 < groupsNum; i += 2)
+	// 3 . Handle straggler
+	int	straggler = 0;
+	bool hasStraggler = false;
+	if (numbers.size() % 2)
 	{
-		// Winner indices
-		int winner1_idx = (i + 1) * groupSize - 1;	// index of last element in the first block
-		int winner2_idx = (i + 2) * groupSize - 1;	// index of last element in the second block
-		
-		if (numbers[winner1_idx] > numbers[winner2_idx])
-		{
-			std::cout << "w1: " << numbers[winner1_idx] << "   w2: " << numbers[winner2_idx] << std::endl;
-			// We swap the FULL blocks
-			// Start1: i * groupSize			Index of group 1 start
-			// End1:   (i + 1) * groupSize		Swaping up to (begin + number) of element
-			// Start2: (i + 1) * groupSize		Index of group 2 start
-			std::swap_ranges(numbers.begin() + (i * groupSize),
-			numbers.begin() + ((i + 1) * groupSize),
-			numbers.begin() + ((i + 1) * groupSize));
-		}
-	}
-	displayContainer(numbers, groupSize, "numbers before");
-
-	// 3. Drill Down
-	recursiveSort(numbers, groupSize * 2);
-
-	displayContainer(numbers, groupSize, "numbers after");
-	
-	// Steps 2 and 3: the initialization and insertion 
-	// 4. THE UNWINDING (Phase 3)
-	std::vector<int>	mainChaine;
-	std::vector<int>	pendChaine;
-	std::vector<int>	winnersCaptains;
-	std::vector<int>	residual;
-	bool				hasResidual = false;
-
-	if (numbers.size() > (groupsNum * groupSize))
-	{
-		std::cout << "size: " << numbers.size() << " perfect: " << (groupsNum * groupSize) << std::endl;
-		hasResidual = true;
-		std::copy(numbers.begin() + (groupsNum * groupSize),
-						numbers.end(),
-						std::back_inserter(residual));
+		hasStraggler = true;
+		straggler = numbers.back();
+		numbers.pop_back();
 	}
 
-	// Taking b1, a1 at once
-	std::copy(numbers.begin(),
-				numbers.begin() + (2 * groupSize),
-				std::back_inserter(mainChaine));
-	for (size_t i = 2; i < groupsNum; i++)
+	// 4 . Setup Pairs
+	for (size_t i = 0; i < numbers.size(); i += 2)
 	{
-		// Copying Winners to main chaine
-		if (i % 2)
-		{
-			std::copy(numbers.begin() + (i * groupSize),
-						numbers.begin() + (i + 1) * groupSize,
-						std::back_inserter(mainChaine));
-			winnersCaptains.push_back(*(numbers.begin() + ((i + 1) * groupSize) - 1));
-		}
-		// Copying Winners to pend chaine
+		if (numbers[i] > numbers[i+1])
+			pairs.push_back(Pair(numbers[i], numbers[i+1]));
 		else
+			pairs.push_back(Pair(numbers[i+1], numbers[i]));
+	}
+
+	// 5 . Setup mainChaine
+	std::vector<int>	mainChaine;
+	mainChaine.reserve(pairs.size());
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		mainChaine.push_back(pairs[i].a);
+	}
+
+	// 7 . Recursion
+	mainChaine = recursiveSort(mainChaine);
+
+	// 8 . The Unwinding Phase
+	// 9 . Re-mapping: We must match losers to their specific winners in the returned chain.
+	std::vector<int>	pend;
+	pend.reserve(mainChaine.size());
+	for (size_t i = 0; i < mainChaine.size(); i++)
+	{
+		for (size_t j = 0; j < pairs.size(); j++)
 		{
-			std::copy(numbers.begin() + (i * groupSize),
-						numbers.begin() + (i + 1) * groupSize,
-						std::back_inserter(pendChaine));				
+			if (mainChaine[i] == pairs[j].a)
+				pend.push_back(pairs[j].b);
 		}
 	}
 
-	displayContainer(mainChaine, groupSize,"mainChaine ");
-	displayContainer(pendChaine, groupSize,"pendChaine ");
-
-	// Generate Jacobsthal Sequence
-	std::vector<int>	jSeq = jacobSequence(pendChaine.size() / groupSize);
+	// 10 . Insert b1 because we know b1 < a1
+	mainChaine.insert(mainChaine.begin(), pend[0]);
+	
+	// 11 . 
+	
 	size_t	lastJacob = 1;
-	size_t	currentJacob;
-
-	for (size_t k = 3; k < jSeq.size(); k++)
+	std::vector<int>	jacobSeq = jacobSequence(pend.size() + 1);
+	for (size_t k = 3; k < jacobSeq.size(); k++)
 	{
-		// TODO check J bound to stop
-		currentJacob = jSeq[k]; // 3 2     5 4 
-		for (size_t i = currentJacob; i > lastJacob; i--)
+		size_t	currentJacob = jacobSeq[k];
+		size_t	actualEnd = std::min(currentJacob, pend.size());
+		for (size_t i = currentJacob; i > actualEnd; i--)
 		{
-			size_t	pendIdx = i - 2; // Offset: b2 is index 0
-			if (pendIdx >= (pendChaine.size() / groupSize))
-				continue;
-
-			int	partnerWinnerVal = winnersCaptains[pendIdx];
-			std::vector<int>::iterator	endRange = std::find(mainChaine.begin(),
-																mainChaine.end(),
-																partnerWinnerVal);
-
-			int partnerLoserVal = pendChaine[((pendIdx + 1) * groupSize) - 1];
-			std::vector<int>::iterator	insertionPos = std::upper_bound(mainChaine.begin(), 
-																		endRange,
-																		partnerLoserVal);
-
-			mainChaine.insert(insertionPos,
-								pendChaine.begin() + (pendIdx * groupSize),
-								pendChaine.begin() + ((pendIdx + 1) * groupSize));
+			if (i < 2)
+				break;
+			int	pendIdx = i - 2;
+			// --- BINARY INSERTION LOGIC GOES HERE ---
+			// 1. Get value: pend[pendIdx]
+			// 2. Find partner a_i in mainChain
+			// 3. Binary search up to a_i
+			// 4. Insert
 		}
-		lastJacob = currentJacob;
+		lastJacob = jacobSeq[k];
+		if (lastJacob > pend.size())
+			break;
 	}
-
-	// 5. Insert the Residual
-	if (hasResidual)
-	{
-		// Use the last element of the residual block for comparison
-		int	residualLastVal =  residual.back();
-
-		// Range is the WHOLE mainChaine
-		std::vector<int>::iterator	insertionPos = std::upper_bound(
-			mainChaine.begin(),	mainChaine.end(),residualLastVal);
-
-		mainChaine.insert(insertionPos,
-							residual.begin(),
-							residual.end());
-	}
-
-	// 6. FINISH THE UNWINDING
-	// This is the most important step: move the sorted mainChaine back to numbers!
-	std::copy(mainChaine.begin(), mainChaine.end(), numbers.begin());
-	displayContainer(mainChaine, 1, "numbers sorted");
-
+	
 }
-
-// !!!!!!!!!!!!!!!!!!!!!!!!! Simulate in TLDRAW, TODO Original Straggler !!!!!!!!!!!!!!!!!!!!!!!!!
 
 void	pmergeMe(std::vector<int>& numbers)
 {
@@ -227,8 +173,8 @@ void	pmergeMe(std::vector<int>& numbers)
 		numbers.pop_back();
 	}
 
-	recursiveSort(numbers, 1);
-	
+	recursiveSort(numbers);
+
 	// Insert Straggler if it exist
 	if (hasStraggler)
 	{	
@@ -237,4 +183,3 @@ void	pmergeMe(std::vector<int>& numbers)
 		numbers.insert(insertionPos, straggler);
 	}
 }
-
