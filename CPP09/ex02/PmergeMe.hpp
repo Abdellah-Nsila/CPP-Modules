@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:38 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/05 15:53:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/06 06:53:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ struct Pair
 	Pair(int w, int l) : a(w), b(l) {};
 };
 
-
-std::vector<int>	jacobSequence(int blocksNum);
+std::vector<int>	jacobSequence(size_t pendSize);
 void	pmergeMe(std::vector<int>& numbers);
 
 template <typename T>
