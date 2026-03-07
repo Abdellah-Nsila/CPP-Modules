@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/06 17:46:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/07 07:36:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ std::vector<int>	jacobSequence(size_t pendSize)
 	while (num < pendSize)
 	{
 		num = sequence[i - 1] + (2 * sequence[i - 2]);
-		std::cout << "Jacob: " << num << std::endl;
 		sequence.push_back(num);
 		i++;
 	}
@@ -103,30 +102,24 @@ std::vector<int>	recursiveSort(std::vector<int>& numbers)
 	// 10 . Insert b1 because we know b1 < a1
 	mainChaine.insert(mainChaine.begin(), pend[0]);
 
-	// 11 . 
-
+	// 11 . Binary-Insertion + Jacobsthal-Sequence
 	size_t	lastJacob = 1;
 	size_t	insertCount = 1;
 	std::vector<int>	jacobSeq = jacobSequence(pend.size() + 1);
 
 	for (size_t k = 3; k < jacobSeq.size(); k++)
 	{
-		// size_t	currentJacob = jacobSeq[k];
-		// size_t	topJacobId = std::min(currentJacob, pend.size() + 1);
+		size_t	currentJacob = jacobSeq[k];
+		size_t	topJacobId = std::min(currentJacob, pend.size());
 
-		 // # in case if we ran out of jacob numbers
-        size_t topJacobId = (k < jacobSeq.size()) ? jacobSeq[k] : pend.size();
-        // but we also need to still check if jacob number bigger than the size
-        if (topJacobId > pend.size())
-            topJacobId = pend.size();
-			
 		for (size_t i = topJacobId; i > lastJacob; i--)
 		{
 			if (i < 2)
 				break;
 			int	pendIdx = i - 1;
 			int loser = pend[pendIdx];
-			binaryInsert(mainChaine, loser, i + insertCount);
+			size_t	range_limit = std::min(i + insertCount, mainChaine.size());
+			binaryInsert(mainChaine, loser, range_limit);
 			insertCount++;
 		}
 		lastJacob = jacobSeq[k];

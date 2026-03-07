@@ -6,11 +6,15 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/06 17:17:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/07 08:12:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+#include <cstdlib> // Required for srand() and rand()
+#include <ctime>   // Required for time()
+#include <algorithm> // Required for std::generate
 
 void	testJacobLogic(size_t pendSize)
 {
@@ -20,13 +24,14 @@ void	testJacobLogic(size_t pendSize)
 	for (size_t k = 3; k < jacobSeq.size(); k++)
 	{
 		size_t	currentJacob = jacobSeq[k];
-		size_t	topJacobId = std::min(currentJacob, pendSize + 1);
+		size_t	topJacobId = std::min(currentJacob, pendSize);
+		std::cout << "lastJacob: " << lastJacob << std::endl;
 		for (size_t i = topJacobId; i > lastJacob; i--)
 		{
 			if (i < 2)
 				break;
 			// int	pendIdx = i - 2;
-			std::cout << "ID: " << i << "   loserIdx: " << i - 2 << "   winnerIdx: " << i + insertCount << std::endl;
+			std::cout << "ID: " << i << "   loserIdx: " << i - 2 << std::endl;
 			insertCount++;
 		}
 		lastJacob = jacobSeq[k];
@@ -35,8 +40,42 @@ void	testJacobLogic(size_t pendSize)
 	}
 }
 
+int getRandomNumber(int min, int max)
+{
+    // Formula: rand() % (max - min + 1) + min
+    return (rand() % (max - min + 1)) + min;
+}
+
+std::vector<int>	generateRandomVectorNumbers()
+{
+    const int VECTOR_SIZE = getRandomNumber(1, 100);
+    const int MIN_VAL = 1;
+    const int MAX_VAL = 100;
+
+    std::vector<int> random_vector(VECTOR_SIZE);
+
+    for (size_t i = 0; i < random_vector.size(); ++i) {
+        random_vector[i] = getRandomNumber(MIN_VAL, MAX_VAL);
+    }
+	return (random_vector);
+}
+
+bool	isVectorSorted(const std::vector<int>& vec)
+{
+    if (vec.size() <= 1) {
+        return true;
+    }
+    for (unsigned int i = 0; i < vec.size() - 1; ++i) {
+        if (vec[i] > vec[i+1]) {
+            return false; // Found an unsorted pair
+        }
+    }
+    return true; // All pairs were in non-descending order
+}
+
 int	main(int argc, char* argv[])
 {
+	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	(void)argc;
 	(void)argv;
 	// if (argc < 2)
@@ -44,23 +83,16 @@ int	main(int argc, char* argv[])
 	// 	std::cerr << argv[0] << std::endl;
 	// }
 
-	// testJacobLogic(12);
-
-	std::vector<int>	numbers;
-	numbers.push_back(5);
-	numbers.push_back(13);
-	numbers.push_back(7);
-	numbers.push_back(4);
-	numbers.push_back(6);
-	numbers.push_back(2);
-	numbers.push_back(3);
-	numbers.push_back(1);
-	numbers.push_back(20);
-	numbers.push_back(8);
-
-	displayContainer(numbers, 1, "original numbers before");
-	pmergeMe(numbers);
-
-	displayContainer(numbers, 1, "original numbers after");
+	for (size_t i = 0; i < 10000; i++)
+	{
+		std::vector<int>	v = generateRandomVectorNumbers();
+		// displayContainer(v, 1, "original numbers before");
+		pmergeMe(v);
+		// displayContainer(v, 1, "original numbers after");
+		if (isVectorSorted(v))
+			std::cout << "Sorted\n" << std::endl;
+		else
+			std::cout << "Not Sorted\n" << std::endl;
+	}
 	return 0;
 }
