@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/07 08:12:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/07 13:42:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char* argv[])
 	// 	std::cerr << argv[0] << std::endl;
 	// }
 
-	for (size_t i = 0; i < 10000; i++)
+	for (size_t i = 0; i < 10; i++)
 	{
 		std::vector<int>	v = generateRandomVectorNumbers();
 		// displayContainer(v, 1, "original numbers before");

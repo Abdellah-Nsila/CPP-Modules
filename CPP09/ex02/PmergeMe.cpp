@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/07 07:36:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/07 13:48:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,11 @@ std::vector<int>	jacobSequence(size_t pendSize)
 	return (sequence);
 }
 
-void	binaryInsert(std::vector<int>& numbers, int value, size_t right)
+void	binaryInsert(std::vector<int>& container, int number, std::vector<int>::iterator end)
 {
-	size_t	left = 0;
-
-	while (left < right)
-	{
-		size_t mid = left + (right - left) / 2;
-		// Value is smaller, search the left half
-		if (value < numbers[mid])
-			right = mid;
-		// Value is larger or equal, search the right half
-		else
-			left = mid + 1;
-	}
-	numbers.insert(numbers.begin() + left, value);
+	std::vector<int>::iterator	insertionPos = std::upper_bound(
+		container.begin(), end, number);
+	container.insert(insertionPos, number);
 }
 
 std::vector<int>	recursiveSort(std::vector<int>& numbers)
@@ -112,14 +102,13 @@ std::vector<int>	recursiveSort(std::vector<int>& numbers)
 		size_t	currentJacob = jacobSeq[k];
 		size_t	topJacobId = std::min(currentJacob, pend.size());
 
-		for (size_t i = topJacobId; i > lastJacob; i--)
+		for (size_t idx = topJacobId; idx > lastJacob; idx--)
 		{
-			if (i < 2)
+			if (idx < 2)
 				break;
-			int	pendIdx = i - 1;
-			int loser = pend[pendIdx];
-			size_t	range_limit = std::min(i + insertCount, mainChaine.size());
-			binaryInsert(mainChaine, loser, range_limit);
+			int loser = pend[idx - 1];
+			size_t	rangeLimit = std::min(idx + insertCount, mainChaine.size());
+			binaryInsert(mainChaine, loser, mainChaine.begin() + rangeLimit);
 			insertCount++;
 		}
 		lastJacob = jacobSeq[k];
@@ -128,7 +117,7 @@ std::vector<int>	recursiveSort(std::vector<int>& numbers)
 	}
 
 	if (hasStraggler)
-		binaryInsert(mainChaine, straggler, mainChaine.size());
+		binaryInsert(mainChaine, straggler, mainChaine.end());	
 
 	return (mainChaine);
 }
