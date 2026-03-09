@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 15:59:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/09 17:16:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ int	main(int argc, char* argv[])
 		fillContainer(argc, argv, c1);
 		fillContainer(argc, argv, c2);
 
+		std::vector<int>	jacobSeq = jacobSequence(argc - 1);
+
 		displayContainer("Before", c1);
 		clock_t start_vec = std::clock();
-		c1 = pmergeMe(c1);
+		c1 = pmergeMe(c1, jacobSeq);
 		clock_t end_vec = std::clock();
 		
 		clock_t start_deq = std::clock();
-		c2 = pmergeMe(c2);
+		c2 = pmergeMe(c2, jacobSeq);
 		clock_t end_deq = std::clock();
 		displayContainer("After", c2);
 

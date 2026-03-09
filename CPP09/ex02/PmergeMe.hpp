@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:38 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 16:05:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/09 17:39:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ struct Pair
 	Pair(int w, int l) : a(w), b(l), matched(false) {};
 };
 
-std::vector<int>	pmergeMe(std::vector<int>& numbers);
-std::deque<int>		pmergeMe(std::deque<int>& numbers);
+std::vector<int>	pmergeMe(std::vector<int>& numbers, const std::vector<int>& jacobSeq);
+std::deque<int>		pmergeMe(std::deque<int>& numbers, const std::vector<int>& jacobSeq);
 bool				isValidNumber(std::string&	arg);
+std::vector<int>	jacobSequence(size_t size);
 
 template <typename T>
 bool	fillContainer(int argc, char* argv[], T& container)
@@ -55,24 +56,6 @@ void	binaryInsert(T& container, int number, typename T::iterator end)
 	typename T::iterator	insertionPos = std::upper_bound(
 		container.begin(), end, number);
 	container.insert(insertionPos, number);
-}
-
-template <typename T>
-T	jacobSequence(size_t pendSize)
-{
-	T		sequence;
-	size_t	i = 2;
-	size_t	num = 0;
-
-	sequence.push_back(0);
-	sequence.push_back(1);
-	while (num < pendSize)
-	{
-		num = sequence[i - 1] + (2 * sequence[i - 2]);
-		sequence.push_back(num);
-		i++;
-	}
-	return (sequence);
 }
 
 template <typename T>

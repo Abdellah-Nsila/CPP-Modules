@@ -6,13 +6,30 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 16:05:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/09 22:29:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-std::vector<int>	pmergeMe(std::vector<int>& numbers)
+std::vector<int>	jacobSequence(size_t size)
+{
+	std::vector<int>		sequence;
+	size_t	i = 2;
+	size_t	num = 0;
+
+	sequence.push_back(0);
+	sequence.push_back(1);
+	while (num < size)
+	{
+		num = sequence[i - 1] + (2 * sequence[i - 2]);
+		sequence.push_back(num);
+		i++;
+	}
+	return (sequence);
+}
+
+std::vector<int>	pmergeMe(std::vector<int>& numbers, const std::vector<int>& jacobSeq)
 {
 	// 1 . Base Case: No Pair can be made
 	if (numbers.size() < 2)
@@ -50,7 +67,7 @@ std::vector<int>	pmergeMe(std::vector<int>& numbers)
 	}
 
 	// 7 . Recursion
-	mainChaine = pmergeMe(mainChaine);
+	mainChaine = pmergeMe(mainChaine, jacobSeq);
 
 	// 8 . The Unwinding Phase
 	// 9 . Re-mapping: We must match losers to their specific winners in the returned chain.
@@ -75,7 +92,6 @@ std::vector<int>	pmergeMe(std::vector<int>& numbers)
 	// 11 . Binary-Insertion + Jacobsthal-Sequence
 	size_t	lastJacob = 1;
 	size_t	insertCount = 1;
-	std::vector<size_t>	jacobSeq = jacobSequence<std::vector<size_t> >(pend.size() + 1);
 
 	for (size_t k = 3; k < jacobSeq.size(); k++)
 	{
@@ -102,7 +118,7 @@ std::vector<int>	pmergeMe(std::vector<int>& numbers)
 	return (mainChaine);
 }
 
-std::deque<int>	pmergeMe(std::deque<int>& numbers)
+std::deque<int>	pmergeMe(std::deque<int>& numbers, const std::vector<int>& jacobSeq)
 {
 	// 1 . Base Case: No Pair can be made
 	if (numbers.size() < 2)
@@ -138,7 +154,7 @@ std::deque<int>	pmergeMe(std::deque<int>& numbers)
 	}
 
 	// 7 . Recursion
-	mainChaine = pmergeMe(mainChaine);
+	mainChaine = pmergeMe(mainChaine, jacobSeq);
 
 	// 8 . The Unwinding Phase
 	// 9 . Re-mapping: We must match losers to their specific winners in the returned chain.
@@ -150,7 +166,7 @@ std::deque<int>	pmergeMe(std::deque<int>& numbers)
 			if (mainChaine[i] == pairs[j].a)
 			{
 				pend.push_back(pairs[j].b);
-				pairs[j].matched = true; // Remove this pair so it's not matched again
+				pairs[j].matched = true; // Marke it as matched so it's not matched again
             	break; // Move to the next winner in mainChaine
 			}
 		}
@@ -162,7 +178,6 @@ std::deque<int>	pmergeMe(std::deque<int>& numbers)
 	// 11 . Binary-Insertion + Jacobsthal-Sequence
 	size_t	lastJacob = 1;
 	size_t	insertCount = 1;
-	std::deque<size_t>	jacobSeq = jacobSequence<std::deque<size_t> >(pend.size() + 1);
 
 	for (size_t k = 3; k < jacobSeq.size(); k++)
 	{
