@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:43 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 17:16:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/10 07:50:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,28 @@ int	main(int argc, char* argv[])
 {
 	if (argc < 2)
 	{
-		std::cerr << "Not enought arguments" << std::endl;
+		std::cerr << "Error: ./PmergeMe <numbers>" << std::endl;
 		return (1);
 	}
 
 	try
 	{
-		std::vector<int>	c1;
-		std::deque<int>		c2;
-
-		fillContainer(argc, argv, c1);
-		fillContainer(argc, argv, c2);
+		// 1. Initial Parse (Not Timed)
+		std::vector<int> master = parseInput(argc, argv);
+		displayContainer("Before", master);
 
 		std::vector<int>	jacobSeq = jacobSequence(argc - 1);
 
-		displayContainer("Before", c1);
+		// 2. Vector Timing
 		clock_t start_vec = std::clock();
-		c1 = pmergeMe(c1, jacobSeq);
+		std::vector<int> c1(master.begin(), master.end()); // Data Management
+		c1 = pmergeMe(c1, jacobSeq);                       // Sorting
 		clock_t end_vec = std::clock();
-		
+
+		// 3. Deque Timing
 		clock_t start_deq = std::clock();
-		c2 = pmergeMe(c2, jacobSeq);
+		std::deque<int> c2(master.begin(), master.end());  // Data Management
+		c2 = pmergeMe(c2, jacobSeq);                       // Sorting
 		clock_t end_deq = std::clock();
 		displayContainer("After", c2);
 

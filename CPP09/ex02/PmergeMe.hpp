@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:38 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 17:39:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/10 07:36:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,8 @@ struct Pair
 
 std::vector<int>	pmergeMe(std::vector<int>& numbers, const std::vector<int>& jacobSeq);
 std::deque<int>		pmergeMe(std::deque<int>& numbers, const std::vector<int>& jacobSeq);
-bool				isValidNumber(std::string&	arg);
+std::vector<int>	parseInput(int argc, char** argv);
 std::vector<int>	jacobSequence(size_t size);
-
-template <typename T>
-bool	fillContainer(int argc, char* argv[], T& container)
-{
-	for (int i = 1; i < argc; i++)
-	{
-		std::string	arg(argv[i]);
-		if (isValidNumber(arg))
-			container.push_back(std::atoi(argv[i]));
-	}
-	return (true);
-}
 
 template <typename T>
 void	binaryInsert(T& container, int number, typename T::iterator end)

@@ -6,28 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:18:35 by abnsila           #+#    #+#             */
-/*   Updated: 2026/03/09 22:29:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2026/03/10 07:58:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-
-std::vector<int>	jacobSequence(size_t size)
-{
-	std::vector<int>		sequence;
-	size_t	i = 2;
-	size_t	num = 0;
-
-	sequence.push_back(0);
-	sequence.push_back(1);
-	while (num < size)
-	{
-		num = sequence[i - 1] + (2 * sequence[i - 2]);
-		sequence.push_back(num);
-		i++;
-	}
-	return (sequence);
-}
 
 std::vector<int>	pmergeMe(std::vector<int>& numbers, const std::vector<int>& jacobSeq)
 {
@@ -70,7 +53,7 @@ std::vector<int>	pmergeMe(std::vector<int>& numbers, const std::vector<int>& jac
 	mainChaine = pmergeMe(mainChaine, jacobSeq);
 
 	// 8 . The Unwinding Phase
-	// 9 . Re-mapping: We must match losers to their specific winners in the returned chain.
+	// 9 . Re-mapping: We must match losers to their specific winners in the returned sorted chain.
 	std::vector<int>	pend;
 	pend.reserve(mainChaine.size());
 	for (size_t i = 0; i < mainChaine.size(); i++)
@@ -204,6 +187,23 @@ std::deque<int>	pmergeMe(std::deque<int>& numbers, const std::vector<int>& jacob
 	return (mainChaine);
 }
 
+std::vector<int>	jacobSequence(size_t size)
+{
+	std::vector<int>		sequence;
+	size_t	i = 2;
+	size_t	num = 0;
+
+	sequence.push_back(0);
+	sequence.push_back(1);
+	while (num < size)
+	{
+		num = sequence[i - 1] + (2 * sequence[i - 2]);
+		sequence.push_back(num);
+		i++;
+	}
+	return (sequence);
+}
+
 bool	isValidNumber(std::string&	arg)
 {
 	if (arg.empty())
@@ -231,4 +231,18 @@ bool	isValidNumber(std::string&	arg)
 	if (value > INT_MAX)
 		throw std::out_of_range("Error: Number too large for integer");
 	return true;
+}
+
+std::vector<int>	parseInput(int argc, char** argv)
+{
+    std::vector<int> master;
+    master.reserve(argc - 1);
+
+    for (int i = 1; i < argc; i++)
+	{
+        std::string arg(argv[i]);
+        if (isValidNumber(arg))
+            master.push_back(std::atoi(argv[i]));
+    }
+    return master;
 }
