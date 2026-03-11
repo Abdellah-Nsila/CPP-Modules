@@ -17,7 +17,7 @@ class SyntaxError : public std::exception
 	public:
 		const char*	what() const throw()
 		{
-			return "Error";
+			return "Error: Syntax Error";
 		}
 };
 
@@ -39,7 +39,7 @@ int	operation(std::stack<int>& myStack, char op)
 		case '/':
 		{
 			if (b == 0)
-        		throw SyntaxError();
+        		throw std::overflow_error("Error: Division by zero");
 			return a / b;
 		}
 		default:

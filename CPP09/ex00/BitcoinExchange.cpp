@@ -75,15 +75,23 @@ bool	parseBtcDatabase(const std::string& filePath, std::map<std::string, double>
 
 	// Collect database
 	std::string	line;
-	getline(file, line);
-	if (line != "date,exchange_rate")
-		throw NoHeaderFound();
 	while (getline(file, line))
 	{
+		if (line.empty())
+			continue ;
+		else if (line != "date,exchange_rate")
+			throw NoHeaderFound();
+		else
+			break ;
+	}
+	while (getline(file, line))
+	{
+		if (line.empty())
+			continue ; 
 		commaPos = line.find(',');
 		if (commaPos == std::string::npos)
 			continue ;
-		
+
 		date = line.substr(0, commaPos);
 		std::stringstream	ss(line.substr(commaPos + 1));
 		ss >> price;
@@ -150,12 +158,18 @@ void	bitcoinExchange(const std::string& filePath, const std::map<std::string, do
 
 	// Collect database
 	std::string	line;
-	getline(file, line);
-	if (line != "date | value")
-		throw NoHeaderFound();
 	while (getline(file, line))
 	{
-		if (parseBtcInput(line, date, quantity) == false)
+		if (line.empty())
+			continue ;
+		else if (line != "date | value")
+			throw NoHeaderFound();
+		else
+			break ;
+	}
+	while (getline(file, line))
+	{
+		if (line.empty() || parseBtcInput(line, date, quantity) == false)
 			continue ;
 		std::map<std::string, double>::const_iterator	it = database.lower_bound(date);
 		if (it == database.end() || it->first != date)
@@ -164,7 +178,7 @@ void	bitcoinExchange(const std::string& filePath, const std::map<std::string, do
 				--it;
 			else
 			{
-				std::cerr << "Error: bad input => " << line << std::endl;
+				std::cerr << "Error: No early date in DB for => " << line << std::endl;
 				continue ;
 			}
 		}
